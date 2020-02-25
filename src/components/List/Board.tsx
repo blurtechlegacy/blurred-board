@@ -1,15 +1,12 @@
 import React from 'react'
-import { IBoard } from '../../classes/models/IBoard'
-import { ICommand } from '../../classes/models/ICommand'
-import { IService } from '../../classes/models/IService'
 import styles from './Board.module.scss'
 
 interface IProps {
-  store: IBoard
+  store: any
 }
 const Board = (props: IProps) => {
   const { store } = props
-  const [commands, setCommands] = React.useState<ICommand[]>()
+  const [commands, setCommands] = React.useState<any[]>()
 
   React.useEffect(() => {
     setCommands(store.Commands)
@@ -17,10 +14,10 @@ const Board = (props: IProps) => {
 
   return (
     <main>
-      {commands?.map((command: ICommand) => (
+      {commands?.map((command: any) => (
         <div className={styles.command}>
           {command.Name}:{' '}
-          {command.Services?.map((service: IService) => (
+          {command.Services?.map((service: any) => (
             <div className={styles.service}>{service.Status}</div>
           ))}
         </div>

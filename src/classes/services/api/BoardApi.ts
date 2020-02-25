@@ -1,80 +1,17 @@
-import { IData } from '../../models/IFetchResult'
-import { IService } from '../../models/IService'
-import { ICommand } from '../../models/ICommand'
-import { IBoard } from '../../models/IBoard'
+import { IData } from 'src/classes/models/IFetchResult'
+import { IInfo, rawCastInfo } from 'src/classes/models/IInfo'
+import Rest from 'src/classes/http/Rest'
+import { HttpCancel } from 'classes/http/HttpCancel'
 
 class BoardApi {
-  public fetchBoard = async (): Promise<IData<IBoard>> => {
-    const services: IService[] = [
-      {
-        Id: 1,
-        Name: 'Mirai',
-        Status: 'OK',
-      },
-      {
-        Id: 2,
-        Name: 'Faust',
-        Status: 'CORRUPT',
-      },
-      {
-        Id: 3,
-        Name: 'n00bz_fighter',
-        Status: 'MUMBLE',
-      },
-      {
-        Id: 4,
-        Name: 'Reverse',
-        Status: 'DOWN',
-      },
-    ]
-    const commands: ICommand[] = [
-      {
-        Id: 1,
-        Name: 'n57u_n00bz',
-        SLA: 100,
-        FlagPoints: 100,
-        Flags: 100,
-        Services: services,
-      },
-      {
-        Id: 2,
-        Name: 'GEOLOGI',
-        SLA: 75,
-        FlagPoints: 75,
-        Flags: 75,
-        Services: services,
-      },
-      {
-        Id: 3,
-        Name: 'NSU',
-        SLA: 50,
-        FlagPoints: 50,
-        Flags: 50,
-        Services: services,
-      },
-      {
-        Id: 4,
-        Name: 'SIBGUTI',
-        SLA: 25,
-        FlagPoints: 25,
-        Flags: 25,
-        Services: services,
-      },
-      {
-        Id: 5,
-        Name: 'Blurred Technologies',
-        SLA: 0,
-        FlagPoints: 0,
-        Flags: 0,
-        Services: services,
-      },
-    ]
-    const data: IBoard = {
-      LastUpdate: new Date(),
-      Commands: commands,
-    }
+  public fetchInfo = async (
+    cancelObject?: HttpCancel
+  ): Promise<IData<IInfo>> => {
+    const data = await Rest.get('/api/info', cancelObject)
+    console.log(data)
+    const castedData = rawCastInfo(data)
     return {
-      data,
+      data: castedData,
       status: true,
     }
   }
