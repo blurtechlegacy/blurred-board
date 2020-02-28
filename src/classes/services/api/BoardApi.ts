@@ -27,6 +27,28 @@ class BoardApi {
         Status: 'DOWN',
       },
     ]
+    const servicesGood: IService[] = [
+      {
+        Id: 1,
+        Name: 'Mirai',
+        Status: 'OK',
+      },
+      {
+        Id: 2,
+        Name: 'Faust',
+        Status: 'OK',
+      },
+      {
+        Id: 3,
+        Name: 'n00bz_fighter',
+        Status: 'OK',
+      },
+      {
+        Id: 4,
+        Name: 'Reverse',
+        Status: 'OK',
+      },
+    ]
     const commands: ICommand[] = [
       {
         Id: 1,
@@ -34,7 +56,7 @@ class BoardApi {
         SLA: 100,
         FlagPoints: 100,
         Flags: 100,
-        Services: services,
+        Services: servicesGood,
       },
       {
         Id: 2,

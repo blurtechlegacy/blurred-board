@@ -30,10 +30,10 @@ const Header = (props: IProps) => {
 
   return (
     <header>
-      <h1>{settings.name}</h1>
+      <h1 className={styles.boardName}>{settings.name}</h1>
       <div className={styles.serviceList}>
         {services?.map((service: any) => (
-          <div>{service.Name}</div>
+          <div className={styles.serviceName}>{service.Name}</div>
         ))}
       </div>
     </header>

@@ -3,8 +3,19 @@
 header {
   display: flex;
   align-items: baseline;
+  width: $page-width;
+}
+
+.boardName {
+  min-width: $team-column-width;
 }
 
 .serviceList {
   display: flex;
+}
+.serviceName {
+  //display: inline-block;
+  width: $service-column-width;
+  margin: 0 8px 0 4px;
+  padding-left: 20px;
 }
