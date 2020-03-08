@@ -20,20 +20,23 @@ const Board = (props: IProps) => {
 
   return (
     <main>
-      {commands?.map((command: any) => (
-        <div className={styles.command}>
-          <div className={styles.commandData}>
-            <div className={styles.commandName}>{command.name}: </div>
-            <br />
-            {command.score}
-          </div>
-          {command.services?.map((service: any) => (
-            <div className={styles[setColorClass(IStatus[service.status])]}>
-              {IStatus[service.status]}
+      {commands?.map((command: any) => {
+        console.log(command)
+        return (
+          <div className={styles.command}>
+            <div className={styles.commandData}>
+              <div className={styles.commandName}>{command.name}: </div>
+              <br />
+              {command.score}
             </div>
-          ))}
-        </div>
-      ))}
+            {command.services?.map((service: any) => (
+              <div className={styles[setColorClass(IStatus[service.status])]}>
+                {IStatus[service.status]}
+              </div>
+            ))}
+          </div>
+        )
+      })}
     </main>
   )
 }
