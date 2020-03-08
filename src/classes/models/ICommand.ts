@@ -5,8 +5,8 @@ export interface ICommand extends IForm {
   Id: number
   Name: string
   Image?: string
-  SLA: number
+  TotalSLA: number
   FlagPoints: number
-  Flags: number
+  TotalFlags: number
   Services: IService[]
 }

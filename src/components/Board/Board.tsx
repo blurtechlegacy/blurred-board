@@ -2,6 +2,9 @@ import React from 'react'
 import { IBoard } from 'classes/models/IBoard'
 import { ICommand } from 'classes/models/ICommand'
 import { IService } from 'classes/models/IService'
+
+import ServiceCell from './ServiceCell/ServiceCell'
+
 import styles from './Board.module.scss'
 
 interface IProps {
@@ -28,11 +31,13 @@ const Board = (props: IProps) => {
             <div className={styles.commandName}>
               {command.Name}:{' '}
             </div>
-            <br />
-            {command.SLA}
+            <br/>
+            Total SLA: {command.TotalSLA}%
+            <br/>
+            Flag Points: {command.FlagPoints}
           </div>
           {command.Services?.map((service: IService, key) => (
-            <div key={key} className={styles[setColorClass(service.Status)]}>{service.Status}</div>
+            <ServiceCell key={key} className={styles[setColorClass(service.Status)]} service={service}/>
           ))}
         </div>
       ))}

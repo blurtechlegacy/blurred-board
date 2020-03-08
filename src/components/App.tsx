@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from 'src/components/App.module.scss'
 import Header from 'src/components/Header/Header'
-import Board from 'src/components/List/Board'
+import Board from 'src/components/Board/Board'
 import { IBoard } from 'src/classes/models/IBoard'
 
 interface IProps {
