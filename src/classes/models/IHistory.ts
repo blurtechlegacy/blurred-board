@@ -29,21 +29,4 @@ export interface IRound extends IForm {
   scoreboard: IScoreboard[]
 }
 
-export interface IHistoryRaw {
-  [key: number]: IRound
-}
-
 export type IHistory = IRound[]
-
-export const rawCastHistory = (data: IHistoryRaw): IHistory => {
-  const rounds = Object.values(data)
-  const scoreboards = rounds.map((item: IRound) => {
-    const scoreboard = Object.values(item.scoreboard)
-    return {
-      scoreboard,
-      round: item.round,
-    }
-  })
-  console.log(scoreboards)
-  return scoreboards
-}

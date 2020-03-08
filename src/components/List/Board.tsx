@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Board.module.scss'
+import { IStatus } from 'src/classes/models/IStatus'
 
 interface IProps {
   store: any
@@ -11,28 +12,31 @@ const setColorClass = (status: any) => {
 
 const Board = (props: IProps) => {
   const { store } = props
-  const [commands, setCommands] = React.useState<any[]>()
+  const [commands, setCommands] = React.useState()
 
   React.useEffect(() => {
-    setCommands(store.Commands)
+    setCommands(store.info.teams)
   }, [store])
 
   return (
     <main>
-      {commands?.map((command: any) => (
-        <div className={styles.command}>
-          <div className={styles.commandData}>
-            <div className={styles.commandName}>{command.Name}: </div>
-            <br />
-            {command.SLA}
-          </div>
-          {command.Services?.map((service: any) => (
-            <div className={styles[setColorClass(service.Status)]}>
-              {service.Status}
+      {commands?.map((command: any) => {
+        console.log(command)
+        return (
+          <div className={styles.command}>
+            <div className={styles.commandData}>
+              <div className={styles.commandName}>{command.name}: </div>
+              <br />
+              {command.score}
             </div>
-          ))}
-        </div>
-      ))}
+            {command.services?.map((service: any) => (
+              <div className={styles[setColorClass(IStatus[service.status])]}>
+                {IStatus[service.status]}
+              </div>
+            ))}
+          </div>
+        )
+      })}
     </main>
   )
 }

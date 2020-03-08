@@ -1,5 +1,7 @@
 import BoardApi from 'src/classes/services/api/BoardApi'
 import { IData } from 'src/classes/models/IFetchResult'
+import { IInfo } from '../models/IInfo'
+import { IHistory } from '../models/IHistory'
 
 class BoardStoreService {
   public loading: Promise<void>
@@ -10,8 +12,17 @@ class BoardStoreService {
   }
   public loadingResolver: () => void = () => {}
 
-  public getInfo = async (): Promise<IData<any>> => {
+  public getInfo = async (): Promise<IData<IInfo>> => {
     const board = await BoardApi.fetchInfo()
+    this.loadingResolver()
+    return {
+      data: board.data,
+      status: board.status,
+    }
+  }
+
+  public getHistory = async (): Promise<IData<IHistory>> => {
+    const board = await BoardApi.fetchHistory()
     this.loadingResolver()
     return {
       data: board.data,

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import Logger from 'src/classes/utils/Logger'
-import { HttpCancel } from 'classes/http/HttpCancel'
+import { HttpCancel } from 'src/classes/http/HttpCancel'
 
 class HttpRequest {
   private headers: IObjectAny

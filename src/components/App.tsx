@@ -1,14 +1,9 @@
 import React from 'react'
 import styles from 'src/components/App.module.scss'
 import Header from 'src/components/Header/Header'
-import Board from 'src/components/List/Board'
-import { IInfo } from 'src/classes/models/IInfo'
+import Board from 'src/components/Board/Board'
 
-interface IProps {
-  store: IInfo
-}
-
-const App = (props: IProps) => {
+const App = (props: any) => {
   const { store } = props
 
   return (
