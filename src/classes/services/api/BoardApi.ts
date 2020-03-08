@@ -8,7 +8,6 @@ class BoardApi {
     cancelObject?: HttpCancel
   ): Promise<IData<IInfo>> => {
     const data = await Rest.get('/info', cancelObject)
-    console.log(data)
     const castedData = rawCastInfo(data)
     return {
       data: castedData,

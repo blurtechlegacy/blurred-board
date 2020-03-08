@@ -4,6 +4,11 @@ import styles from './Board.module.scss'
 interface IProps {
   store: any
 }
+
+const setColorClass = (status: any) => {
+  return 'status_class_' + status
+}
+
 const Board = (props: IProps) => {
   const { store } = props
   const [commands, setCommands] = React.useState<any[]>()
@@ -16,9 +21,15 @@ const Board = (props: IProps) => {
     <main>
       {commands?.map((command: any) => (
         <div className={styles.command}>
-          {command.Name}:{' '}
+          <div className={styles.commandData}>
+            <div className={styles.commandName}>{command.Name}: </div>
+            <br />
+            {command.SLA}
+          </div>
           {command.Services?.map((service: any) => (
-            <div className={styles.service}>{service.Status}</div>
+            <div className={styles[setColorClass(service.Status)]}>
+              {service.Status}
+            </div>
           ))}
         </div>
       ))}
