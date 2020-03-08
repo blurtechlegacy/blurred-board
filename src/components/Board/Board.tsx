@@ -26,27 +26,24 @@ const Board = (props: IProps) => {
 
   return (
     <main>
-      {commands?.map((command: ICommand) => {
-        console.log(command)
-        return (
-          <div key={nanoid(8)} className={styles.command}>
-            <div className={styles.commandData}>
-              <div className={styles.commandName}>{command.name}: </div>
-              <br />
-              Total SLA: {command.TotalSLA}%
-              <br />
-              Flag Points: {command.FlagPoints}
-            </div>
-            {command.services?.map((service: IService) => (
-              <ServiceCell
-                key={nanoid(8)}
-                className={styles[setColorClass(IStatus[service.status])]}
-                service={service}
-              />
-            ))}
+      {commands?.map((command: ICommand) => (
+        <div key={nanoid(8)} className={styles.command}>
+          <div className={styles.commandData}>
+            <div className={styles.commandName}>{command.name}: </div>
+            <br />
+            Total SLA: {command.TotalSLA}%
+            <br />
+            Flag Points: {command.FlagPoints}
           </div>
-        )
-      })}
+          {command.services?.map((service: IService) => (
+            <ServiceCell
+              key={nanoid(8)}
+              className={styles[setColorClass(IStatus[service.status])]}
+              service={service}
+            />
+          ))}
+        </div>
+      ))}
     </main>
   )
 }
