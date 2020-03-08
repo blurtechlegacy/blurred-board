@@ -9,19 +9,33 @@ class BoardApi {
     cancelObject?: HttpCancel
   ): Promise<IData<IInfo>> => {
     const data = await Rest.get('/api/info', cancelObject)
-    const castedData = rawCastInfo(data)
-    return {
-      data: castedData,
-      status: true,
+    if (data) {
+      const castedData = rawCastInfo(data)
+      return {
+        data: castedData,
+        status: true,
+      }
+    } else {
+      return {
+        data: {} as IInfo,
+        status: false,
+      }
     }
   }
   public fetchHistory = async (
     cancelObject?: HttpCancel
   ): Promise<IData<IHistory>> => {
     const data = await Rest.get('/history/scoreboard.json', cancelObject)
-    return {
-      data: data,
-      status: true,
+    if (data) {
+      return {
+        data: data,
+        status: true,
+      }
+    } else {
+      return {
+        data: [] as IHistory,
+        status: false,
+      }
     }
   }
 }
