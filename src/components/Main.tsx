@@ -15,26 +15,30 @@ const Main = () => {
 
   React.useEffect(() => {
     BoardStoreService.getInfo().then(result => {
-      setBoard({
-        info: result.data,
-      })
-      BoardStoreService.getHistory().then(res => {
-        const currentScroboard = res.data[res.data.length - 1]
-        const cmds = result.data.teams.map((cmd: any) => {
-          const cur = currentScroboard.scoreboard.find(
-            (i: any) => i.id === cmd.id
-          )
-          return { ...cmd, ...cur }
-        })
+      if (result.status) {
         setBoard({
-          info: {
-            ...result.data,
-            teams: cmds,
-          },
-          current: currentScroboard,
-          history: res.data,
+          info: result.data,
         })
-      })
+        BoardStoreService.getHistory().then(res => {
+          if (res.status) {
+            const currentScroboard = res.data[res.data.length - 1]
+            const cmds = result.data.teams.map((cmd: any) => {
+              const cur = currentScroboard.scoreboard.find(
+                (i: any) => i.id === cmd.id
+              )
+              return { ...cmd, ...cur }
+            })
+            setBoard({
+              info: {
+                ...result.data,
+                teams: cmds,
+              },
+              current: currentScroboard,
+              history: res.data,
+            })
+          }
+        })
+      }
     })
   }, [])
 
