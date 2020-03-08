@@ -29,13 +29,6 @@ export interface IInfo {
 }
 
 export const rawCastInfo = (data: IInfoRaw): IInfo => {
-  console.log({
-    start: data.start,
-    end: data.end,
-    roundsCount: data.roundsCount,
-    teams: Object.values(data.teams),
-    services: Object.values(data.services),
-  })
   return {
     start: data.start,
     end: data.end,

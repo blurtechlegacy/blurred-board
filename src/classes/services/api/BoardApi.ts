@@ -7,7 +7,7 @@ class BoardApi {
   public fetchInfo = async (
     cancelObject?: HttpCancel
   ): Promise<IData<IInfo>> => {
-    const data = await Rest.get('/api/info', cancelObject)
+    const data = await Rest.get('/info', cancelObject)
     console.log(data)
     const castedData = rawCastInfo(data)
     return {
