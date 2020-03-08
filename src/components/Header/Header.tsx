@@ -1,39 +1,29 @@
-import settings from '../../config/settings'
 import React from 'react'
-import { IBoard } from '../../classes/models/IBoard'
-import { IService } from '../../classes/models/IService'
+import settings from 'src/config/settings'
 import styles from './Header.module.scss'
+import { IInfo } from 'src/classes/models/IInfo'
+import nanoid from 'nanoid'
 
 interface IProps {
-  store: IBoard
-}
-
-interface IServicePartitial {
-  Id: number
-  Name: string
+  store: IInfo
 }
 
 const Header = (props: IProps) => {
   const { store } = props
-  const [services, setServices] = React.useState<IServicePartitial[]>()
+  const [services, setServices] = React.useState<string[]>()
 
   React.useEffect(() => {
-    setServices(
-      store.Commands[0].Services.map((service: IService) => {
-        return {
-          Id: service.Id,
-          Name: service.Name,
-        }
-      })
-    )
+    setServices(store.services)
   }, [store])
 
   return (
     <header>
       <h1 className={styles.boardName}>{settings.name}</h1>
       <div className={styles.serviceList}>
-        {services?.map((service: any) => (
-          <div className={styles.serviceName}>{service.Name}</div>
+        {services?.map((service: string) => (
+          <div key={nanoid(8)} className={styles.serviceName}>
+            {service}
+          </div>
         ))}
       </div>
     </header>
