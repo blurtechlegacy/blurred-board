@@ -1,7 +1,7 @@
 import settings from '../../config/settings'
 import React from 'react'
-import { IBoard } from '../../classes/models/IBoard'
-import { IService } from '../../classes/models/IService'
+import { IBoard } from 'classes/models/IBoard'
+import { IService } from 'classes/models/IService'
 import styles from './Header.module.scss'
 
 interface IProps {
@@ -32,8 +32,8 @@ const Header = (props: IProps) => {
     <header>
       <h1 className={styles.boardName}>{settings.name}</h1>
       <div className={styles.serviceList}>
-        {services?.map((service: any) => (
-          <div className={styles.serviceName}>{service.Name}</div>
+        {services?.map((service: any, key) => (
+          <div key={key} className={styles.serviceName}>{service.Name}</div>
         ))}
       </div>
     </header>
