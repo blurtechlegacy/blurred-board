@@ -47,5 +47,10 @@
     "tslint-react-hooks": "^2.2.1",
     "tslint-sonarts": "^1.9.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "proxy": "http://check.noctf.ru"
 }
