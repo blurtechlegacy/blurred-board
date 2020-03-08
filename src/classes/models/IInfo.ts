@@ -1,11 +1,11 @@
 import { IForm } from 'src/classes/models/IForm'
+import {IService} from "./IHistory";
 
 export interface ICommandInfo extends IForm {
   id: number
-  logo: string
   name: string
-  host: string
-  network: string
+  score: number
+  services: IService
 }
 
 export interface IInfoRaw {

@@ -1,19 +1,14 @@
 import React from 'react'
 import settings from 'src/config/settings'
 import styles from './Header.module.scss'
-import { IInfo } from 'src/classes/models/IInfo'
 import nanoid from 'nanoid'
 
-interface IProps {
-  store: IInfo
-}
-
-const Header = (props: IProps) => {
+const Header = (props: any) => {
   const { store } = props
   const [services, setServices] = React.useState<string[]>()
 
   React.useEffect(() => {
-    setServices(store.services)
+    setServices(store.info.services)
   }, [store])
 
   return (
