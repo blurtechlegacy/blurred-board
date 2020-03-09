@@ -5,10 +5,11 @@ import styles from './Board.module.scss'
 import { IStatus } from 'src/classes/models/IStatus'
 import nanoid from 'nanoid'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
-import { ICommandInfo } from '../../classes/models/IInfo'
+import { ICommandInfo } from 'src/classes/models/IInfo'
+import { IBoard } from 'src/components/Main'
 
 interface IProps {
-  store: any
+  store: IBoard
 }
 
 const setColorClass = (status: any) => {
@@ -28,6 +29,11 @@ const Board = (props: IProps) => {
       {commands?.map((command: ICommandInfo) => (
         <div key={nanoid(8)} className={styles.command}>
           <div className={styles.commandData}>
+            <img
+              className={styles.logo}
+              src={command.logo}
+              alt={`${command.name} from ${command.country}`}
+            />
             <div className={styles.commandName}>{command.name}: </div>
             <br />
             Total SLA: {command.TotalSLA}%

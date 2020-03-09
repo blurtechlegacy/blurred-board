@@ -2,8 +2,13 @@ import React from 'react'
 import settings from 'src/config/settings'
 import styles from './Header.module.scss'
 import nanoid from 'nanoid'
+import { IBoard } from 'src/components/Main'
 
-const Header = (props: any) => {
+interface IProps {
+  store: IBoard
+}
+
+const Header = (props: IProps) => {
   const { store } = props
   const [services, setServices] = React.useState<string[]>()
 
