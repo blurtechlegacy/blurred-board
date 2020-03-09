@@ -1,4 +1,4 @@
 export default {
   name: 'BlurredBoard',
-  server: 'http://localhost:3000',
+  server: process.env.SERVER || 'http://localhost:3000',
 }

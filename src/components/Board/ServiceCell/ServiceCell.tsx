@@ -13,7 +13,6 @@ interface IProps {
 export default function ServiceCell(props: IProps) {
   const { service } = props
 
-  console.log(service)
   return (
     <div className={classNames(props.className, styles.service_cell)}>
       <div className={styles.top_info}>
