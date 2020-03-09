@@ -8,7 +8,6 @@ const Header = (props: any) => {
   const [services, setServices] = React.useState<string[]>()
 
   React.useEffect(() => {
-    console.log(store.info)
     setServices(store.info.services)
   }, [store])
 
