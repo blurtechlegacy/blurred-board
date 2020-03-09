@@ -5,11 +5,14 @@ import { IAppState, IState } from './state'
 
 let store: Store<IAppState>
 
-export const initStore = () => (store = createStore(rootReducer, {}))
+export const initStore = () => {
+  store = createStore(rootReducer, {})
+  return store
+}
 
 export const getState = () => store.getState().app
 
-const setNextState = (state: IState, comment?: string) => {
+export const setNextState = (state: IState, comment?: string) => {
   store.dispatch({ state, comment, type: APP_NEXT_STATE })
 }
 
