@@ -3,7 +3,7 @@ import settings from 'src/config/settings'
 import styles from './Header.module.scss'
 import nanoid from 'nanoid'
 import { IBoard } from 'src/components/Main'
-import { getDateDifference } from '../../classes/helpers/DateDifference'
+import { getDateDifference } from '../../classes/helpers/date'
 
 interface IProps {
   store: IBoard
