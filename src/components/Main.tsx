@@ -2,40 +2,71 @@ import React from 'react'
 import BoardStoreService from 'src/classes/services/BoardStoreService'
 import Loader from 'src/components/shared/Loader'
 import App from 'src/components/App'
-import { IInfo } from '../classes/models/IInfo'
+import { ICommandInfo, IInfo } from '../classes/models/IInfo'
+import { IFirstblood } from '../classes/models/IFirstblood'
+import { IHistory, IRound, IService } from '../classes/models/IHistory'
 
 interface IBoard {
   info: IInfo
-  history?: any
-  current?: any
+  firstblood?: IFirstblood[]
+  history?: IHistory
+  current?: IRound
 }
 
 const Main = () => {
   const [board, setBoard] = React.useState<IBoard>()
 
   React.useEffect(() => {
-    BoardStoreService.getInfo().then(result => {
-      if (result.status) {
+    BoardStoreService.getInfo().then(info => {
+      if (info.status) {
+        const information = info.data
         setBoard({
-          info: result.data,
+          info: information,
         })
-        BoardStoreService.getHistory().then(res => {
-          if (res.status) {
-            const currentScroboard = res.data[res.data.length - 1]
-            const cmds = result.data.teams.map((cmd: any) => {
-              const cur = currentScroboard.scoreboard.find(
-                (i: any) => i.id === cmd.id
-              )
-              return { ...cmd, ...cur }
-            })
+        BoardStoreService.getHistory().then(history => {
+          if (history.status) {
+            const boardHistory = history.data
+            const currentScroboard = boardHistory[boardHistory.length - 1]
+            const cmds = information.teams
+              .map((cmd: any) => {
+                const cur = currentScroboard.scoreboard.find(
+                  (i: any) => i.id === cmd.id
+                )
+                return { ...cmd, ...cur }
+              })
+              .map((cmd: ICommandInfo) => {
+                const newServices = cmd.services.map(
+                  (service: IService, index: number) => {
+                    return {
+                      ...service,
+                      name: information.services[index],
+                    }
+                  }
+                )
+                return {
+                  ...cmd,
+                  services: newServices,
+                }
+              })
             setBoard({
               info: {
-                ...result.data,
+                ...information,
                 teams: cmds,
               },
               current: currentScroboard,
-              history: res.data,
+              history: boardHistory,
             })
+            BoardStoreService.getFistblood().then(fb =>
+              setBoard({
+                info: {
+                  ...information,
+                  teams: cmds,
+                },
+                current: currentScroboard,
+                history: boardHistory,
+                firstblood: fb.data,
+              })
+            )
           }
         })
       }

@@ -1,17 +1,19 @@
 import React from 'react'
 import classNames from 'classnames'
-import { IService } from 'src/classes/models/IService'
+import { IService } from 'src/classes/models/IHistory'
 import flag from 'src/assets/images/ico-flag.svg'
 import styles from './ServiceCell.module.scss'
 import { IStatus } from 'src/classes/models/IStatus'
+import { IFirstblood } from 'src/classes/models/IFirstblood'
 
 interface IProps {
+  firstblood?: IFirstblood
   className: string
   service: IService
 }
 
-export default function ServiceCell(props: IProps) {
-  const { service } = props
+const ServiceCell = (props: IProps) => {
+  const { service, firstblood } = props
 
   return (
     <div className={classNames(props.className, styles.service_cell)}>
@@ -21,6 +23,7 @@ export default function ServiceCell(props: IProps) {
         </span>
         <span className={styles.service_sla}>SLA: {service.SLA}%</span>
         <span className={styles.service_fp}>FP: {service.fp}</span>
+        {firstblood && <span>FIRSTBLOOD</span>}
       </div>
       <div className={styles.bottom_info}>
         <img src={flag} alt={'flag'} className={styles.service_flags} />
@@ -29,3 +32,5 @@ export default function ServiceCell(props: IProps) {
     </div>
   )
 }
+
+export default ServiceCell
