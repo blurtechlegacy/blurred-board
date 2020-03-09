@@ -6,7 +6,7 @@ import { ICommandInfo, IInfo } from '../classes/models/IInfo'
 import { IFirstblood } from '../classes/models/IFirstblood'
 import { IHistory, IRound, IService } from '../classes/models/IHistory'
 
-interface IBoard {
+export interface IBoard {
   info: IInfo
   firstblood?: IFirstblood[]
   history?: IHistory
