@@ -1,22 +1,27 @@
 import React from 'react'
 import classNames from 'classnames'
 import { IService } from 'src/classes/models/IHistory'
-import flag from 'src/assets/images/ico-flag.svg'
-import styles from './ServiceCell.module.scss'
 import { IStatus } from 'src/classes/models/IStatus'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
 
+import flag from 'src/assets/images/ico-flag.svg'
+import styles from './ServiceCell.module.scss'
+
+const setColorClass = (status: IStatus) => {
+  return `service_status_${status}`
+}
+
 interface IProps {
   firstblood?: IFirstblood
-  className: string
   service: IService
 }
 
 const ServiceCell = (props: IProps) => {
   const { service, firstblood } = props
+  const service_color = setColorClass(service.status)
 
   return (
-    <div className={classNames(props.className, styles.service_cell)}>
+    <div className={classNames(styles.service_cell, styles[service_color])}>
       <div className={styles.top_info}>
         <span className={styles.service_status}>
           STATUS: <b>{IStatus[service.status]}</b>

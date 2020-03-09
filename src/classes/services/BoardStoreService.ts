@@ -31,7 +31,7 @@ class BoardStoreService {
     }
   }
 
-  public getFistblood = async (): Promise<IData<IFirstblood[]>> => {
+  public getFirstblood = async (): Promise<IData<IFirstblood[]>> => {
     const firstblood = await BoardApi.fetchFirstblood()
     this.loadingResolver()
     return {

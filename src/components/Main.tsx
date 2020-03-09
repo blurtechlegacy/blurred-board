@@ -2,7 +2,7 @@ import React from 'react'
 import BoardStoreService from 'src/classes/services/BoardStoreService'
 import Loader from 'src/components/shared/Loader'
 import App from 'src/components/App'
-import { ICommandInfo, IInfo } from '../classes/models/IInfo'
+import { ICommandData, IInfo } from '../classes/models/IInfo'
 import { IFirstblood } from '../classes/models/IFirstblood'
 import { IHistory, IRound, IService } from '../classes/models/IHistory'
 
@@ -26,15 +26,15 @@ const Main = () => {
         BoardStoreService.getHistory().then(history => {
           if (history.status) {
             const boardHistory = history.data
-            const currentScroboard = boardHistory[boardHistory.length - 1]
+            const currentScoreboard = boardHistory[boardHistory.length - 1]
             const cmds = information.teams
               .map((cmd: any) => {
-                const cur = currentScroboard.scoreboard.find(
+                const cur = currentScoreboard.scoreboard.find(
                   (i: any) => i.id === cmd.id
                 )
                 return { ...cmd, ...cur }
               })
-              .map((cmd: ICommandInfo) => {
+              .map((cmd: ICommandData) => {
                 const newServices = cmd.services.map(
                   (service: IService, index: number) => {
                     return {
@@ -53,16 +53,16 @@ const Main = () => {
                 ...information,
                 teams: cmds,
               },
-              current: currentScroboard,
+              current: currentScoreboard,
               history: boardHistory,
             })
-            BoardStoreService.getFistblood().then(fb =>
+            BoardStoreService.getFirstblood().then(fb =>
               setBoard({
                 info: {
                   ...information,
                   teams: cmds,
                 },
-                current: currentScroboard,
+                current: currentScoreboard,
                 history: boardHistory,
                 firstblood: fb.data,
               })

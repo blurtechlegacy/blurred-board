@@ -5,6 +5,28 @@
   justify-content: space-between;
 }
 
+.service_status {
+  &_UP {
+    background-color: #6f6;
+    color: #070707;
+  }
+
+  &_MUMBLE {
+    background-color: blueviolet;
+    color: #070707;
+  }
+
+  &_CORRUPT {
+    background-color: coral;
+    color: #070707;
+  }
+
+  &_DOWN {
+    background-color: crimson;
+    color: #070707;
+  }
+}
+
 .top_info {
   display: flex;
   flex-direction: column;
@@ -20,3 +42,4 @@
   width: 25px;
   height: 25px;
 }
+
