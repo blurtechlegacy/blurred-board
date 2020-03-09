@@ -6,10 +6,12 @@ import { IStatus } from 'src/classes/models/IStatus'
 import nanoid from 'nanoid'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
 import { ICommandInfo } from 'src/classes/models/IInfo'
-import { IBoard } from 'src/components/Main'
+import { connect } from 'react-redux'
+import { IAppState } from 'src/store/state'
 
 interface IProps {
-  store: IBoard
+  firstblood: IFirstblood[]
+  teams: ICommandInfo[]
 }
 
 const setColorClass = (status: any) => {
@@ -17,16 +19,11 @@ const setColorClass = (status: any) => {
 }
 
 const Board = (props: IProps) => {
-  const { store } = props
-  const [commands, setCommands] = React.useState<ICommandInfo[]>()
-
-  React.useEffect(() => {
-    setCommands(store.info.teams)
-  }, [store])
+  const { firstblood, teams } = props
 
   return (
     <main>
-      {commands?.map((command: ICommandInfo, index: number) => (
+      {teams?.map((command: ICommandInfo, index: number) => (
         <div key={nanoid(8)} className={styles.command}>
           <div className={styles.commandData}>
             <div className={styles.position}>{index + 1}</div>
@@ -50,13 +47,10 @@ const Board = (props: IProps) => {
           </div>
           {command.services?.map((service: IService) => (
             <ServiceCell
-              firstblood={
-                store.firstblood &&
-                store.firstblood.find(
-                  (fb: IFirstblood) =>
-                    fb.team === command.name && service.name === fb.service
-                )
-              }
+              firstblood={firstblood.find(
+                (fb: IFirstblood) =>
+                  fb.team === command.name && service.name === fb.service
+              )}
               key={nanoid(8)}
               className={styles[setColorClass(IStatus[service.status])]}
               service={service}
@@ -68,4 +62,10 @@ const Board = (props: IProps) => {
   )
 }
 
-export default Board
+const mapStateToProps = (state: IAppState): IProps => ({
+  firstblood: state.app.firstblood,
+  teams: state.app.info.teams,
+})
+const BoardConnected = connect(mapStateToProps)(Board)
+
+export { BoardConnected as Board }

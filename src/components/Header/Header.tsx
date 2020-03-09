@@ -2,28 +2,31 @@ import React from 'react'
 import settings from 'src/config/settings'
 import styles from './Header.module.scss'
 import nanoid from 'nanoid'
-import { IBoard } from 'src/components/Main'
 import Timer from '../shared/Timer'
+import { IAppState } from 'src/store/state'
+import { connect } from 'react-redux'
+import { IInfo } from 'src/classes/models/IInfo'
+import { IHistory } from 'src/classes/models/IHistory'
 
 interface IProps {
-  store: IBoard
+  info: IInfo
+  history: IHistory
 }
 
 const Header = (props: IProps) => {
-  const { store } = props
+  const { info, history } = props
   const [services, setServices] = React.useState<string[]>()
 
   React.useEffect(() => {
-    setServices(store.info.services)
-  }, [store])
+    setServices(info.services)
+  }, [info])
 
   return (
     <header>
       <div>
         <h1 className={styles.boardName}>{settings.name}</h1>
-        <span>Rounds: {store.history?.length}</span>
-        <br />
-        <Timer start={store.info.start} end={store.info.end} />
+        {history.length > 0 && <span> Rounds: {history.length}</span>}
+        <Timer start={info.start} end={info.end} />
       </div>
       <div className={styles.serviceList}>
         {services?.map((service: string) => (
@@ -36,4 +39,11 @@ const Header = (props: IProps) => {
   )
 }
 
-export default Header
+const mapStateToProps = (state: IAppState): IProps => ({
+  info: state.app.info,
+  history: state.app.history,
+})
+
+const HeaderConnected = connect(mapStateToProps)(Header)
+
+export { HeaderConnected as Header }

@@ -11,6 +11,8 @@ Dashboard for Information Security Competitions
 
 ## Offline development
 
+[`.env`](.env) file contains environment variables `PROXY` and `REACT_APP_ONLINE`. For development recommended use `REACT_APP_ONLINE=0` and `PROXY=1`. If you started python mock server use `PROXY=0`.
+
 Need Python3 and pip. It is assumed that you have a fresh version of python installed and it is installed by default, if not, then use the command `python3 server/server.py` instead `python server/server.py`.
 
 `pip install server/requirments.txt` - install dependencies  
