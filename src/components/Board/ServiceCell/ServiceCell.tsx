@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { IService } from 'src/classes/models/IHistory'
-import flag from 'src/assets/images/ico-flag.svg'
+import flag from 'src/assets/images/flag.svg'
 import styles from './ServiceCell.module.scss'
 import { IStatus } from 'src/classes/models/IStatus'
 import { IFirstblood } from 'src/classes/models/IFirstblood'

@@ -26,22 +26,27 @@ const Board = (props: IProps) => {
 
   return (
     <main>
-      {commands?.map((command: ICommandInfo) => (
+      {commands?.map((command: ICommandInfo, index: number) => (
         <div key={nanoid(8)} className={styles.command}>
           <div className={styles.commandData}>
+            <div className={styles.position}>{index + 1}</div>
             <img
               className={styles.logo}
-              src={command.logo}
+              src={command.logo ? command.logo : './logo.jpg'}
               alt={`${command.name} from ${command.country}`}
             />
-            <div className={styles.commandName}>{command.name}: </div>
-            <br />
-            Total SLA: {command.TotalSLA}%
-            <br />
-            Flag Points:{' '}
-            {command.services
-              ?.map((s: any) => s.fp)
-              .reduce((p: any, c: any) => p + c)}
+            <div className={styles.commandName}>
+              <div>{command.name}</div>
+              <div>{command.TotalSLA && `Total SLA: ${command.TotalSLA}%`}</div>
+              <div>
+                {command.services
+                  ?.map((s: any) => s.fp)
+                  .reduce((p: any, c: any) => p + c) &&
+                  `Flag Points: ${command.services
+                    ?.map((s: any) => s.fp)
+                    .reduce((p: any, c: any) => p + c)}`}
+              </div>
+            </div>
           </div>
           {command.services?.map((service: IService) => (
             <ServiceCell

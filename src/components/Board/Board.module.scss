@@ -12,9 +12,17 @@ main {
 }
 
 .commandData {
+  justify-content: space-around;
+  display: flex;
+  align-self: center;
+  align-items: center;
   min-width: $team-column-width;
   padding-left: 10px;
   padding-top: 10px;
+}
+
+.position {
+  display: flex;
 }
 
 .status_class,
@@ -55,4 +63,5 @@ main {
 .logo {
   width: 64px;
   height: 64px;
+  display: flex;
 }
