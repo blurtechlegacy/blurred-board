@@ -7,8 +7,20 @@ Dashboard for Information Security Competitions
 ## Getting started
 
 `yarn install` - install dependencies  
-`yarn start` - start project  
-`yarn run server` - server on Python with mock backend data for offline development, offline mode enables in `.env` file `ONLINE` variable (number casted to boolean 0 or 1)
+`yarn start` - start project
+
+## Offline development
+
+Need Python3 and pip. It is assumed that you have a fresh version of python installed and it is installed by default, if not, then use the command `python3 server/server.py` instead `python server/server.py`.
+
+`pip install server/requirments.txt` - install dependencies  
+`yarn run server` - server on Python with mock backend data for offline development, offline mode enables in [`.env`](.env) file `ONLINE` variable (number casted to boolean 0 or 1)
+
+## Useful features
+
+- All paths in the project are relative ([`src/classes/utils/Logger`](src/classes/utils/Logger.ts), [`src/components/App`](src/components/App.tsx) and etc).
+- Prettier. Formats your code according to the rules in [`.prettierc`](.prettierrc). In WebStorm keyboard shortcut `Alt+Shift+Ctrl+P`.
+- Husky. Hook before committing. If you forgot to format your code, then Husky will launch the Prettier before committing.
 
 ## Authors
 
