@@ -65,3 +65,22 @@ main {
   height: 64px;
   display: flex;
 }
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.up {
+  border-color: green;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  border-color: red;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}

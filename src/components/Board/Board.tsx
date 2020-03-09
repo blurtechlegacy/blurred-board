@@ -37,6 +37,7 @@ const Board = (props: IProps) => {
             />
             <div className={styles.commandName}>
               <div>{command.name}</div>
+              <i className={styles.up} />
               <div>{command.TotalSLA && `Total SLA: ${command.TotalSLA}%`}</div>
               <div>
                 {command.services
