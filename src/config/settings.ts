@@ -1,4 +1,6 @@
 export default {
   name: 'BlurredBoard',
-  server: 'http://board.blur.tech', // TODO: change by env variable if process.env.SERVER empty -> 'http://localhost:3000'
+  server: Number(process.env.REACT_APP_ONLINE)
+    ? process.env.REACT_APP_SERVER
+    : process.env.REACT_APP_SERVER_OFFLINE,
 }

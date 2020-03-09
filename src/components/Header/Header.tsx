@@ -3,7 +3,7 @@ import settings from 'src/config/settings'
 import styles from './Header.module.scss'
 import nanoid from 'nanoid'
 import { IBoard } from 'src/components/Main'
-import { getDateDifference } from '../../classes/helpers/date'
+import Timer from '../shared/Timer'
 
 interface IProps {
   store: IBoard
@@ -23,10 +23,7 @@ const Header = (props: IProps) => {
         <h1 className={styles.boardName}>{settings.name}</h1>
         <span>Rounds: {store.history?.length}</span>
         <br />
-        <span>
-          Time diff:{' '}
-          {getDateDifference(store.info.start, store.info.end).getTime()}
-        </span>
+        <Timer start={store.info.start} end={store.info.end} />
       </div>
       <div className={styles.serviceList}>
         {services?.map((service: string) => (

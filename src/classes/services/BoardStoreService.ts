@@ -1,5 +1,5 @@
 import BoardApi from 'src/classes/services/api/BoardApi'
-import { IData } from 'src/classes/models/IData'
+import { IFetchResult } from 'src/classes/models/IFetchResult'
 import { IInfo } from '../models/IInfo'
 import { IHistory } from '../models/IHistory'
 import { IFirstblood } from '../models/IFirstblood'
@@ -13,7 +13,7 @@ class BoardStoreService {
   }
   public loadingResolver: () => void = () => {}
 
-  public getInfo = async (): Promise<IData<IInfo>> => {
+  public getInfo = async (): Promise<IFetchResult<IInfo>> => {
     const info = await BoardApi.fetchInfo()
     this.loadingResolver()
     return {
@@ -22,7 +22,7 @@ class BoardStoreService {
     }
   }
 
-  public getHistory = async (): Promise<IData<IHistory>> => {
+  public getHistory = async (): Promise<IFetchResult<IHistory>> => {
     const history = await BoardApi.fetchHistory()
     this.loadingResolver()
     return {
@@ -31,7 +31,7 @@ class BoardStoreService {
     }
   }
 
-  public getFistblood = async (): Promise<IData<IFirstblood[]>> => {
+  public getFistblood = async (): Promise<IFetchResult<IFirstblood[]>> => {
     const firstblood = await BoardApi.fetchFirstblood()
     this.loadingResolver()
     return {

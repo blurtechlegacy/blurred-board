@@ -1,4 +1,4 @@
-const target = Number(process.env.ONLINE)
+const target = Number(process.env.PROXY)
   ? process.env.API
   : process.env.OFFLINE_API
 const { createProxyMiddleware } = require('http-proxy-middleware')

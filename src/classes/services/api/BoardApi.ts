@@ -1,11 +1,11 @@
-import { IData } from 'src/classes/models/IData'
+import { IFetchResult } from 'src/classes/models/IFetchResult'
 import { IInfo, rawCastInfo } from 'src/classes/models/IInfo'
 import Rest from 'src/classes/http/Rest'
 import { IHistory } from 'src/classes/models/IHistory'
 import { IFirstblood } from '../../models/IFirstblood'
 
 class BoardApi {
-  public fetchInfo = async (): Promise<IData<IInfo>> => {
+  public fetchInfo = async (): Promise<IFetchResult<IInfo>> => {
     const data = await Rest.get('/api/info')
     if (data) {
       const castedData = rawCastInfo(data)
@@ -21,7 +21,7 @@ class BoardApi {
     }
   }
 
-  public fetchHistory = async (): Promise<IData<IHistory>> => {
+  public fetchHistory = async (): Promise<IFetchResult<IHistory>> => {
     const data = await Rest.get('/history/scoreboard.json')
     if (data) {
       return {
@@ -36,7 +36,7 @@ class BoardApi {
     }
   }
 
-  public fetchFirstblood = async (): Promise<IData<IFirstblood[]>> => {
+  public fetchFirstblood = async (): Promise<IFetchResult<IFirstblood[]>> => {
     const data = await Rest.get('/fb.json')
     if (data) {
       return {
