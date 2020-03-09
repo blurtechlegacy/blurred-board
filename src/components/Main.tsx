@@ -17,6 +17,8 @@ const Main = () => {
   const [board, setBoard] = React.useState<IBoard>()
 
   React.useEffect(() => {
+    // InitService.init() here
+    // TO-DO? how do we draw loader ?
     BoardStoreService.getInfo().then(info => {
       if (info.status) {
         const information = info.data

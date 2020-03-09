@@ -7,9 +7,12 @@ import nanoid from 'nanoid'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
 import { ICommandInfo } from 'src/classes/models/IInfo'
 import { IBoard } from 'src/components/Main'
+import { connect } from 'react-redux'
+import { IAppState } from 'src/store/state'
 
 interface IProps {
   store: IBoard
+  scoreBoard: any
 }
 
 const setColorClass = (status: any) => {
@@ -17,6 +20,7 @@ const setColorClass = (status: any) => {
 }
 
 const Board = (props: IProps) => {
+  console.log(props.scoreBoard)
   const { store } = props
   const [commands, setCommands] = React.useState<ICommandInfo[]>()
 
@@ -63,4 +67,13 @@ const Board = (props: IProps) => {
   )
 }
 
-export default Board
+const mapStateToProps = (
+  state: IAppState,
+  ownProps: Pick<IProps, 'store'>
+): IProps => ({
+  scoreBoard: state.app.scoreBoard,
+  store: ownProps.store,
+})
+const BoardConnected = connect(mapStateToProps)(Board)
+
+export { BoardConnected as Board }
