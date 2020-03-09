@@ -5,6 +5,7 @@ import settings from 'src/config/settings'
 export default class Rest {
   public static async get(url: string): Promise<any> {
     const request = new HttpRequest()
+    console.log(settings.server, process.env.SERVER)
     const response = await request
       .get(`${settings.server}${url}`)
       .catch(Logger.error)

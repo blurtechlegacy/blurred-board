@@ -16,9 +16,6 @@ class HttpRequest {
         'Content-Type': 'application/json; charset=UTF-8',
         'Access-Control-Allow-Origin': '*',
       },
-      params: {},
-      data: undefined,
-      responseType: undefined,
     }
     try {
       return await this.client(options)
