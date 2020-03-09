@@ -1,0 +1,42 @@
+@import 'src/assets/scss/_vars.scss';
+
+.status {
+  padding: 3px;
+  display: inline-block;
+  &MUMBLE {
+    border: solid $status-mumble;
+    border-width: 0 3px 3px 0;
+  }
+  &CORRUPT {
+    border: solid $status-corrupt;
+    border-width: 0 3px 3px 0;
+  }
+  &UP {
+    border: solid $status-up;
+    border-width: 0 3px 3px 0;
+  }
+  &DOWN {
+    border: solid $status-down;
+    border-width: 0 3px 3px 0;
+  }
+}
+
+.UP {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.DOWN {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.LEFT {
+  transform: rotate(-225deg);
+  -webkit-transform: rotate(-225deg);
+}
+
+.RIGHT {
+  transform: rotate(rotate(-45deg));
+  -webkit-transform: rotate(-45deg);
+}

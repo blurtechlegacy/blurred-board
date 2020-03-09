@@ -34,28 +34,28 @@ main {
   &_UP {
     @extend .status_class;
 
-    background-color: #6f6;
+    background-color: $status-up;
     color: #070707;
   }
 
   &_MUMBLE {
     @extend .status_class;
 
-    background-color: blueviolet;
+    background-color: $status-mumble;
     color: #070707;
   }
 
   &_CORRUPT {
     @extend .status_class;
 
-    background-color: coral;
+    background-color: $status-corrupt;
     color: #070707;
   }
 
   &_DOWN {
     @extend .status_class;
 
-    background-color: crimson;
+    background-color: $status-down;
     color: #070707;
   }
 }
