@@ -30,23 +30,17 @@ class BoardStoreService {
     Promise.all([PFirstblood, PHistory]).then(all => {
       const firstblood = all[0]
       const history = all[1]
-      const current = history.data[0]
-      const newTeams = info.data.teams.map((team: ICommandInfo) => {
-        const cur = current.scoreboard.find(
-          (i: IScoreboard) => i.id === team.id
-        )
-        return { ...team, ...cur }
-      })
-      console.log(newTeams)
+      const current = history.data[history.data.length - 1]
       const teams = info.data.teams
-        .map((cmd: any) => {
-          const cur = current.scoreboard.find((i: any) => i.id === cmd.id)
-          return { ...cmd, ...cur }
+        .map((team: ICommandInfo) => {
+          const cur = current.scoreboard.find(
+            (i: IScoreboard) => i.id === team.id
+          )
+          return { ...team, ...cur }
         })
-        .map((cmd: any) => {
-          const newServices = cmd.services.map(
+        .map((team: ICommandInfo) => {
+          const newServices = team.services.map(
             (service: IService, index: number) => {
-              console.log(service)
               return {
                 ...service,
                 name: info.data.services[index],
@@ -54,7 +48,7 @@ class BoardStoreService {
             }
           )
           return {
-            ...cmd,
+            ...team,
             services: newServices,
           }
         })
@@ -69,7 +63,7 @@ class BoardStoreService {
           teams,
         },
         history: history.data,
-        current: history.data[0],
+        current: history.data[history.data.length - 1],
         firstblood: firstblood.data,
       })
     })

@@ -25,8 +25,7 @@ const Header = (props: IProps) => {
     <header>
       <div>
         <h1 className={styles.boardName}>{settings.name}</h1>
-        <span>Rounds: {history?.length}</span>
-        <br />
+        {history.length > 0 && <span> Rounds: {history.length}</span>}
         <Timer start={info.start} end={info.end} />
       </div>
       <div className={styles.serviceList}>

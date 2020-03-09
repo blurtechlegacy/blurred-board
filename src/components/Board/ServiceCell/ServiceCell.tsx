@@ -15,7 +15,6 @@ interface IProps {
 const ServiceCell = (props: IProps) => {
   const { service, firstblood } = props
 
-  console.log(service.status)
   return (
     <div className={classNames(props.className, styles.service_cell)}>
       <div className={styles.top_info}>
