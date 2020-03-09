@@ -1,7 +1,8 @@
 import BoardApi from 'src/classes/services/api/BoardApi'
-import { IData } from 'src/classes/models/IFetchResult'
+import { IData } from 'src/classes/models/IData'
 import { IInfo } from '../models/IInfo'
 import { IHistory } from '../models/IHistory'
+import { IFirstblood } from '../models/IFirstblood'
 
 class BoardStoreService {
   public loading: Promise<void>
@@ -13,20 +14,29 @@ class BoardStoreService {
   public loadingResolver: () => void = () => {}
 
   public getInfo = async (): Promise<IData<IInfo>> => {
-    const board = await BoardApi.fetchInfo()
+    const info = await BoardApi.fetchInfo()
     this.loadingResolver()
     return {
-      data: board.data,
-      status: board.status,
+      data: info.data,
+      status: info.status,
     }
   }
 
   public getHistory = async (): Promise<IData<IHistory>> => {
-    const board = await BoardApi.fetchHistory()
+    const history = await BoardApi.fetchHistory()
     this.loadingResolver()
     return {
-      data: board.data,
-      status: board.status,
+      data: history.data,
+      status: history.status,
+    }
+  }
+
+  public getFistblood = async (): Promise<IData<IFirstblood[]>> => {
+    const firstblood = await BoardApi.fetchFirstblood()
+    this.loadingResolver()
+    return {
+      data: firstblood.data,
+      status: firstblood.status,
     }
   }
 }

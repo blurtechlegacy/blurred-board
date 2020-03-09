@@ -2,20 +2,11 @@ import { IStatus } from 'src/classes/models/IStatus'
 import { IForm } from 'src/classes/models/IForm'
 
 export interface IService extends IForm {
+  name: string
   flag: number
   sflags: number
   fp: number
   status: IStatus
-}
-
-export interface IScoreboardRaw {
-  [key: number]: {
-    id: number
-    score: number
-    services: {
-      [key: number]: IService
-    }
-  }
 }
 
 export interface IScoreboard {
