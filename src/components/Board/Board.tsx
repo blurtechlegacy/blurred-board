@@ -33,7 +33,16 @@ const Board = (props: IProps) => {
             <br />
             Total SLA: {command.TotalSLA}%
             <br />
-            Flag Points: {command.FlagPoints}
+            Flag Points:{' '}
+            {command.services
+              ?.map((s: any) => {
+                console.log('map', s.flags)
+                return s.fp
+              })
+              .reduce((p: any, c: any) => {
+                console.log('reduce', p, c, p + c)
+                return p + c
+              })}
           </div>
           {command.services?.map((service: IService) => (
             <ServiceCell

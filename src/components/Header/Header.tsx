@@ -8,12 +8,16 @@ const Header = (props: any) => {
   const [services, setServices] = React.useState<string[]>()
 
   React.useEffect(() => {
+    console.log(store.info)
     setServices(store.info.services)
   }, [store])
 
   return (
     <header>
-      <h1 className={styles.boardName}>{settings.name}</h1>
+      <div>
+        <h1 className={styles.boardName}>{settings.name}</h1>
+        <span>Rounds: {store.history?.length}</span>
+      </div>
       <div className={styles.serviceList}>
         {services?.map((service: string) => (
           <div key={nanoid(8)} className={styles.serviceName}>
