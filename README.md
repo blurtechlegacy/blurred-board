@@ -42,3 +42,9 @@ See also the list of [contributors](https://github.com/blurtech/blurred-board/co
 ## Deploy
 
 Autodeploy on Heroku: [board.blur.tech](http://board.blur.tech)
+
+## Donate
+
+If you want to support Blurred Technologies in the development of this project, but not worth it. We are ready to invest time in it of our own free will. Better sponsor [our educational projects](https://vk.com/blur_edu):  
+- [Yandex Money](yamoney.blur.tech)  
+- [Paypal](paypal.blur.tech)
