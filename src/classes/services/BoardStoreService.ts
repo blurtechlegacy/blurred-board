@@ -25,13 +25,20 @@ class BoardStoreService {
         info: info.status,
       },
     })
+    this.getBoard()
+    setInterval(this.getBoard, 60000)
+  }
+
+  public getBoard = () => {
+    const info = getState().info
+    const infoStatus = getState().statuses.info
     const PFirstblood = this.getFirstblood()
     const PHistory = this.getHistory()
     Promise.all([PFirstblood, PHistory]).then(all => {
       const firstblood = all[0]
       const history = all[1]
       const current = history.data[history.data.length - 1]
-      const teams = info.data.teams
+      const teams = info.teams
         .map((team: ICommandInfo) => {
           const cur = current.scoreboard.find(
             (i: IScoreboard) => i.id === team.id
@@ -43,7 +50,7 @@ class BoardStoreService {
             (service: IService, index: number) => {
               return {
                 ...service,
-                name: info.data.services[index],
+                name: info.services[index],
               }
             }
           )
@@ -54,63 +61,19 @@ class BoardStoreService {
         })
       setNextState({
         statuses: {
-          info: info.status,
+          info: infoStatus,
           firstblood: firstblood.status,
           history: history.status,
         },
         info: {
-          ...info.data,
+          ...info,
           teams,
         },
         history: history.data,
-        current: history.data[history.data.length - 1],
+        current: current,
         firstblood: firstblood.data,
       })
     })
-    setInterval(() => {
-      const PFirstblood = this.getFirstblood()
-      const PHistory = this.getHistory()
-      Promise.all([PFirstblood, PHistory]).then(all => {
-        const firstblood = all[0]
-        const history = all[1]
-        const current = history.data[history.data.length - 1]
-        const teams = info.data.teams
-          .map((team: ICommandInfo) => {
-            const cur = current.scoreboard.find(
-              (i: IScoreboard) => i.id === team.id
-            )
-            return { ...team, ...cur }
-          })
-          .map((team: ICommandInfo) => {
-            const newServices = team.services.map(
-              (service: IService, index: number) => {
-                return {
-                  ...service,
-                  name: info.data.services[index],
-                }
-              }
-            )
-            return {
-              ...team,
-              services: newServices,
-            }
-          })
-        setNextState({
-          statuses: {
-            info: info.status,
-            firstblood: firstblood.status,
-            history: history.status,
-          },
-          info: {
-            ...info.data,
-            teams,
-          },
-          history: history.data,
-          current: history.data[history.data.length - 1],
-          firstblood: firstblood.data,
-        })
-      })
-    }, 60000)
   }
 
   public getInfo = async (): Promise<IFetchResult<IInfo>> => {
