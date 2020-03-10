@@ -23,7 +23,6 @@ const Header = (props: IProps) => {
     setServices(info.services)
   }, [info])
 
-  console.log(props.teams)
   return (
     <header>
       <div>
