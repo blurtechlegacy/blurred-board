@@ -41,7 +41,7 @@ See also the list of [contributors](https://github.com/blurtech/blurred-board/co
 
 ## Deploy
 
-Autodeploy on Heroku: [board.blur.tech](http://board.blur.tech)
+Autodeploy on Heroku: [board.blur.tech](https://board.blur.tech/)
 
 ## Donate
 
