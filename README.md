@@ -26,8 +26,12 @@ Need Python3 and pip. It is assumed that you have a fresh version of python inst
 
 ## Authors
 
+### Maintainers  
 - :feelsgood: **Alexandr Sidorenko** - _Team Lead front-end developer_ - [batyshkaLenin](https://github.com/batyshkaLenin)  
   [![Twitter Follow](https://img.shields.io/twitter/follow/batyshkaLenin.svg?style=social&label=Follow)](https://twitter.com/batyshkaLenin)
+- **Mattew Yanov** - _Front-end developer_ - [Montty666](https://github.com/Montty666)  
+### Contributors
+- **Michael Kvashin** - _Front-end developer_ - [Mfungorn](https://github.com/Mfungorn)  
 - :shipit: **Vitaly Shatalov** - _Front-end developer_ - [tnnNull](https://github.com/tnnNull)  
   [![Twitter Follow](https://img.shields.io/twitter/follow/thevetka.svg?style=social&label=Follow)](https://twitter.com/thevetka)
 - :penguin: **Danil Tankov** - _Front-end developer_ - [evist0](https://github.com/evist0)  
