@@ -23,6 +23,7 @@ const Header = (props: IProps) => {
     setServices(info.services)
   }, [info])
 
+  console.log(props.teams)
   return (
     <header>
       <div>
@@ -31,7 +32,16 @@ const Header = (props: IProps) => {
         <Timer start={info.start} end={info.end} />
         <ExportToExcel
           dataset={props.teams}
-          fields={['id', 'country', 'logo', 'name']}
+          fields={[
+            'id',
+            'country',
+            'logo',
+            'name',
+            'down',
+            'up',
+            'timeout',
+            'Kaspiskiy_Lag',
+          ]}
         />
       </div>
       <div className={styles.serviceList}>
