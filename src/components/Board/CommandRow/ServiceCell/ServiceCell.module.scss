@@ -1,0 +1,49 @@
+@import 'src/assets/scss/_vars.scss';
+
+.service_cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 150px !important;
+  margin: 0 8px 0 8px;
+  padding: 10px 5px 5px 15px;
+  color: #070707;
+}
+
+.service_status {
+  &_UP {
+    background-color: $status-up;
+  }
+
+  &_ERROR {
+    background-color: aqua;
+  }
+
+  &_MUMBLE {
+    background-color: $status-mumble;
+  }
+
+  &_CORRUPT {
+    background-color: $status-corrupt;
+  }
+
+  &_DOWN {
+    background-color: $status-down;
+  }
+}
+
+.top_info {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom_info {
+  display: flex;
+  align-items: center;
+}
+
+.service_flags {
+  image-rendering: crisp-edges;
+  width: 25px;
+  height: 25px;
+}
