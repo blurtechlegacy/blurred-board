@@ -1,6 +1,6 @@
 # BlurredBoard
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/becf8ff87f6653e3eb80/maintainability)](https://codeclimate.com/github/blurtech/blurred-board/maintainability) ![TravisCI](https://travis-ci.com/blurtech/blurred-board.svg?branch=master) [![GitHub issues](https://img.shields.io/github/issues/blurtech/blurred-board.svg)](https://github.com/blurtech/blurred-board/issues) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/blurtech/blurred-board)
+[![Maintainability](https://api.codeclimate.com/v1/badges/becf8ff87f6653e3eb80/maintainability)](https://codeclimate.com/github/blurtech/blurred-board/maintainability) ![TravisCI](https://travis-ci.com/blurtech/blurred-board.svg?branch=master) [![GitHub issues](https://img.shields.io/github/issues/blurtech/blurred-board.svg)](https://github.com/blurtech/blurred-board/issues)  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/blurtech/blurred-board)
 
 Dashboard for Information Security Competitions
 
@@ -31,10 +31,10 @@ Need Python3 and pip. It is assumed that you have a fresh version of python inst
   [![Twitter Follow](https://img.shields.io/twitter/follow/batyshkaLenin.svg?style=social&label=Follow)](https://twitter.com/batyshkaLenin)
 - **Mattew Yanov** - _Front-end developer_ - [Montty666](https://github.com/Montty666)  
 ### Contributors
-- **Michael Kvashin** - _Front-end developer_ - [Mfungorn](https://github.com/Mfungorn)  
+- :arrow_down_small: **Michael Kvashin** - _Front-end developer_ - [Mfungorn](https://github.com/Mfungorn)  
 - :shipit: **Vitaly Shatalov** - _Front-end developer_ - [tnnNull](https://github.com/tnnNull)  
   [![Twitter Follow](https://img.shields.io/twitter/follow/thevetka.svg?style=social&label=Follow)](https://twitter.com/thevetka)
-- :penguin: **Danil Tankov** - _Front-end developer_ - [evist0](https://github.com/evist0)  
+- :baby_chicken: **Danil Tankov** - _Front-end developer_ - [evist0](https://github.com/evist0)  
   [![Twitter Follow](https://img.shields.io/twitter/follow/danushaperdusha.svg?style=social&label=Follow)](https://twitter.com/danushaperdusha)
 
 See also the list of [contributors](https://github.com/blurtech/blurred-board/contributors) who participated in this project.
