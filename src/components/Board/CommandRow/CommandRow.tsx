@@ -21,7 +21,7 @@ function getFlagPoints(services: IService[]): number {
 
 function isServiceFirstBlood(
   serviceName: string,
-  firstblood: IFirstblood | undefined
+  firstblood?: IFirstblood
 ): IFirstblood | undefined {
   return firstblood?.service === serviceName ? firstblood : undefined
 }
