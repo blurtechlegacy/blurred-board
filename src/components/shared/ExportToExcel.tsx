@@ -28,9 +28,14 @@ export const ExportToExcel = ({ dataset, fields }: IProps) => {
         }
       : { ...el }
   })
+
   return (
     <ExcelFile
-      element={<button className={styles.exportButton}>Download Data</button>}
+      element={
+        <button disabled={!dataset} className={styles.exportButton}>
+          Download Data
+        </button>
+      }
     >
       <ExcelSheet data={data} name="board">
         {fields.map(el => (
