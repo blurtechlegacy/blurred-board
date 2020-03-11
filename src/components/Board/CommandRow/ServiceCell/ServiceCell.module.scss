@@ -1,16 +1,16 @@
 @import 'src/assets/scss/vars';
 
-$services_amount: $services_amount + 1 !global;
+$services-amount: $services-amount + 1 !global;
 
 .serviceCell {
+  border-right: 0;
+  color: $color-black;
   display: flex;
   flex-direction: column;
   flex-grow: 2;
-  border-right: 0;
-  margin-left: 5px;
   justify-content: space-between;
+  margin-left: 5px;
   padding: 10px 5px 5px 15px;
-  color: #070707;
 }
 
 .serviceCell:last-child {
@@ -23,7 +23,7 @@ $services_amount: $services_amount + 1 !global;
   }
 
   &ERROR {
-    background-color: aqua;
+    background-color: $status-error;
   }
 
   &MUMBLE {
@@ -45,12 +45,12 @@ $services_amount: $services_amount + 1 !global;
 }
 
 .bottomInfo {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .serviceFlags {
+  height: 25px;
   image-rendering: crisp-edges;
   width: 25px;
-  height: 25px;
 }

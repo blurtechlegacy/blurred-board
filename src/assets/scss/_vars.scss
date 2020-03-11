@@ -1,11 +1,13 @@
 $color-white: #fefefe !default;
 $color-black: #070707 !default;
+$color-green: #6f6 !default;
 
 $page-width: 80% !default;
 $team-column-width: 300px !default;
-$services_amount: 0 !default;
+$services-amount: 0 !default;
 
 $status-up: #6f6;
 $status-mumble: #8a2be2;
 $status-corrupt: #ff7f50;
-$status-down: crimson;
+$status-down: #dc143c;
+$status-error: #00ffff;

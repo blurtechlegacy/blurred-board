@@ -1,9 +1,9 @@
 @import 'src/assets/scss/vars';
 
 .loader {
-  height: 100%;
   font-family: 'Source Code Pro', monospace;
   font-weight: 400;
+  height: 100%;
   overflow: hidden;
   text-align: center;
 }
@@ -28,7 +28,7 @@
   }
 
   &.done {
-    color: #6f6;
+    color: $color-green;
     transform: translateX(0) scale(1);
   }
 }
