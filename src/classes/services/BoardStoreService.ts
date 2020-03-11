@@ -70,7 +70,7 @@ class BoardStoreService {
           commands: teams,
         },
         history: history.data,
-        current: current,
+        current,
         firstblood: firstblood.data,
       })
     })

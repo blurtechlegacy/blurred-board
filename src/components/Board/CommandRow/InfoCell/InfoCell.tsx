@@ -1,7 +1,6 @@
 import React from 'react'
-
 import styles from './InfoCell.module.scss'
-import { ICommandData } from '../../../../classes/models/IInfo'
+import { ICommandData } from 'src/classes/models/IInfo'
 
 type ICommandInfo = Omit<ICommandData, 'services'>
 

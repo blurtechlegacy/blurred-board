@@ -1,7 +1,8 @@
-@import 'src/assets/scss/_vars.scss';
+@import 'src/assets/scss/vars';
+
 $services_amount: $services_amount + 1 !global;
 
-.service_cell {
+.serviceCell {
   display: flex;
   flex-direction: column;
   flex-grow: 2;
@@ -12,43 +13,43 @@ $services_amount: $services_amount + 1 !global;
   color: #070707;
 }
 
-.service_cell:last-child {
+.serviceCell:last-child {
   border-right: 5px;
 }
 
-.service_status {
-  &_UP {
+.serviceStatus {
+  &UP {
     background-color: $status-up;
   }
 
-  &_ERROR {
+  &ERROR {
     background-color: aqua;
   }
 
-  &_MUMBLE {
+  &MUMBLE {
     background-color: $status-mumble;
   }
 
-  &_CORRUPT {
+  &CORRUPT {
     background-color: $status-corrupt;
   }
 
-  &_DOWN {
+  &DOWN {
     background-color: $status-down;
   }
 }
 
-.top_info {
+.topInfo {
   display: flex;
   flex-direction: column;
 }
 
-.bottom_info {
+.bottomInfo {
   display: flex;
   align-items: center;
 }
 
-.service_flags {
+.serviceFlags {
   image-rendering: crisp-edges;
   width: 25px;
   height: 25px;
