@@ -6,7 +6,7 @@ module.exports = function(app) {
     '/api',
     createProxyMiddleware({
       target,
-      secure: false,
+      secure: true,
       changeOrigin: true,
       headers: {
         Connection: 'keep-alive',

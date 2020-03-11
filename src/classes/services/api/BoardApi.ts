@@ -6,7 +6,8 @@ import { IFirstblood } from '../../models/IFirstblood'
 
 class BoardApi {
   public fetchInfo = async (): Promise<IFetchResult<IInfo>> => {
-    const data = await Rest.get('/api/info')
+    let data = await Rest.get('/api/info')
+    if (!data) data = await Rest.get('/api/api/info')
     if (data) {
       const castedData = rawCastInfo(data)
       return {
