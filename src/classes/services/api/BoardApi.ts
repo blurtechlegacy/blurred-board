@@ -6,8 +6,7 @@ import { IFirstblood } from '../../models/IFirstblood'
 
 class BoardApi {
   public fetchInfo = async (): Promise<IFetchResult<IInfo>> => {
-    let data = await Rest.get('/api/info')
-    if (!data) data = await Rest.get('/api/api/info') // FIXME: dirty hack for heroku nginx proxying
+    let data = await Rest.get('/info')
     if (data) {
       const castedData = rawCastInfo(data)
       return {
@@ -24,7 +23,6 @@ class BoardApi {
 
   public fetchHistory = async (): Promise<IFetchResult<IHistory>> => {
     let data = await Rest.get('/history/scoreboard.json')
-    if (!data) data = await Rest.get('/api/history/scoreboard.json') // FIXME: dirty hack for heroku nginx proxying
     if (data) {
       return {
         data: data,
@@ -40,7 +38,6 @@ class BoardApi {
 
   public fetchFirstblood = async (): Promise<IFetchResult<IFirstblood[]>> => {
     let data = await Rest.get('/fb.json')
-    if (!data) data = await Rest.get('/api/fb.json') // FIXME: dirty hack for heroku nginx proxying
     if (data) {
       return {
         data: data,
