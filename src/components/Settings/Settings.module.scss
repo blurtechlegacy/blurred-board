@@ -1,9 +1,11 @@
+@import 'src/assets/scss/vars';
+
 .settings {
-  position: absolute;
   left: 0;
+  position: absolute;
 }
 
 .gear {
-  fill: white;
+  fill: $color-white;
   width: 30px;
 }

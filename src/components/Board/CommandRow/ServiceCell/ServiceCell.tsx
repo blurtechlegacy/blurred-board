@@ -1,15 +1,13 @@
 import React from 'react'
 import classNames from 'classnames'
-
 import { IStatus } from 'src/classes/models/IStatus'
 import { IService } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
-
 import flag from 'src/assets/images/flag.svg'
 import styles from './ServiceCell.module.scss'
 
 const setColorClass = (status: IStatus) => {
-  return `service_status_${IStatus[status]}`
+  return `serviceStatus${IStatus[status]}`
 }
 
 interface IProps {
@@ -24,20 +22,20 @@ const ServiceCell = (props: IProps) => {
     <div
       className={classNames(
         styles[setColorClass(serviceData.status)],
-        styles.service_cell
+        styles.serviceCell
       )}
       style={{ width }}
     >
-      <div className={styles.top_info}>
+      <div className={styles.topInfo}>
         <span className={styles.service_status}>
           STATUS: <b>{IStatus[serviceData.status]}</b>
         </span>
-        <span className={styles.service_sla}>SLA: {serviceData.SLA}%</span>
-        <span className={styles.service_fp}>FP: {serviceData.fp}</span>
+        <span className={styles.serviceSla}>SLA: {serviceData.SLA}%</span>
+        <span className={styles.serviceFp}>FP: {serviceData.fp}</span>
         {firstblood && <span>FIRSTBLOOD</span>}
       </div>
-      <div className={styles.bottom_info}>
-        <img src={flag} alt={'flag'} className={styles.service_flags} />
+      <div className={styles.bottomInfo}>
+        <img src={flag} alt={'flag'} className={styles.serviceFlags} />
         <span>{`${serviceData.flags}/${serviceData.sflags}`}</span>
       </div>
     </div>

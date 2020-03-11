@@ -1,12 +1,9 @@
 import React from 'react'
-
 import { ICommandData } from 'src/classes/models/IInfo'
 import { IAppState } from 'src/store/state'
 import { connect } from 'react-redux'
-
 import CommandRow from './CommandRow/CommandRow'
-import { IFirstblood } from '../../classes/models/IFirstblood'
-
+import { IFirstblood } from 'src/classes/models/IFirstblood'
 import styles from './Board.module.scss'
 
 interface IProps {

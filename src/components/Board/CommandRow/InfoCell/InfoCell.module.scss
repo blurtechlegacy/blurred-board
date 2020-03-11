@@ -1,4 +1,4 @@
-@import 'src/assets/scss/_vars.scss';
+@import 'src/assets/scss/vars';
 
 $image_size: 70px;
 
@@ -29,7 +29,7 @@ $image_size: 70px;
   right: -15px;
   width: 1px;
   height: 70px;
-  background-color: white;
+  background-color: $color-white;
 }
 
 .labels_block {
