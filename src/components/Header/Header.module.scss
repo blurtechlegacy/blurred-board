@@ -2,8 +2,17 @@
 
 header {
   display: flex;
-  align-items: baseline;
-  width: $page-width;
+  flex-direction: row;
+  width: 80%;
+  border-bottom: none;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.logo {
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .boardName {
@@ -12,9 +21,15 @@ header {
 
 .serviceList {
   display: flex;
+  flex-grow: 2;
+  justify-content: center;
+  align-content: center;
 }
 
 .serviceName {
-  margin: 0 8px 0 4px;
-  padding-left: 20px;
+  display: flex;
+  flex-grow: 2;
+  border-right: 0;
+  justify-content: center;
+  align-self: end;
 }

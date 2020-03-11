@@ -23,7 +23,7 @@ const Header = (props: IProps) => {
 
   return (
     <header>
-      <div>
+      <div className={styles.logo}>
         <h1 className={styles.boardName}>{settings.name}</h1>
         {history.length > 0 && <span> Rounds: {history.length}</span>}
         <Timer start={info.start} end={info.end} />
