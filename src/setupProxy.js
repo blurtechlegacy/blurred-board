@@ -1,6 +1,4 @@
-const target = Number(process.env.PROXY)
-  ? process.env.API
-  : process.env.OFFLINE_API
+const target = process.env.API
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
 module.exports = function(app) {
