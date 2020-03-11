@@ -3,15 +3,11 @@
 $image_size: 70px;
 
 .cell {
-  min-width: 200px;
+  min-width: $team-column-width;
+  display: flex;
+  flex-direction: row;
   padding: 15px;
-  display: flex;
-  flex-direction: row;
-}
-
-.main {
-  display: flex;
-  flex-direction: row;
+  border-right: 2px solid $color-white;
 }
 
 .logo {
@@ -36,32 +32,22 @@ $image_size: 70px;
   background-color: white;
 }
 
+.labels_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 25px;
+}
+
 .command_info_block {
   display: flex;
   flex-direction: row;
   position: relative;
-  width: 100px;
-  margin-left: 20px;
-}
-
-.command_info_block::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -15px;
-  width: 1px;
-  height: 70px;
-  background-color: white;
-}
-
-.position {
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
-.name {
-  margin-left: 10px;
-}
-
 .command_stats_block {
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }

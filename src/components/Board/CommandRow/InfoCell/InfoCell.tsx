@@ -21,15 +21,14 @@ export default function InfoCell(props: IProps) {
           alt={`${commandInfo.name} from ${commandInfo.country}`}
         />
       </div>
-      <div className={styles.command_info_block}>
-        <span className={styles.position}>{commandPlace}</span>
-        <span className={styles.name}>{commandInfo.name}</span>
-      </div>
-      <div className={styles.command_stats_block}>
-        <span>
-          {commandInfo.TotalSLA && `Total SLA: ${commandInfo.TotalSLA}%`}
-        </span>
-        <span>{flagPoints && `Flag points: ${flagPoints}`}</span>
+      <div className={styles.labels_block}>
+        <div className={styles.command_info_block}>
+          <span>{`${commandPlace}.${commandInfo.name}`}</span>
+        </div>
+        <div className={styles.command_stats_block}>
+          <span>{`Total SLA: ${100}%`}</span>
+          <span>{`Flag points: ${flagPoints}`}</span>
+        </div>
       </div>
     </div>
   )

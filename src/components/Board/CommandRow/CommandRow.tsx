@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { ICommandData } from '../../../classes/models/IInfo'
-import { IService } from '../../../classes/models/IHistory'
-import { IFirstblood } from '../../../classes/models/IFirstblood'
+import { ICommandData } from 'src/classes/models/IInfo'
+import { IService } from 'src/classes/models/IHistory'
+import { IFirstblood } from 'src/classes/models/IFirstblood'
 
+import InfoCell from './InfoCell/InfoCell'
 import ServiceCell from './ServiceCell/ServiceCell'
 
 import styles from './CommandRow.module.scss'
-import InfoCell from './InfoCell/InfoCell'
 
 interface IProps {
   commandPlace: number
@@ -28,7 +28,6 @@ function isServiceFirstBlood(
 
 export default function CommandRow(props: IProps) {
   const { commandPlace, commandData, firstblood } = props
-
   return (
     <div className={styles.command_row}>
       <InfoCell
