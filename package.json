@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sentry/browser": "^5.14.0",
     "@types/axios": "^0.14.0",
     "@types/classnames": "^2.2.9",
     "@types/history": "^4.7.5",
