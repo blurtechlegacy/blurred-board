@@ -1,21 +1,27 @@
 @import 'src/assets/scss/vars';
 
 .status {
-  padding: 3px;
-  display: inline-block;
   border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+
   &MUMBLE {
     @extend .status;
     border: solid $status-mumble;
   }
+
   &CORRUPT {
     @extend .status;
     border: solid $status-corrupt;
   }
+
   &UP {
     @extend .status;
     border: solid $status-up;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
   }
+
   &DOWN {
     @extend .status;
     border: solid $status-down;
@@ -23,8 +29,8 @@
 }
 
 .UP {
-  -webkit-transform: rotate(-135deg);
   transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
 }
 
 .DOWN {
@@ -33,11 +39,11 @@
 }
 
 .LEFT {
-  -webkit-transform: rotate(-225deg);
   transform: rotate(-225deg);
+  -webkit-transform: rotate(-225deg);
 }
 
 .RIGHT {
-  -webkit-transform: rotate(-45deg);
   transform: rotate(rotate(-45deg));
+  -webkit-transform: rotate(-45deg);
 }
