@@ -6,48 +6,27 @@ import { IFirstblood } from '../../models/IFirstblood'
 
 class BoardApi {
   public fetchInfo = async (): Promise<IFetchResult<IInfo>> => {
-    let data = await Rest.get('/info')
-    if (data) {
-      const castedData = rawCastInfo(data)
-      return {
-        data: castedData,
-        status: true,
-      }
-    } else {
-      return {
-        data: {} as IInfo,
-        status: false,
-      }
+    const data = await Rest.get('/info')
+    const castedData = rawCastInfo(data)
+    return {
+      data: (data && castedData) || ({} as IInfo),
+      status: !!data,
     }
   }
 
   public fetchHistory = async (): Promise<IFetchResult<IHistory>> => {
     let data = await Rest.get('/history/scoreboard.json')
-    if (data) {
-      return {
-        data: data,
-        status: true,
-      }
-    } else {
-      return {
-        data: [] as IHistory,
-        status: false,
-      }
+    return {
+      data: data || ([] as IHistory),
+      status: !!data,
     }
   }
 
   public fetchFirstblood = async (): Promise<IFetchResult<IFirstblood[]>> => {
     let data = await Rest.get('/fb.json')
-    if (data) {
-      return {
-        data: data,
-        status: true,
-      }
-    } else {
-      return {
-        data: [] as IFirstblood[],
-        status: false,
-      }
+    return {
+      data: data || ([] as IFirstblood[]),
+      status: !!data,
     }
   }
 }
