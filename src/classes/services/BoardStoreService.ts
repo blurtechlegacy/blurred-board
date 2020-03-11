@@ -1,9 +1,9 @@
 import BoardApi from 'src/classes/services/api/BoardApi'
 import { IFetchResult } from 'src/classes/models/IFetchResult'
-import { ICommandInfo, IInfo } from 'src/classes/models/IInfo'
+import { ICommandData, IInfo } from 'src/classes/models/IInfo'
 import { IHistory, IScoreboard, IService } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
-import { getState, setNextState } from 'src/store/index'
+import { getState, setNextState } from '../../store'
 
 class BoardStoreService {
   public loading: Promise<void>
@@ -38,14 +38,14 @@ class BoardStoreService {
       const firstblood = all[0]
       const history = all[1]
       const current = history.data[history.data.length - 1]
-      const teams = info.teams
-        .map((team: ICommandInfo) => {
+      const teams = info.commands
+        .map((team: ICommandData) => {
           const cur = current.scoreboard.find(
             (i: IScoreboard) => i.id === team.id
           )
           return { ...team, ...cur }
         })
-        .map((team: ICommandInfo) => {
+        .map((team: ICommandData) => {
           const newServices = team.services.map(
             (service: IService, index: number) => {
               return {
@@ -67,7 +67,7 @@ class BoardStoreService {
         },
         info: {
           ...info,
-          teams,
+          commands: teams,
         },
         history: history.data,
         current: current,
