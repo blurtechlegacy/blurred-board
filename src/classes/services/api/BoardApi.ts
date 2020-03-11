@@ -7,7 +7,7 @@ import { IFirstblood } from '../../models/IFirstblood'
 class BoardApi {
   public fetchInfo = async (): Promise<IFetchResult<IInfo>> => {
     let data = await Rest.get('/api/info')
-    if (!data) data = await Rest.get('/api/api/info')
+    if (!data) data = await Rest.get('/api/api/info') // FIXME: dirty hack for heroku nginx proxying
     if (data) {
       const castedData = rawCastInfo(data)
       return {
