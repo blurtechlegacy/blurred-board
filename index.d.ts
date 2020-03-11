@@ -8,3 +8,5 @@ declare interface ILogger {
   warn: (...args: any[]) => void
   error: (...args: any[]) => void
 }
+
+declare module 'react-data-export'
