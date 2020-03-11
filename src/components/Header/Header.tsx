@@ -5,12 +5,14 @@ import nanoid from 'nanoid'
 import Timer from '../shared/Timer'
 import { IAppState } from 'src/store/state'
 import { connect } from 'react-redux'
-import { IInfo } from 'src/classes/models/IInfo'
+import { IInfo, ICommandInfo } from 'src/classes/models/IInfo'
 import { IHistory } from 'src/classes/models/IHistory'
+import { ExportToExcel } from '../shared/ExportToExcel'
 
 interface IProps {
   info: IInfo
   history: IHistory
+  teams: ICommandInfo[]
 }
 
 const Header = (props: IProps) => {
@@ -27,6 +29,19 @@ const Header = (props: IProps) => {
         <h1 className={styles.boardName}>{settings.name}</h1>
         {history.length > 0 && <span> Rounds: {history.length}</span>}
         <Timer start={info.start} end={info.end} />
+        <ExportToExcel
+          dataset={props.teams}
+          fields={[
+            'id',
+            'country',
+            'logo',
+            'name',
+            'down',
+            'up',
+            'timeout',
+            'Kaspiskiy_Lag',
+          ]}
+        />
       </div>
       <div className={styles.serviceList}>
         {services?.map((service: string) => (
@@ -42,6 +57,7 @@ const Header = (props: IProps) => {
 const mapStateToProps = (state: IAppState): IProps => ({
   info: state.app.info,
   history: state.app.history,
+  teams: state.app.info.teams,
 })
 
 const HeaderConnected = connect(mapStateToProps)(Header)
