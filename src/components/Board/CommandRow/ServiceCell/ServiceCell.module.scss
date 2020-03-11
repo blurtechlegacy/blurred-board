@@ -1,0 +1,55 @@
+@import 'src/assets/scss/_vars.scss';
+$services_amount: $services_amount + 1 !global;
+
+.service_cell {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  border-right: 0;
+  margin-left: 5px;
+  justify-content: space-between;
+  padding: 10px 5px 5px 15px;
+  color: #070707;
+}
+
+.service_cell:last-child {
+  border-right: 5px;
+}
+
+.service_status {
+  &_UP {
+    background-color: $status-up;
+  }
+
+  &_ERROR {
+    background-color: aqua;
+  }
+
+  &_MUMBLE {
+    background-color: $status-mumble;
+  }
+
+  &_CORRUPT {
+    background-color: $status-corrupt;
+  }
+
+  &_DOWN {
+    background-color: $status-down;
+  }
+}
+
+.top_info {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom_info {
+  display: flex;
+  align-items: center;
+}
+
+.service_flags {
+  image-rendering: crisp-edges;
+  width: 25px;
+  height: 25px;
+}

@@ -1,67 +1,6 @@
 @import 'src/assets/scss/_vars.scss';
 
-main {
+.board {
   width: $page-width;
-}
-
-.command {
-  display: flex;
-  height: 100px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid #070707;
-}
-
-.commandData {
-  justify-content: space-around;
-  display: flex;
-  align-self: center;
-  align-items: center;
-  min-width: $team-column-width;
-  padding-left: 10px;
-  padding-top: 10px;
-}
-
-.position {
-  display: flex;
-}
-
-.status_class,
-.service {
-  min-width: $service-column-width !important;
-  margin: 0 8px 0 8px;
-  padding-left: 15px;
-  padding-top: 10px;
-  &_UP {
-    @extend .status_class;
-
-    background-color: $status-up;
-    color: #070707;
-  }
-
-  &_MUMBLE {
-    @extend .status_class;
-
-    background-color: $status-mumble;
-    color: #070707;
-  }
-
-  &_CORRUPT {
-    @extend .status_class;
-
-    background-color: $status-corrupt;
-    color: #070707;
-  }
-
-  &_DOWN {
-    @extend .status_class;
-
-    background-color: $status-down;
-    color: #070707;
-  }
-}
-
-.logo {
-  width: 64px;
-  height: 64px;
-  display: flex;
+  margin-bottom: 100px;
 }

@@ -1,18 +1,18 @@
 import { IForm } from 'src/classes/models/IForm'
 import { IService } from './IHistory'
 
-export interface ICommandInfo extends IForm {
+export interface ICommandData extends IForm {
   id: number
   name: string
   score: number
   logo: string
   country: string
-  services: IService
+  services: IService[]
 }
 
 export interface IInfoRaw {
   teams: {
-    [key: number]: ICommandInfo
+    [key: number]: ICommandData
   }
   services: {
     [key: number]: string
@@ -23,7 +23,7 @@ export interface IInfoRaw {
 }
 
 export interface IInfo {
-  teams: ICommandInfo[]
+  commands: ICommandData[]
   services: string[]
   start: Date
   end: Date
@@ -35,7 +35,7 @@ export const rawCastInfo = (data: IInfoRaw): IInfo => {
     start: data.start,
     end: data.end,
     roundsCount: data.roundsCount,
-    teams: Object.values(data.teams),
+    commands: Object.values(data.teams),
     services: Object.values(data.services),
   }
 }
