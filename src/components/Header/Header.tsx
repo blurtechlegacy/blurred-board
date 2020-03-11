@@ -2,17 +2,17 @@ import React from 'react'
 import settings from 'src/config/settings'
 import styles from './Header.module.scss'
 import nanoid from 'nanoid'
-import Timer from '../shared/Timer'
+import Timer from 'src/components/shared/Timer'
 import { IAppState } from 'src/store/state'
 import { connect } from 'react-redux'
-import { IInfo, ICommandInfo } from 'src/classes/models/IInfo'
+import { IInfo, ICommandData } from 'src/classes/models/IInfo'
 import { IHistory } from 'src/classes/models/IHistory'
-import { ExportToExcel } from '../shared/ExportToExcel'
+import { ExportToExcel } from 'src/components/shared/ExportToExcel'
 
 interface IProps {
   info: IInfo
   history: IHistory
-  teams: ICommandInfo[]
+  teams: ICommandData[]
 }
 
 const Header = (props: IProps) => {
@@ -57,7 +57,7 @@ const Header = (props: IProps) => {
 const mapStateToProps = (state: IAppState): IProps => ({
   info: state.app.info,
   history: state.app.history,
-  teams: state.app.info.teams,
+  teams: state.app.info.commands,
 })
 
 const HeaderConnected = connect(mapStateToProps)(Header)
