@@ -24,7 +24,7 @@ function isCommandFirstblood(
 const Board = (props: IProps) => {
   const { firstblood, commands } = props
   return (
-    <main className={styles.board}>
+    <main id={'board'} className={styles.board}>
       {commands?.map((commandData: ICommandData, index: number) => {
         return (
           <CommandRow

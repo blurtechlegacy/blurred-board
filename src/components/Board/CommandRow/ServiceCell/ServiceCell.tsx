@@ -13,19 +13,20 @@ const setColorClass = (status: IStatus) => {
 }
 
 interface IProps {
+  width?: number
   serviceData: IService
   firstblood?: IFirstblood
 }
 
 const ServiceCell = (props: IProps) => {
-  const { serviceData, firstblood } = props
-
+  const { width, serviceData, firstblood } = props
   return (
     <div
       className={classNames(
         styles[setColorClass(serviceData.status)],
         styles.service_cell
       )}
+      style={{ width }}
     >
       <div className={styles.top_info}>
         <span className={styles.service_status}>

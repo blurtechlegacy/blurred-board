@@ -1,13 +1,19 @@
 @import 'src/assets/scss/_vars.scss';
+$services_amount: $services_amount + 1 !global;
 
 .service_cell {
   display: flex;
   flex-direction: column;
+  flex-grow: 2;
+  border-right: 0;
+  margin-left: 5px;
   justify-content: space-between;
-  min-width: 150px !important;
-  margin: 0 8px 0 8px;
   padding: 10px 5px 5px 15px;
   color: #070707;
+}
+
+.service_cell:last-child {
+  border-right: 5px;
 }
 
 .service_status {
