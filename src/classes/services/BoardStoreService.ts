@@ -38,41 +38,43 @@ class BoardStoreService {
       const firstblood = all[0]
       const history = all[1]
       const current = history.data[history.data.length - 1]
-      const teams = info.commands
-        .map((team: ICommandData) => {
-          const cur = current.scoreboard.find(
-            (i: IScoreboard) => i.id === team.id
-          )
-          return { ...team, ...cur }
-        })
-        .map((team: ICommandData) => {
-          const newServices = team.services.map(
-            (service: IService, index: number) => {
-              return {
-                ...service,
-                name: info.services[index],
+      if (current) {
+        const teams = info.commands
+          .map((team: ICommandData) => {
+            const cur = current.scoreboard.find(
+              (i: IScoreboard) => i.id === team.id
+            )
+            return { ...team, ...cur }
+          })
+          .map((team: ICommandData) => {
+            const newServices = team.services.map(
+              (service: IService, index: number) => {
+                return {
+                  ...service,
+                  name: info.services[index],
+                }
               }
+            )
+            return {
+              ...team,
+              services: newServices,
             }
-          )
-          return {
-            ...team,
-            services: newServices,
-          }
+          })
+        setNextState({
+          statuses: {
+            info: infoStatus,
+            firstblood: firstblood.status,
+            history: history.status,
+          },
+          info: {
+            ...info,
+            commands: teams,
+          },
+          history: history.data,
+          current,
+          firstblood: firstblood.data,
         })
-      setNextState({
-        statuses: {
-          info: infoStatus,
-          firstblood: firstblood.status,
-          history: history.status,
-        },
-        info: {
-          ...info,
-          commands: teams,
-        },
-        history: history.data,
-        current,
-        firstblood: firstblood.data,
-      })
+      }
     })
   }
 
