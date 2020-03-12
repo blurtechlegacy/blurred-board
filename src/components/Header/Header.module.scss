@@ -15,6 +15,10 @@ header {
   flex-direction: column;
 }
 
+.rounds {
+  display: inherit;
+}
+
 .boardName {
   min-width: $team-column-width;
 }

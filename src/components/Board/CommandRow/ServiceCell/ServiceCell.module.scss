@@ -1,8 +1,6 @@
 @import 'src/assets/scss/vars';
 
-$services-amount: $services-amount + 1 !global;
-
-.serviceCell {
+.cell {
   border-right: 0;
   color: $color-black;
   display: flex;
@@ -13,8 +11,20 @@ $services-amount: $services-amount + 1 !global;
   padding: 10px 5px 5px 15px;
 }
 
-.serviceCell:last-child {
+.cell:last-child {
   border-right: 5px;
+}
+
+.skeleton {
+  @extend .cell;
+
+  background-color: $skeleton-cell-color;
+  color: $color-white;
+
+  span {
+    align-items: center;
+    display: flex;
+  }
 }
 
 .serviceStatus {
@@ -49,8 +59,16 @@ $services-amount: $services-amount + 1 !global;
   display: flex;
 }
 
-.serviceFlags {
+.flags {
   height: 25px;
   image-rendering: crisp-edges;
   width: 25px;
+}
+
+.flagBlack {
+  fill: $color-black;
+}
+
+.flagWhite {
+  fill: $color-white;
 }

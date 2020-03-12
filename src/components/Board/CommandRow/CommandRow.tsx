@@ -10,6 +10,7 @@ interface IProps {
   commandPlace: number
   commandData: ICommandData
   firstblood?: IFirstblood
+  servicesAmount: number
 }
 
 function getFlagPoints(services: IService[]): number {
@@ -17,30 +18,48 @@ function getFlagPoints(services: IService[]): number {
 }
 
 function isServiceFirstBlood(
-  serviceName: string,
+  serviceName?: string,
   firstblood?: IFirstblood
 ): IFirstblood | undefined {
   return firstblood?.service === serviceName ? firstblood : undefined
 }
 
 export default function CommandRow(props: IProps) {
-  const { commandPlace, commandData, firstblood } = props
+  const { servicesAmount, commandPlace, commandData, firstblood } = props
+
+  const renderServices = () => {
+    const resultServices = []
+    for (let i = 0; i < servicesAmount; i++) {
+      const service =
+        commandData && commandData.services
+          ? commandData.services[i]
+          : undefined
+      resultServices.push(
+        <ServiceCell
+          key={service ? service.name : i}
+          serviceData={commandData ? service : undefined}
+          firstblood={
+            firstblood && service
+              ? isServiceFirstBlood(service.name, firstblood)
+              : undefined
+          }
+        />
+      )
+    }
+
+    return resultServices
+  }
+
   return (
     <div className={styles.commandRow}>
       <InfoCell
-        commandInfo={commandData}
+        commandData={commandData}
         commandPlace={commandPlace}
-        flagPoints={getFlagPoints(commandData.services)}
+        flagPoints={
+          commandData ? getFlagPoints(commandData.services) : undefined
+        }
       />
-      <div className={styles.commandServices}>
-        {commandData.services?.map((service: IService) => (
-          <ServiceCell
-            key={`${commandData.id}_${service.name}`}
-            serviceData={service}
-            firstblood={isServiceFirstBlood(service.name, firstblood)}
-          />
-        ))}
-      </div>
+      <div className={styles.commandServices}>{renderServices()}</div>
     </div>
   )
 }
