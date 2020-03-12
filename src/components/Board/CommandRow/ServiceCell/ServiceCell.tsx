@@ -45,7 +45,7 @@ const ServiceCell = (props: IProps) => {
         <span className={styles.serviceFp}>
           FP:
           {serviceData ? (
-            <b>{[serviceData?.fp]}%</b>
+            <b>{[serviceData?.fp]}</b>
           ) : (
             <SkeletonText width={40} />
           )}
