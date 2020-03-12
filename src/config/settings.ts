@@ -1,4 +1,4 @@
 export default {
   name: 'BlurredBoard',
-  server: 'http://check.noctf.ru',
+  server: 'https://check.noctf.ru',
 }
