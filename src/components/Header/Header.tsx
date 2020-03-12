@@ -1,7 +1,6 @@
 import React from 'react'
 import settings from 'src/config/settings'
 import styles from './Header.module.scss'
-import nanoid from 'nanoid'
 import Timer from 'src/components/shared/Timer'
 import { IAppState } from 'src/store/state'
 import { connect } from 'react-redux'
@@ -45,7 +44,7 @@ const Header = (props: IProps) => {
       </div>
       <div className={styles.serviceList}>
         {services?.map((service: string) => (
-          <div key={nanoid(8)} className={styles.serviceName}>
+          <div key={service} className={styles.serviceName}>
             {service}
           </div>
         ))}

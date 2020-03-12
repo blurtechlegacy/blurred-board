@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './InfoCell.module.scss'
 import { ICommandData } from 'src/classes/models/IInfo'
+import SkeletonText from '../../../shared/SkeletonText'
 
 type ICommandInfo = Omit<ICommandData, 'services'>
 
@@ -12,6 +13,7 @@ interface IProps {
 
 export default function InfoCell(props: IProps) {
   const { commandInfo, commandPlace, flagPoints } = props
+
   return (
     <div className={styles.cell}>
       <div className={styles.logo}>
@@ -26,7 +28,9 @@ export default function InfoCell(props: IProps) {
         </div>
         <div className={styles.commandStatsBlock}>
           <span>{`Total SLA: ${100}%`}</span>
-          <span>{`Flag points: ${flagPoints}`}</span>
+          <span>
+            Flag points: {flagPoints ? flagPoints : <SkeletonText width={20} />}
+          </span>
         </div>
       </div>
     </div>

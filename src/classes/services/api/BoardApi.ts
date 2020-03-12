@@ -15,7 +15,7 @@ class BoardApi {
   }
 
   public fetchHistory = async (): Promise<IFetchResult<IHistory>> => {
-    let data = await Rest.get('/history/scoreboard.json')
+    const data = await Rest.get('/history/scoreboard.json')
     return {
       data: data || ([] as IHistory),
       status: !!data,
@@ -23,7 +23,7 @@ class BoardApi {
   }
 
   public fetchFirstblood = async (): Promise<IFetchResult<IFirstblood[]>> => {
-    let data = await Rest.get('/fb.json')
+    const data = await Rest.get('/fb.json')
     return {
       data: data || ([] as IFirstblood[]),
       status: !!data,

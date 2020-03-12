@@ -1,0 +1,14 @@
+@import 'src/assets/scss/vars';
+@import '../InfoCell/InfoCell.module.scss';
+
+.skeletonCell {
+  @extend .cell;
+
+  color: white;
+  background-color: $skeleton-cell-color;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}

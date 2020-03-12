@@ -27,6 +27,8 @@ class BoardStoreService {
     })
     this.getBoard()
     setInterval(this.getBoard, 60000)
+
+    return true
   }
 
   public getBoard = () => {

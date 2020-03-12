@@ -11,7 +11,7 @@ Dashboard for Information Security Competitions
 
 ## Development
 
-For local development, change the file extension [`.env.local.example`](.env.local.example) to `.env.local`.
+For local development, change the file extension [`.env.local.example`](.env.local) to `.env.local`.
 
 ## Useful features
 

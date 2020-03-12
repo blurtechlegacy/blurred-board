@@ -1,0 +1,21 @@
+@import 'src/assets/scss/vars';
+@import '../ServiceCell/ServiceCell.module';
+
+.skeletonCell {
+  @extend .cell;
+
+  color: white;
+  background-color: $skeleton-cell-color;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.flags {
+  @extend .flags;
+
+  stroke: $skeleton-placeholder-color;
+  fill: $skeleton-placeholder-color;
+}
