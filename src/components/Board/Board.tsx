@@ -46,7 +46,7 @@ const Board = (props: IProps) => {
 const mapStateToProps = (state: IAppState): IProps => ({
   firstblood: state.app.firstblood,
   commands: state.app.info.commands ? state.app.info.commands : [...Array(3)],
-  servicesAmount: state.app.info.services ? state.app.info.services.length : 3,
+  servicesAmount: state.app.info.services ? state.app.info.services.length : 4,
 })
 
 const BoardConnected = connect(mapStateToProps)(Board)
