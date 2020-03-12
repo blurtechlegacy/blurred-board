@@ -15,41 +15,28 @@ interface IProps {
   servicesAmount: number
 }
 
-function isCommandFirstblood(
-  commandName: string,
-  firstbloods: IFirstblood[]
-): IFirstblood | undefined {
-  return firstbloods.find((fb: IFirstblood) => fb.team === commandName)
-}
-
 const Board = (props: IProps) => {
   const { firstblood, commands, servicesAmount } = props
 
+  const isFirstblood = (commandName: string): IFirstblood | undefined => {
+    return firstblood.find((fb: IFirstblood) => fb.team === commandName)
+  }
+
   const renderRows = () => {
-    const resultRows = []
-    if (commands) {
-      commands.map((commandData: ICommandData, index: number) =>
-        resultRows.push(
-          <CommandRow
-            key={commandData.id}
-            commandPlace={index + 1}
-            firstblood={isCommandFirstblood(commandData.name, firstblood)}
-            servicesAmount={servicesAmount}
-            commandData={commandData}
-          />
-        )
+    const resultRows: JSX.Element[] = []
+    commands.map((commandData: ICommandData, index: number) => {
+      return resultRows.push(
+        <CommandRow
+          key={commandData ? commandData.id : index}
+          commandPlace={index + 1}
+          firstblood={
+            commandData ? isFirstblood(commandData.name) : undefined
+          }
+          servicesAmount={servicesAmount}
+          commandData={commandData}
+        />
       )
-    } else {
-      for (let i = 0; i < 5; i++) {
-        resultRows.push(
-          <CommandRow
-            key={i}
-            servicesAmount={servicesAmount}
-            commandPlace={i + 1}
-          />
-        )
-      }
-    }
+    })
 
     return resultRows
   }
@@ -63,7 +50,7 @@ const Board = (props: IProps) => {
 
 const mapStateToProps = (state: IAppState): IProps => ({
   firstblood: state.app.firstblood,
-  commands: state.app.info.commands,
+  commands: state.app.info.commands ? state.app.info.commands : [...Array(5)],
   servicesAmount: state.app.info.services ? state.app.info.services.length : 5,
 })
 const BoardConnected = connect(mapStateToProps)(Board)
