@@ -31,7 +31,7 @@ const ServiceCell = (props: IProps) => {
         <span className={styles.service_status}>
           STATUS:{' '}
           {serviceData ? (
-            <b>{[serviceData.status]}</b>
+            <b>{IStatus[serviceData.status]}</b>
           ) : (
             <SkeletonText width={65} />
           )}
