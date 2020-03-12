@@ -2,12 +2,16 @@ $color-white: #fefefe !default;
 $color-black: #070707 !default;
 $color-green: #6f6 !default;
 
-$page-width: 80% !default;
+$page-width: 90% !default;
 $team-column-width: 300px !default;
-$services-amount: 0 !default;
+
+$skeleton-cell-color: #121212;
+$skeleton-placeholder-color: darken($color-white, 50);
+$skeleton-highlight-color: #fff;
+$skeleton-border-radius: 2px;
 
 $status-up: #6f6;
 $status-mumble: #8a2be2;
 $status-corrupt: #ff7f50;
 $status-down: #dc143c;
-$status-error: #00ffff;
+$status-error: #0ff;

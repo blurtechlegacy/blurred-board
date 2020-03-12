@@ -10,6 +10,13 @@ $image_size: 70px;
   padding: 15px;
 }
 
+.skeleton {
+  span {
+    align-items: center;
+    display: flex;
+  }
+}
+
 .logo {
   display: flex;
   height: $image_size;
