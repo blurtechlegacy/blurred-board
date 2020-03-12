@@ -8,7 +8,7 @@ interface IProps {
   animated?: boolean
 }
 
-export default function SkeletonText(props: IProps) {
+export default function SkeletonImg(props: IProps) {
   const { animated } = props
   return (
     <div className={styles.skeletonBackground}>
@@ -22,6 +22,6 @@ export default function SkeletonText(props: IProps) {
   )
 }
 
-SkeletonText.defaultProps = {
+SkeletonImg.defaultProps = {
   animated: true,
 }

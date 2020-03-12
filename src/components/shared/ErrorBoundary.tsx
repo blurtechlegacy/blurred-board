@@ -14,7 +14,7 @@ const ErrorBoundary = Catch(function MyErrorBoundary(
     Sentry.captureException(error)
     return (
       <div className="error-screen">
-        <h2>An error has occured</h2>
+        <h2>An error has occurred</h2>
         <h4>{error.message}</h4>
       </div>
     )

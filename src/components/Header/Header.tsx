@@ -6,7 +6,8 @@ import { IAppState } from 'src/store/state'
 import { connect } from 'react-redux'
 import { IInfo, ICommandData } from 'src/classes/models/IInfo'
 import { IHistory } from 'src/classes/models/IHistory'
-import { ExportToExcel } from 'src/components/shared/ExportToExcel'
+
+import SkeletonText from '../shared/SkeletonText'
 
 interface IProps {
   info: IInfo
@@ -26,21 +27,8 @@ const Header = (props: IProps) => {
     <header>
       <div className={styles.logo}>
         <h1 className={styles.boardName}>{settings.name}</h1>
-        {history.length > 0 && <span> Rounds: {history.length}</span>}
+        {<span> Rounds: {history.length ? history.length : <SkeletonText width={30}/>}</span>}
         <Timer start={info.start} end={info.end} />
-        <ExportToExcel
-          dataset={props.teams}
-          fields={[
-            'id',
-            'country',
-            'logo',
-            'name',
-            'down',
-            'up',
-            'timeout',
-            'Kaspiskiy_Lag',
-          ]}
-        />
       </div>
       <div className={styles.serviceList}>
         {services?.map((service: string) => (
