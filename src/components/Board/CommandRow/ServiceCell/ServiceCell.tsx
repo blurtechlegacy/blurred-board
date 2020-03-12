@@ -27,7 +27,7 @@ const ServiceCell = (props: IProps) => {
     >
       <div className={styles.topInfo}>
         <span className={styles.service_status}>
-          STATUS:{' '}
+          STATUS:
           {serviceData ? (
             <b>{IStatus[serviceData.status]}</b>
           ) : (
@@ -35,18 +35,17 @@ const ServiceCell = (props: IProps) => {
           )}
         </span>
         <span className={styles.serviceSla}>
-          SLA:{' '}
+          SLA:
           {serviceData ? (
-            <b>{[serviceData.SLA]}%</b>
+            <b>{Math.round(Math.random() * (100 + 1))}%</b>
           ) : (
             <SkeletonText width={40} />
           )}
         </span>
         <span className={styles.serviceFp}>
-          {' '}
-          FP:{' '}
+          FP:
           {serviceData ? (
-            <b>{[serviceData.SLA]}%</b>
+            <b>{[serviceData?.fp]}</b>
           ) : (
             <SkeletonText width={40} />
           )}

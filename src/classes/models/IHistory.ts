@@ -3,7 +3,7 @@ import { IForm } from 'src/classes/models/IForm'
 
 export interface IService extends IForm {
   name: string
-  flag: number
+  flags: number
   sflags: number
   fp: number
   status: IStatus
