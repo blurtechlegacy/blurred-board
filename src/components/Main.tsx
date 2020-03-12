@@ -1,5 +1,5 @@
 import React from 'react'
-import BoardStoreService from 'src/classes/services/BoardStoreService'
+import * as BoardStoreService from 'src/classes/services/BoardStoreService'
 import App from 'src/components/App'
 import { IAppState } from '../store/state'
 import { connect } from 'react-redux'
