@@ -9,10 +9,6 @@ Dashboard for Information Security Competitions
 `yarn install` - install dependencies  
 `yarn start` - start project
 
-## Development
-
-For local development, change the file extension [`.env.local.example`](.env.local.example) to `.env.local`.
-
 ## Useful features
 
 - All paths in the project are relative ([`src/classes/utils/Logger`](src/classes/utils/Logger.ts), [`src/components/App`](src/components/App.tsx) and etc).
