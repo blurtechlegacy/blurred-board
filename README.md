@@ -25,10 +25,10 @@ Dashboard for Information Security Competitions
 
 ### Contributors
 
-- :arrow*down_small: **Michael Kvashin** - \_Front-end developer* - [Mfungorn](https://github.com/Mfungorn)
+- :arrow_down_small: **Michael Kvashin** - \_Front-end developer* - [Mfungorn](https://github.com/Mfungorn)
 - :shipit: **Vitaly Shatalov** - _Front-end developer_ - [tnnNull](https://github.com/tnnNull)  
   [![Twitter Follow](https://img.shields.io/twitter/follow/thevetka.svg?style=social&label=Follow)](https://twitter.com/thevetka)
-- :baby*chick: **Danil Tankov** - \_Front-end developer* - [evist0](https://github.com/evist0)  
+- :baby_chick: **Danil Tankov** - \_Front-end developer* - [evist0](https://github.com/evist0)  
   [![Twitter Follow](https://img.shields.io/twitter/follow/danushaperdusha.svg?style=social&label=Follow)](https://twitter.com/danushaperdusha)
 
 See also the list of [contributors](https://github.com/blurtech/blurred-board/contributors) who participated in this project.
