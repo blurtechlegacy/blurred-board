@@ -3,18 +3,10 @@ import { IFetchResult } from 'src/classes/models/IFetchResult'
 import { ICommandData, IInfo } from 'src/classes/models/IInfo'
 import { IHistory, IScoreboard, IService } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
-import { getState, setNextState } from '../../store'
+import { getState, setNextState } from 'src/store'
 
-class BoardStoreService {
-  public loading: Promise<void>
-  public constructor() {
-    this.loading = new Promise<void>(resolve => {
-      this.loadingResolver = resolve
-    })
-  }
-  public loadingResolver: () => void = () => {}
-
-  public init = async () => {
+export default {
+  async init() {
     const state = getState()
     const info = await this.getInfo()
     setNextState({
@@ -27,9 +19,9 @@ class BoardStoreService {
     })
     this.getBoard()
     setInterval(this.getBoard, 60000)
-  }
+  },
 
-  public getBoard = () => {
+  getBoard() {
     const info = getState().info
     const infoStatus = getState().statuses.info
     const PFirstblood = this.getFirstblood()
@@ -74,34 +66,29 @@ class BoardStoreService {
         firstblood: firstblood.data,
       })
     })
-  }
+  },
 
-  public getInfo = async (): Promise<IFetchResult<IInfo>> => {
+  async getInfo(): Promise<IFetchResult<IInfo>> {
     const info = await BoardApi.fetchInfo()
-    this.loadingResolver()
     return {
       data: info.data,
       status: info.status,
     }
-  }
+  },
 
-  public getHistory = async (): Promise<IFetchResult<IHistory>> => {
+  async getHistory(): Promise<IFetchResult<IHistory>> {
     const history = await BoardApi.fetchHistory()
-    this.loadingResolver()
     return {
       data: history.data,
       status: history.status,
     }
-  }
+  },
 
-  public getFirstblood = async (): Promise<IFetchResult<IFirstblood[]>> => {
+  async getFirstblood(): Promise<IFetchResult<IFirstblood[]>> {
     const firstblood = await BoardApi.fetchFirstblood()
-    this.loadingResolver()
     return {
       data: firstblood.data,
       status: firstblood.status,
     }
-  }
+  },
 }
-
-export default new BoardStoreService()
