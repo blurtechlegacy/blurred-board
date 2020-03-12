@@ -4,15 +4,13 @@ import { IService } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
 
 import InfoCell from 'src/components/Board/CommandRow/InfoCell/InfoCell'
-import SkeletonServiceCell from './SkeletonCells/SkeletonServiceCell'
 import ServiceCell from 'src/components/Board/CommandRow/ServiceCell/ServiceCell'
 
 import styles from './CommandRow.module.scss'
-import SkeletonInfoCell from './SkeletonCells/SkeletonInfoCell'
 
 interface IProps {
   commandPlace: number
-  commandData?: ICommandData
+  commandData: ICommandData
   firstblood?: IFirstblood
   servicesAmount: number
 }
@@ -21,30 +19,8 @@ function getFlagPoints(services: IService[]): number {
   return services?.map((s: any) => s.fp).reduce((p: any, c: any) => p + c)
 }
 
-function renderServiceCells(
-  commandData: ICommandData,
-  firstblood?: IFirstblood
-) {
-  return commandData.services?.map((service: IService) => (
-    <ServiceCell
-      key={`${commandData.id}_${service.name}`}
-      serviceData={service}
-      firstblood={isServiceFirstBlood(service.name, firstblood)}
-    />
-  ))
-}
-
-function renderSkeletonServiceCells(servicesAmount: number) {
-  const skeletons = []
-  for (let i = 0; i < servicesAmount; i++) {
-    skeletons.push(<SkeletonServiceCell key={i} />)
-  }
-
-  return skeletons
-}
-
 function isServiceFirstBlood(
-  serviceName: string,
+  serviceName?: string,
   firstblood?: IFirstblood
 ): IFirstblood | undefined {
   return firstblood?.service === serviceName ? firstblood : undefined
@@ -53,24 +29,39 @@ function isServiceFirstBlood(
 export default function CommandRow(props: IProps) {
   const { servicesAmount, commandPlace, commandData, firstblood } = props
 
+  const renderServices = () => {
+    const resultServices = []
+    for (let i = 0; i < servicesAmount; i++) {
+      const service =
+        commandData && commandData.services
+          ? commandData.services[i]
+          : undefined
+      resultServices.push(
+        <ServiceCell
+          key={service ? service.name : i}
+          serviceData={commandData ? service : undefined}
+          firstblood={
+            firstblood && service
+              ? isServiceFirstBlood(service.name, firstblood)
+              : undefined
+          }
+        />
+      )
+    }
+
+    return resultServices
+  }
+
   return (
     <div className={styles.commandRow}>
-      {commandData ? (
-        <InfoCell
-          commandInfo={commandData}
-          commandPlace={commandPlace}
-          flagPoints={getFlagPoints(commandData.services)}
-        />
-      ) : (
-        <SkeletonInfoCell />
-      )}
-      {
-        <div className={styles.commandServices}>
-          {commandData?.services
-            ? renderServiceCells(commandData, firstblood)
-            : renderSkeletonServiceCells(servicesAmount)}
-        </div>
-      }
+      <InfoCell
+        commandData={commandData}
+        commandPlace={commandPlace}
+        flagPoints={
+          commandData ? getFlagPoints(commandData.services) : undefined
+        }
+      />
+      <div className={styles.commandServices}>{renderServices()}</div>
     </div>
   )
 }

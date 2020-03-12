@@ -27,7 +27,7 @@ const Header = (props: IProps) => {
     <header>
       <div className={styles.logo}>
         <h1 className={styles.boardName}>{settings.name}</h1>
-        {<span> Rounds: {history.length ? history.length : <SkeletonText width={30}/>}</span>}
+        {<span className={styles.rounds}> Rounds: {history.length ? history.length : <SkeletonText width={30}/>}</span>}
         <Timer start={info.start} end={info.end} />
       </div>
       <div className={styles.serviceList}>

@@ -5,14 +5,16 @@ import { IService } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
 
 import styles from './ServiceCell.module.scss'
-import flag from 'src/assets/images/flagBlack.svg'
+import flagBlack from 'src/assets/images/flagBlack.svg'
+import flagWhite from 'src/assets/images/flagWhite.svg'
+import SkeletonText from '../../../shared/SkeletonText'
 
-const setColorClass = (status: IStatus) => {
-  return `serviceStatus${IStatus[status]}`
+const setColorClass = (status?: IStatus) => {
+  return status ? `serviceStatus${IStatus[status]}` : 'skeleton'
 }
 
 interface IProps {
-  serviceData: IService
+  serviceData?: IService
   firstblood?: IFirstblood
 }
 
@@ -21,21 +23,41 @@ const ServiceCell = (props: IProps) => {
   return (
     <div
       className={classNames(
-        styles[setColorClass(serviceData.status)],
+        styles[setColorClass(serviceData?.status)],
         styles.cell
       )}
     >
       <div className={styles.topInfo}>
         <span className={styles.service_status}>
-          STATUS: <b>{IStatus[serviceData.status]}</b>
+          STATUS:{' '}
+          {serviceData ? (
+            <b>{[serviceData.status]}</b>
+          ) : (
+            <SkeletonText width={65} />
+          )}
         </span>
-        <span className={styles.serviceSla}>SLA: {serviceData.SLA}%</span>
-        <span className={styles.serviceFp}>FP: {serviceData.fp}</span>
+        <span className={styles.serviceSla}>
+          SLA:{' '}
+          {serviceData ? (
+            <b>{[serviceData.SLA]}%</b>
+          ) : (
+            <SkeletonText width={40} />
+          )}
+        </span>
+        <span className={styles.serviceFp}>
+          {' '}
+          FP:{' '}
+          {serviceData ? (
+            <b>{[serviceData.SLA]}%</b>
+          ) : (
+            <SkeletonText width={40} />
+          )}
+        </span>
         {firstblood && <span>FIRSTBLOOD</span>}
       </div>
       <div className={styles.bottomInfo}>
-        <img className={styles.flags} src={flag} alt={'flagIco'} />
-        <span>{`${serviceData.flags}/${serviceData.sflags}`}</span>
+        <img className={styles.flags} src={serviceData ? flagBlack : flagWhite} alt={'flagIco'} />
+        <span>{serviceData ? `${serviceData.flags}/${serviceData.sflags}` : <SkeletonText width={25}/>} </span>
       </div>
     </div>
   )

@@ -1,30 +1,41 @@
 import React from 'react'
+import classNames from 'classnames'
 import styles from './InfoCell.module.scss'
 import { ICommandData } from 'src/classes/models/IInfo'
 import SkeletonText from '../../../shared/SkeletonText'
+import SkeletonImg from '../../../shared/SkeletonImg'
 
 type ICommandInfo = Omit<ICommandData, 'services'>
 
 interface IProps {
-  commandInfo: ICommandInfo
-  commandPlace: number
-  flagPoints: number
+  commandData?: ICommandInfo
+  commandPlace?: number
+  flagPoints?: number
 }
 
 export default function InfoCell(props: IProps) {
-  const { commandInfo, commandPlace, flagPoints } = props
+  const { commandData, commandPlace, flagPoints } = props
 
   return (
-    <div className={styles.cell}>
+    <div
+      className={classNames(styles.cell, styles[commandData ? '' : 'skeleton'])}
+    >
       <div className={styles.logo}>
-        <img
-          src={commandInfo.logo ? commandInfo.logo : './logo.jpg'}
-          alt={`${commandInfo.name} from ${commandInfo.country}`}
-        />
+        {commandData ? (
+          <img
+            src={commandData.logo ? commandData.logo : './logo.jpg'}
+            alt={`${commandData.name} from ${commandData.country}`}
+          />
+        ) : (
+          <SkeletonImg />
+        )}
       </div>
       <div className={styles.labelsBlock}>
         <div className={styles.commandInfoBlock}>
-          <span>{`${commandPlace}.${commandInfo.name}`}</span>
+          <span>
+            {commandPlace}.
+            {commandData ? commandData.name : <SkeletonText width={100} />}
+          </span>
         </div>
         <div className={styles.commandStatsBlock}>
           <span>{`Total SLA: ${100}%`}</span>

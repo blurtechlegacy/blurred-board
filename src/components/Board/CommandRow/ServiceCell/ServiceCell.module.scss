@@ -15,6 +15,18 @@
   border-right: 5px;
 }
 
+.skeleton {
+  @extend .cell;
+
+  background-color: $skeleton-cell-color;
+  color: $color-white;
+
+  span {
+    align-items: center;
+    display: flex;
+  }
+}
+
 .serviceStatus {
   &UP {
     background-color: $status-up;
