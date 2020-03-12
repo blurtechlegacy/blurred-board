@@ -4,18 +4,11 @@
 .skeletonCell {
   @extend .cell;
 
-  color: white;
   background-color: $skeleton-cell-color;
+  color: $color-white;
 
   span {
     display: flex;
     align-items: center;
   }
-}
-
-.flags {
-  @extend .flags;
-
-  stroke: $skeleton-placeholder-color;
-  fill: $skeleton-placeholder-color;
 }

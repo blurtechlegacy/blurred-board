@@ -1,30 +1,30 @@
 @import '../../assets/scss/vars';
 
 .skeletonBackground {
-  position: relative;
+  background-color: $skeleton-placeholder-color;
   border-radius: $skeleton-border-radius;
   height: 100%;
-  width: 100%;
   overflow: hidden;
-  background-color: $skeleton-placeholder-color;
+  position: relative;
+  width: 100%;
 }
 
 .skeletonForeground {
   height: 100%;
-  width: 100%;
   position: absolute;
+  width: 100%;
 }
 
 .animated {
-  background: linear-gradient(
+  animation: slide 2s infinite;
+  background:
+    linear-gradient(
       100deg,
       rgba($skeleton-highlight-color, 0) 40%,
-      rgba($skeleton-highlight-color, 0.8) 50%,
+      rgba($skeleton-highlight-color, .8) 50%,
       rgba($skeleton-highlight-color, 0) 60%
-    )
-    no-repeat left 200% top 200%;
+    ) no-repeat left 200% top 200%;
   background-size: 200% 200%;
-  animation: slide 2s infinite;
 }
 
 @keyframes slide {

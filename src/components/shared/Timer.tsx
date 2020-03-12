@@ -7,8 +7,9 @@ interface IProps {
 }
 
 const Timer = (props: IProps) => {
+  // TODO: rewrite to realtime countdown, time left until the end of the competition
   const { start, end } = props
-  return <div>{start && end && getDateDifference(start, end).getTime()}</div> // TODO: rewrite to realtime countdown, time left until the end of the competition
+  return <div>{start && end && getDateDifference(start, end).getTime()}</div>
 }
 
 export default Timer
