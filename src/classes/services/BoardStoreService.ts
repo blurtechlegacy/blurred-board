@@ -1,15 +1,12 @@
 import * as BoardApi from 'src/classes/services/api/BoardApi'
-import { IFetchResult } from 'src/classes/models/IFetchResult'
-import { ICommandData, IInfo } from 'src/classes/models/IInfo'
-import { IHistory, IService } from 'src/classes/models/IHistory'
-import { IFirstblood } from 'src/classes/models/IFirstblood'
+import { ICommandData } from 'src/classes/models/IInfo'
+import { IService } from 'src/classes/models/IHistory'
 import { getState, setNextState } from 'src/store'
-import { ICurrent } from '../models/ICurrent'
 
 export const init = async () => {
   const state = getState()
-  const info = await getInfo()
-  const current = await getCurrent()
+  const info = await BoardApi.fetchInfo()
+  const current = await BoardApi.fetchCurrent()
   setNextState({
     ...state,
     info: info.data,
@@ -26,8 +23,8 @@ export const init = async () => {
 
 export const getBoard = () => {
   const state = getState()
-  const PFirstblood = getFirstblood()
-  const PHistory = getHistory()
+  const PFirstblood = BoardApi.fetchFirstblood()
+  const PHistory = BoardApi.fetchHistory()
   Promise.all([PFirstblood, PHistory]).then(all => {
     const firstblood = all[0]
     const history = all[1]
@@ -69,36 +66,4 @@ export const getBoard = () => {
       firstblood: firstblood.data,
     })
   })
-}
-
-export const getInfo = async (): Promise<IFetchResult<IInfo>> => {
-  const info = await BoardApi.fetchInfo()
-  return {
-    data: info.data,
-    status: info.status,
-  }
-}
-
-export const getCurrent = async (): Promise<IFetchResult<ICurrent>> => {
-  const current = await BoardApi.fetchCurrent()
-  return {
-    data: current.data,
-    status: current.status,
-  }
-}
-
-export const getHistory = async (): Promise<IFetchResult<IHistory>> => {
-  const history = await BoardApi.fetchHistory()
-  return {
-    data: history.data,
-    status: history.status,
-  }
-}
-
-export const getFirstblood = async (): Promise<IFetchResult<IFirstblood[]>> => {
-  const firstblood = await BoardApi.fetchFirstblood()
-  return {
-    data: firstblood.data,
-    status: firstblood.status,
-  }
 }

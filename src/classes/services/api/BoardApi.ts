@@ -3,7 +3,15 @@ import { IInfo, rawCastInfo } from 'src/classes/models/IInfo'
 import * as Rest from 'src/classes/http/Rest'
 import { IHistory } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
-import { ICurrent, rawCastCurrent } from '../../models/ICurrent'
+import { ICurrent, rawCastCurrent } from 'src/classes/models/ICurrent'
+
+const fetchData = async (url: string) => {
+  const data = await Rest.get(url)
+  return {
+    data: data,
+    status: !!data,
+  }
+}
 
 export const fetchInfo = async (): Promise<IFetchResult<IInfo>> => {
   const data = await Rest.get('/api/info')
@@ -23,20 +31,8 @@ export const fetchCurrent = async (): Promise<IFetchResult<ICurrent>> => {
   }
 }
 
-export const fetchHistory = async (): Promise<IFetchResult<IHistory>> => {
-  const data = await Rest.get('/history/scoreboard.json')
-  return {
-    data: data || [],
-    status: !!data,
-  }
-}
+export const fetchHistory = async (): Promise<IFetchResult<IHistory>> =>
+  await fetchData('/history/scoreboard.json')
 
-export const fetchFirstblood = async (): Promise<IFetchResult<
-  IFirstblood[]
->> => {
-  const data = await Rest.get('/fb.json')
-  return {
-    data: data || [],
-    status: !!data,
-  }
-}
+export const fetchFirstblood = async (): Promise<IFetchResult<IFirstblood[]>> =>
+  await fetchData('/fb.json')
