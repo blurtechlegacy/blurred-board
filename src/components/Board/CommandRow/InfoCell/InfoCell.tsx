@@ -33,8 +33,12 @@ const InfoCell = (props: IProps) => {
       <div className={styles.labelsBlock}>
         <div className={styles.commandInfoBlock}>
           <span>
-            {commandPlace ? commandPlace : <SkeletonText width={15} />}.
-            {commandData ? commandData.name : <SkeletonText width={100} />}
+            {commandPlace && commandData && commandData.bias ? (
+              `${commandPlace} (${commandData?.bias})`
+            ) : (
+              <SkeletonText width={15} />
+            )}
+            .{commandData ? commandData.name : <SkeletonText width={100} />}
           </span>
         </div>
         <div className={styles.commandStatsBlock}>
