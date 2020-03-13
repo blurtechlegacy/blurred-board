@@ -28,9 +28,14 @@ const Header = (props: IProps) => {
         <h1 className={styles.boardName}>{settings.name}</h1>
         {
           <span className={styles.rounds}>
-            {' '}
             Rounds:{' '}
-            {history.length ? history.length : <SkeletonText width={30} />}
+            {info.roundsCount ? (
+              info.roundsCount
+            ) : history.length ? (
+              history.length
+            ) : (
+              <SkeletonText width={30} />
+            )}
           </span>
         }
         <Timer start={info.start} end={info.end} />

@@ -24,7 +24,7 @@ const Board = (props: IProps) => {
       {commands.map((commandData: ICommandData, index: number) => (
         <CommandRow
           key={commandData ? commandData.id : index}
-          commandPlace={index + 1}
+          commandPlace={commandData && commandData.place}
           firstblood={commandData ? isFirstblood(commandData.name) : undefined}
           servicesAmount={servicesAmount}
           commandData={commandData}

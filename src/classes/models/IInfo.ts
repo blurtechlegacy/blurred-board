@@ -5,9 +5,13 @@ export interface ICommandData extends IForm {
   id: number
   name: string
   score: number
-  logo: string
-  country: string
+  oldScore?: number
+  logo?: string
+  country?: string
   services: IService[]
+  place?: number
+  bias?: number
+  round?: number
 }
 
 export interface IInfoRaw {

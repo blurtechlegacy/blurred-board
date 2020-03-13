@@ -1,38 +1,41 @@
 import * as BoardApi from 'src/classes/services/api/BoardApi'
 import { IFetchResult } from 'src/classes/models/IFetchResult'
 import { ICommandData, IInfo } from 'src/classes/models/IInfo'
-import { IHistory, IScoreboard, IService } from 'src/classes/models/IHistory'
+import { IHistory, IService } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
 import { getState, setNextState } from 'src/store'
+import { ICurrent } from '../models/ICurrent'
 
 export const init = async () => {
   const state = getState()
   const info = await getInfo()
+  const current = await getCurrent()
   setNextState({
     ...state,
     info: info.data,
     statuses: {
       ...state.statuses,
       info: info.status,
+      current: current.status,
     },
+    current: current.data,
   })
   getBoard()
-  setInterval(getBoard, 60000)
+  setInterval(getBoard, 300000)
 }
 
 export const getBoard = () => {
-  const info = getState().info
-  const infoStatus = getState().statuses.info
+  const state = getState()
   const PFirstblood = getFirstblood()
   const PHistory = getHistory()
   Promise.all([PFirstblood, PHistory]).then(all => {
     const firstblood = all[0]
     const history = all[1]
-    const current = history.data[history.data.length - 1]
-    const teams = info.commands
+    const current = state.current
+    const teams = state.info.commands
       .map((team: ICommandData) => {
         const cur = current.scoreboard.find(
-          (i: IScoreboard) => i.id === team.id
+          (i: ICommandData) => i.id === team.id
         )
         return { ...team, ...cur }
       })
@@ -41,7 +44,7 @@ export const getBoard = () => {
           (service: IService, index: number) => {
             return {
               ...service,
-              name: info.services[index],
+              name: state.info.services[index],
             }
           }
         )
@@ -51,17 +54,18 @@ export const getBoard = () => {
         }
       })
     setNextState({
+      ...state,
       statuses: {
-        info: infoStatus,
+        ...state.statuses,
+        info: state.statuses.info,
         firstblood: firstblood.status,
         history: history.status,
       },
       info: {
-        ...info,
+        ...state.info,
         commands: teams,
       },
       history: history.data,
-      current,
       firstblood: firstblood.data,
     })
   })
@@ -72,6 +76,14 @@ export const getInfo = async (): Promise<IFetchResult<IInfo>> => {
   return {
     data: info.data,
     status: info.status,
+  }
+}
+
+export const getCurrent = async (): Promise<IFetchResult<ICurrent>> => {
+  const current = await BoardApi.fetchCurrent()
+  return {
+    data: current.data,
+    status: current.status,
   }
 }
 

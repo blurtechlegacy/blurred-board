@@ -7,6 +7,7 @@ import ErrorBoundary from 'src/components/shared/ErrorBoundary'
 import './index.module.scss'
 import App from 'src/components/App'
 import * as BoardStoreService from 'src/classes/services/BoardStoreService'
+import * as WSClient from 'src/classes/ws/WSClient'
 
 const store = initStore()
 process.env.REACT_APP_SENTRY &&
@@ -14,7 +15,7 @@ process.env.REACT_APP_SENTRY &&
 
 const Root = () => {
   React.useEffect(() => {
-    BoardStoreService.init()
+    BoardStoreService.init().then(() => WSClient.init())
   })
 
   return (
