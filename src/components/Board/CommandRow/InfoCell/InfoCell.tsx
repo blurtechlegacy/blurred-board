@@ -13,7 +13,7 @@ interface IProps {
   flagPoints?: number
 }
 
-export default function InfoCell(props: IProps) {
+const InfoCell = (props: IProps) => {
   const { commandData, commandPlace, flagPoints } = props
 
   return (
@@ -47,3 +47,5 @@ export default function InfoCell(props: IProps) {
     </div>
   )
 }
+
+export default InfoCell
