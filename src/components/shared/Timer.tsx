@@ -42,6 +42,50 @@ enum TimeStatus {
   End,
 }
 
+const calculateRemainingTime = (beginTime: number, endTime: number) => {
+  const currentTime = new Date().getTime()
+
+  if (currentTime < beginTime) {
+    return {
+      status: TimeStatus.Before,
+      remainingTime: new Time(beginTime - currentTime),
+    }
+  } else if (currentTime < endTime) {
+    return {
+      status: TimeStatus.Now,
+      remainingTime: new Time(endTime - currentTime),
+    }
+  } else {
+    return {
+      status: TimeStatus.End,
+      remainingTime: undefined,
+    }
+  }
+}
+
+const getRemainingTime = (timeStatus: TimeStatus, remainingTime: Time) => {
+  let innerHtml = ''
+  switch (timeStatus) {
+    case TimeStatus.Before:
+      innerHtml = `Time before start: ${
+        remainingTime ? remainingTime.parse() : <SkeletonText width={50} />
+      }`
+      break
+    case TimeStatus.Now:
+      innerHtml = `Time before end: ${
+        remainingTime ? remainingTime.parse() : <SkeletonText width={50} />
+      }`
+      break
+    case TimeStatus.End:
+      innerHtml = `Competition is over.`
+      break
+    default:
+      return new Error('Unknown time status.')
+  }
+
+  return <span>{innerHtml}</span>
+}
+
 const Timer = (props: IProps) => {
   const beginTime = new Date(props.start).getTime()
   const endTime = new Date(props.end).getTime()
@@ -50,49 +94,22 @@ const Timer = (props: IProps) => {
   const [timeStatus, setTimeStatus] = useState()
 
   useEffect(() => {
-    const timer = setInterval(calculateRemainingTime, 1000)
+    const timer = setInterval(() => {
+      const time = calculateRemainingTime(beginTime, endTime)
+      setTimeStatus(time.status)
+      setRemainingTime(time.remainingTime)
+    }, 1000)
     return () => clearInterval(timer)
-  }, [props.start, props.end])
-
-  const calculateRemainingTime = () => {
-    const currentTime = new Date().getTime()
-
-    if (currentTime < beginTime) {
-      setTimeStatus(TimeStatus.Before)
-      setRemainingTime(new Time(beginTime - currentTime))
-    } else if (currentTime < endTime) {
-      setTimeStatus(TimeStatus.Now)
-      setRemainingTime(new Time(endTime - currentTime))
-    } else {
-      setTimeStatus(TimeStatus.End)
-    }
-  }
-
-  const getRemainingTime = () => {
-    let innerHtml = ''
-    switch (timeStatus) {
-      case TimeStatus.Before:
-        innerHtml = `Time before start: ${
-          remainingTime ? remainingTime.parse() : <SkeletonText width={50} />
-        }`
-        break
-      case TimeStatus.Now:
-        innerHtml = `Time before end: ${
-          remainingTime ? remainingTime.parse() : <SkeletonText width={50} />
-        }`
-        break
-      case TimeStatus.End:
-        innerHtml = `Competition is over.`
-        break
-      default:
-        return new Error('Unknown time status.')
-    }
-
-    return <span>{innerHtml}</span>
-  }
+  }, [beginTime, endTime])
 
   return (
-    <div>{timeStatus ? getRemainingTime() : <SkeletonText width={150} />}</div>
+    <div>
+      {timeStatus ? (
+        getRemainingTime(timeStatus, remainingTime)
+      ) : (
+        <SkeletonText width={150} />
+      )}
+    </div>
   )
 }
 
