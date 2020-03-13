@@ -33,7 +33,7 @@ const InfoCell = (props: IProps) => {
       <div className={styles.labelsBlock}>
         <div className={styles.commandInfoBlock}>
           <span>
-            {commandPlace}.
+            {commandPlace ? commandPlace : <SkeletonText width={15} />}.
             {commandData ? commandData.name : <SkeletonText width={100} />}
           </span>
         </div>

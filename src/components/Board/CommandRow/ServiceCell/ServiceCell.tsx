@@ -37,7 +37,9 @@ const ServiceCell = (props: IProps) => {
         <span className={styles.serviceSla}>
           SLA:
           {serviceData ? (
-            <b>{Math.round(Math.random() * (100 + 1))}%</b>
+            <div>
+              <b>{serviceData.sla}%</b>
+            </div>
           ) : (
             <SkeletonText width={40} />
           )}

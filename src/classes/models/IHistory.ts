@@ -1,23 +1,27 @@
 import { IStatus } from 'src/classes/models/IStatus'
 import { IForm } from 'src/classes/models/IForm'
+import { ICommandData } from 'src/classes/models/IInfo'
 
 export interface IService extends IForm {
-  name: string
+  id?: number
+  sla?: number
+  oldSla?: number
+  name?: string
   flags: number
+  oldFlags?: number
   sflags: number
+  oldSflags?: number
   fp: number
+  oldFp?: number
   status: IStatus
-}
-
-export interface IScoreboard {
-  id: number
-  score: number
-  services: IService[]
+  stdout?: string
+  active?: number
+  disableInterval?: any
 }
 
 export interface IRound extends IForm {
   round: number
-  scoreboard: IScoreboard[]
+  scoreboard: ICommandData[]
 }
 
 export type IHistory = IRound[]

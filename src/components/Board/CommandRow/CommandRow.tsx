@@ -7,7 +7,7 @@ import ServiceCell from 'src/components/Board/CommandRow/ServiceCell/ServiceCell
 import styles from './CommandRow.module.scss'
 
 interface IProps {
-  commandPlace: number
+  commandPlace?: number
   commandData: ICommandData
   firstblood?: IFirstblood
   servicesAmount: number
