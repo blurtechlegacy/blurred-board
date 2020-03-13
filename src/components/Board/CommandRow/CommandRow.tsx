@@ -17,14 +17,13 @@ function getFlagPoints(services: IService[]): number {
   return services?.map((s: any) => s.fp).reduce((p: any, c: any) => p + c)
 }
 
-function isServiceFirstBlood(
+const isServiceFirstBlood = (
   serviceName?: string,
   firstblood?: IFirstblood
-): IFirstblood | undefined {
-  return firstblood?.service === serviceName ? firstblood : undefined
-}
+): IFirstblood | undefined =>
+  firstblood?.service === serviceName ? firstblood : undefined
 
-export default function CommandRow(props: IProps) {
+const CommandRow = (props: IProps) => {
   const { servicesAmount, commandPlace, commandData, firstblood } = props
 
   const renderServices = () => {
@@ -63,3 +62,5 @@ export default function CommandRow(props: IProps) {
     </div>
   )
 }
+
+export default CommandRow

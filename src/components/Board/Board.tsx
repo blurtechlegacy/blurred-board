@@ -19,10 +19,9 @@ const Board = (props: IProps) => {
     return firstblood.find((fb: IFirstblood) => fb.team === commandName)
   }
 
-  const renderRows = () => {
-    const resultRows: JSX.Element[] = []
-    commands.map((commandData: ICommandData, index: number) => {
-      return resultRows.push(
+  return (
+    <main className={styles.board}>
+      {commands.map((commandData: ICommandData, index: number) => (
         <CommandRow
           key={commandData ? commandData.id : index}
           commandPlace={index + 1}
@@ -30,15 +29,7 @@ const Board = (props: IProps) => {
           servicesAmount={servicesAmount}
           commandData={commandData}
         />
-      )
-    })
-
-    return resultRows
-  }
-
-  return (
-    <main id={'board'} className={styles.board}>
-      {renderRows()}
+      ))}
     </main>
   )
 }
