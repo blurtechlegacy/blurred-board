@@ -22,7 +22,9 @@ const InfoCell = (props: IProps) => {
       <div className={styles.logo}>
         {commandData ? (
           <img
-            src={commandData.logo ? commandData.logo : './logo.jpg'}
+            src={
+              commandData.logo ? commandData.logo : './assets/images/logo.jpg'
+            }
             alt={`${commandData.name} from ${commandData.country}`}
           />
         ) : (

@@ -1,9 +1,9 @@
 import * as BoardApi from 'src/classes/services/api/BoardApi'
 import { ICommandData } from 'src/classes/models/IInfo'
-import { IService } from 'src/classes/models/IHistory'
+import { IHistory, IRound, IService } from 'src/classes/models/IHistory'
 import { getState, setNextState } from 'src/store'
-import { IState } from '../../store/state'
-import { ICurrent } from '../models/ICurrent'
+import { IState } from 'src/store/state'
+import { ICurrent } from 'src/classes/models/ICurrent'
 
 export const init = async () => {
   const state = getState()
@@ -44,6 +44,17 @@ const commandsMap = (state: IState, current: ICurrent) =>
       }
     })
 
+// TODO: rewrite this bullshit
+const historyMap = (state: IHistory, history: IHistory) =>
+  history.map((round: IRound, index) => {
+    console.log(round, state)
+    if (state.length > 0 && round.round === state[index].round) {
+      return { ...round, ...state[index] }
+    } else {
+      return round
+    }
+  })
+
 export const getBoard = () => {
   const state = getState()
   const PFirstblood = BoardApi.fetchFirstblood()
@@ -64,7 +75,7 @@ export const getBoard = () => {
         ...state.info,
         commands: teams,
       },
-      history: history.data,
+      history: historyMap(state.history, history.data),
       firstblood: firstblood.data,
     })
   })

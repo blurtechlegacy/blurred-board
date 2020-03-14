@@ -5,13 +5,11 @@ import Timer from 'src/components/shared/Timer'
 import { IAppState } from 'src/store/state'
 import { connect } from 'react-redux'
 import { IInfo, ICommandData } from 'src/classes/models/IInfo'
-import { IHistory } from 'src/classes/models/IHistory'
 import SkeletonText from 'src/components/shared/SkeletonText'
 import { NotificationContainer } from 'src/components/shared/NotificationContainer'
 
 interface IProps {
   info: IInfo
-  history: IHistory
   teams: ICommandData[]
 }
 
@@ -49,7 +47,6 @@ const Header = (props: IProps) => {
 
 const mapStateToProps = (state: IAppState): IProps => ({
   info: state.app.info,
-  history: state.app.history,
   teams: state.app.info.commands,
 })
 
