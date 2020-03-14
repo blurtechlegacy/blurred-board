@@ -39,7 +39,9 @@ const ServiceCell = (props: IProps) => {
           styles.cellInfoWrap,
           fbAnimation && styles.cellInfoWrapShow
         )}
-      />
+      >
+        Firstblood!
+      </div>
       <div className={styles.topInfo}>
         <span className={styles.serviceFp}>
           {serviceData ? (
