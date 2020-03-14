@@ -12,8 +12,11 @@ const ErrorBoundary = Catch(function MyErrorBoundary(
   error?: Error
 ) {
   if (error) {
-    Sentry.captureException(error)
-    toast.error(error.message)
+    if (process.env.NODE_ENV === 'production') {
+      Sentry.captureException(error)
+    } else {
+      toast.error(error.message)
+    }
   }
   return <React.Fragment>{props.children}</React.Fragment>
 })
