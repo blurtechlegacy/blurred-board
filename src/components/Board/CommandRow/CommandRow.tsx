@@ -36,6 +36,7 @@ const CommandRow = (props: IProps) => {
           <ServiceCell
             key={service ? service.name : i}
             serviceData={commandData ? service : undefined}
+            totalFlags={commandData && commandData.score}
             firstblood={
               firstblood && service
                 ? isServiceFirstBlood(service.name, firstblood)

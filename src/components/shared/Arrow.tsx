@@ -17,7 +17,7 @@ const Arrow = (props: IProps) => {
         style={{ fill: color }}
         className={classNames(styles.arrowIco, styles[`arrowImg${direction}`])}
       />
-      <span className={styles.arrow_label}>{label}</span>
+      <span className={styles.arrowLabel}>{label}</span>
     </span>
   )
 }

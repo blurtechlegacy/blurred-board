@@ -14,7 +14,6 @@ interface IProps {
 
 const InfoCell = (props: IProps) => {
   const { commandData, commandPlace, flagPoints } = props
-  console.log(commandData?.bias)
 
   return (
     <div

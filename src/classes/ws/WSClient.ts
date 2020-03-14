@@ -6,13 +6,13 @@ import { toast } from 'react-toastify'
 import FixNotify from 'src/components/shared/Notifications/FixNotify'
 
 export const init = () => {
-  const state = getState()
   const ws = new WebSocket(settings.wsServer)
   ws.onopen = () => {
     Logger.info('Websocket connection established')
     toast.info('Websocket connection established')
   }
   ws.onmessage = message => {
+    const state = getState()
     const data = rawCastCurrent(JSON.parse(message.data))
     setNextState({
       ...state,

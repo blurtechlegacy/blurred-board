@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-  width: $team-column-width;
+  min-width: $team-column-width;
   padding: 15px;
 
   span {
