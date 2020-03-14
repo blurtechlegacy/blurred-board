@@ -6,19 +6,23 @@ import { IFirstblood } from 'src/classes/models/IFirstblood'
 import styles from './ServiceCell.module.scss'
 import { ReactComponent as Flag } from 'src/assets/images/flag.svg'
 import SkeletonText from 'src/components/shared/SkeletonText'
+import FlagCharts from 'src/components/shared/FlagCharts'
 
 const setColorClass = (status?: IStatus) => {
   return status ? `serviceStatus${IStatus[status]}` : 'skeleton'
 }
 
 interface IProps {
+  totalFlags?: number
   serviceData?: IService
   firstblood?: IFirstblood
 }
 
 const ServiceCell = (props: IProps) => {
-  const { serviceData, firstblood } = props
+  const { totalFlags, serviceData, firstblood } = props
   const [fbAnimation, setFbAnimation] = React.useState<boolean>(false)
+
+
 
   React.useEffect(() => {
     if (firstblood) {
@@ -39,7 +43,7 @@ const ServiceCell = (props: IProps) => {
           styles.cellInfoWrap,
           fbAnimation && styles.cellInfoWrapShow
         )}
-      />
+      >Firstblood!</div>
       <div className={styles.topInfo}>
         <span className={styles.serviceFp}>
           {serviceData ? (
@@ -63,6 +67,11 @@ const ServiceCell = (props: IProps) => {
             )}{' '}
           </span>
         </div>
+        <FlagCharts
+          totalFlags={totalFlags}
+          flagsAmount={serviceData && serviceData?.flags}
+          sflagsAmount={serviceData && serviceData?.sflags}
+        />
       </div>
       <div className={styles.bottomInfo}>
         <span className={styles.serviceSla}>

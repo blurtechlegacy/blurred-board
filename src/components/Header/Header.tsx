@@ -16,7 +16,7 @@ interface IProps {
 }
 
 const Header = (props: IProps) => {
-  const { info, history } = props
+  const { info } = props
   const [services, setServices] = React.useState<string[]>()
 
   React.useEffect(() => {
@@ -30,13 +30,7 @@ const Header = (props: IProps) => {
         {
           <span className={styles.rounds}>
             Rounds:{' '}
-            {info.roundsCount ? (
-              info.roundsCount
-            ) : history.length ? (
-              history.length
-            ) : (
-              <SkeletonText width={30} />
-            )}
+            {info.roundsCount ? info.roundsCount : <SkeletonText width={30} />}
           </span>
         }
         <Timer start={info.start} end={info.end} />

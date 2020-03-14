@@ -31,9 +31,7 @@ const CommandRow = (props: IProps) => {
       <InfoCell
         commandData={commandData}
         commandPlace={commandPlace}
-        flagPoints={
-          commandData ? getFlagPoints(commandData.services) : undefined
-        }
+        flagPoints={commandData && commandData.score}
       />
       <div className={styles.commandServices}>
         {(commandData && commandData.services
@@ -43,6 +41,7 @@ const CommandRow = (props: IProps) => {
           <ServiceCell
             key={service ? service.name : i}
             serviceData={commandData ? service : undefined}
+            totalFlags={commandData && commandData.score}
             firstblood={
               firstblood && service
                 ? isServiceFirstBlood(service.name, firstblood)

@@ -5,7 +5,7 @@ import { ReactComponent as ArrowIco } from 'src/assets/images/arrow.svg'
 import classNames from 'classnames'
 
 interface IProps {
-  direction: 'up' | 'down'
+  direction: 'UP' | 'DOWN'
   color: string
   label?: string
 }
