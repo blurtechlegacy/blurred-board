@@ -4,6 +4,7 @@
   border-right: 2px solid $color-white;
   display: flex;
   flex-direction: row;
+  box-sizing: border-box;
   width: $team-column-width;
   padding: 15px;
 
@@ -15,8 +16,8 @@
 
 .logo {
   display: flex;
-  height: 100%;
-  width: inherit;
+  height: 58px;
+  width: 58px;
   position: relative;
 
   img {
@@ -51,7 +52,7 @@
 }
 
 .commandName {
-  width: 200px;
+  width: 150px;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
