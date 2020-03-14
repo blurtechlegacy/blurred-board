@@ -1,6 +1,7 @@
 import React from 'react'
 import Catch from 'src/components/shared/Catch'
 import * as Sentry from '@sentry/browser'
+import { toast } from 'react-toastify'
 
 type Props = {
   children: React.ReactNode
@@ -12,15 +13,9 @@ const ErrorBoundary = Catch(function MyErrorBoundary(
 ) {
   if (error) {
     Sentry.captureException(error)
-    return (
-      <div className="error-screen">
-        <h2>An error has occurred</h2>
-        <h4>{error.message}</h4>
-      </div>
-    )
-  } else {
-    return <React.Fragment>{props.children}</React.Fragment>
+    toast.error(error.message)
   }
+  return <React.Fragment>{props.children}</React.Fragment>
 })
 
 export default ErrorBoundary

@@ -6,9 +6,27 @@ $margin: calc((100% - #{$page-width}) / 2);
   position: absolute;
   right: $margin;
   top: $margin;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.settingsBar {
+  display: flex;
 }
 
 .gear {
   fill: $color-white;
   width: 30px;
+}
+
+.notifications {
+  fill: $color-white;
+  width: 35px;
+  height: 35px;
+}
+
+.sound {
+  fill: $color-white;
+  width: 35px;
+  height: 35px;
 }
