@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import SkeletonText from './SkeletonText'
+import styles from './Timer.module.scss'
 
 interface IProps {
   start: Date
   end: Date
+}
+
+enum TimeStatus {
+  Before,
+  Now,
+  End,
+  Loading,
 }
 
 interface ITime {
@@ -12,68 +20,72 @@ interface ITime {
   seconds: number
 }
 
-class Time implements ITime {
-  public hours: number
-  public minutes: number
-  public seconds: number
-
-  constructor(rawTime: number) {
-    this.hours = Math.floor(rawTime / 1000 / 60 / 60) % 24
-    this.minutes = Math.floor(rawTime / 1000 / 60) % 60
-    this.seconds = Math.floor(rawTime / 1000) % 60
-  }
-
-  parse() {
-    const dateValues: number[] = Object.values(this)
-
-    return dateValues
-      .map(value => {
-        return Intl.NumberFormat('ru-Ru', { minimumIntegerDigits: 2 }).format(
-          value
-        )
-      })
-      .join(':')
+const getITimeFromRaw = (rawTime: number) => {
+  return {
+    hours: Math.floor(rawTime / 60 / 60),
+    minutes: Math.floor(rawTime / 60) % 60,
+    seconds: Math.floor(rawTime) % 60,
   }
 }
 
-enum TimeStatus {
-  Before,
-  Now,
-  End,
+const parseITimeToString = (time: ITime) => {
+  const timeValues: number[] = Object.values(time)
+
+  return timeValues
+    .map(value => {
+      return Intl.NumberFormat('ru-Ru', { minimumIntegerDigits: 2 }).format(
+        value
+      )
+    })
+    .join(':')
 }
 
 const calculateRemainingTime = (beginTime: number, endTime: number) => {
-  const currentTime = new Date().getTime()
+  const currentTime = new Date().getTime() / 1000
 
-  if (currentTime < beginTime) {
+  if (isNaN(beginTime) || isNaN(endTime)) {
     return {
-      status: TimeStatus.Before,
-      remainingTime: new Time(beginTime - currentTime),
-    }
-  } else if (currentTime < endTime) {
-    return {
-      status: TimeStatus.Now,
-      remainingTime: new Time(endTime - currentTime),
-    }
-  } else {
-    return {
-      status: TimeStatus.End,
+      status: TimeStatus.Loading,
       remainingTime: undefined,
     }
   }
+  if (currentTime < beginTime) {
+    return {
+      status: TimeStatus.Before,
+      remainingTime: getITimeFromRaw(beginTime - currentTime),
+    }
+  }
+  if (currentTime < endTime) {
+    return {
+      status: TimeStatus.Now,
+      remainingTime: getITimeFromRaw(endTime - currentTime),
+    }
+  }
+  return {
+    status: TimeStatus.End,
+    remainingTime: undefined,
+  }
 }
 
-const getRemainingTime = (timeStatus: TimeStatus, remainingTime: Time) => {
+const getRemainingTime = (timeStatus: TimeStatus, remainingTime: ITime) => {
   let innerHtml = ''
   switch (timeStatus) {
     case TimeStatus.Before:
       innerHtml = `Time before start: ${
-        remainingTime ? remainingTime.parse() : <SkeletonText width={50} />
+        remainingTime ? (
+          parseITimeToString(remainingTime)
+        ) : (
+          <SkeletonText width={50} />
+        )
       }`
       break
     case TimeStatus.Now:
       innerHtml = `Time before end: ${
-        remainingTime ? remainingTime.parse() : <SkeletonText width={50} />
+        remainingTime ? (
+          parseITimeToString(remainingTime)
+        ) : (
+          <SkeletonText width={50} />
+        )
       }`
       break
     case TimeStatus.End:
@@ -83,7 +95,7 @@ const getRemainingTime = (timeStatus: TimeStatus, remainingTime: Time) => {
       return new Error('Unknown time status.')
   }
 
-  return <span>{innerHtml}</span>
+  return <span className={styles.timerText}>{innerHtml}</span>
 }
 
 const Timer = (props: IProps) => {
@@ -100,14 +112,14 @@ const Timer = (props: IProps) => {
       setRemainingTime(time.remainingTime)
     }, 1000)
     return () => clearInterval(timer)
-  }, [beginTime, endTime])
+  }, [props.start, props.end])
 
   return (
     <div>
-      {timeStatus ? (
-        getRemainingTime(timeStatus, remainingTime)
-      ) : (
+      {!timeStatus || timeStatus === TimeStatus.Loading ? (
         <SkeletonText width={150} />
+      ) : (
+        getRemainingTime(timeStatus, remainingTime)
       )}
     </div>
   )
