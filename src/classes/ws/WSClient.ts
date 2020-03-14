@@ -14,8 +14,14 @@ export const init = () => {
   ws.onmessage = message => {
     const state = getState()
     const data = rawCastCurrent(JSON.parse(message.data))
+    const history = state.history
+    if (!history.length || !history) {
+      history.push(data)
+    }
+    if (history[history.length - 1].round < data.round) history.push(data)
     setNextState({
       ...state,
+      history,
       current: data,
       info: {
         ...state.info,

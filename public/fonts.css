@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Firstblood';
+  src: url('assets/fonts/FB.eot');
+  src: url('assets/fonts/FB.eot?#iefix') format('embedded-opentype'),
+    url('assets/fonts/FB.woff2') format('woff2'),
+    url('assets/fonts/FB.ttf') format('truetype');
+}
