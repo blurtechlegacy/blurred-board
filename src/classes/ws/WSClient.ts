@@ -1,8 +1,9 @@
 import settings from 'src/config/settings'
 import Logger from 'src/classes/utils/Logger'
 import { rawCastCurrent } from 'src/classes/models/ICurrent'
-import { getState, setNextState } from '../../store'
+import { getState, setNextState } from 'src/store'
 import { toast } from 'react-toastify'
+import FixNotify from 'src/components/shared/Notifications/FixNotify'
 
 export const init = () => {
   const state = getState()
@@ -27,8 +28,12 @@ export const init = () => {
       },
     })
   }
+  ws.onerror = e => {
+    Logger.error('Websocket error', e)
+    toast(FixNotify, { autoClose: 1000 })
+  }
   ws.onclose = () => {
     Logger.error('Websocket connection closed')
-    toast.error('Websocket connection closed')
+    setTimeout(init, 5000)
   }
 }
