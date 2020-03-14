@@ -6,30 +6,26 @@ import { IFirstblood } from 'src/classes/models/IFirstblood'
 import { ICurrent, rawCastCurrent } from 'src/classes/models/ICurrent'
 
 const fetchData = async (url: string) => {
-  const data = await Rest.get(url)
+  let data = await Rest.get(url)
+  switch (url) {
+    case '/api/info':
+      data = data ? rawCastInfo(data) : ({} as IInfo)
+      break
+    case '/scoreboard.json':
+      data = data ? rawCastCurrent(data) : ({} as ICurrent)
+      break
+  }
   return {
     data: data,
     status: !!data,
   }
 }
 
-export const fetchInfo = async (): Promise<IFetchResult<IInfo>> => {
-  const data = await Rest.get('/api/info')
-  const castedData = data ? rawCastInfo(data) : ({} as IInfo)
-  return {
-    data: castedData || {},
-    status: !!data,
-  }
-}
+export const fetchInfo = async (): Promise<IFetchResult<IInfo>> =>
+  await fetchData('/api/info')
 
-export const fetchCurrent = async (): Promise<IFetchResult<ICurrent>> => {
-  const data = await Rest.get('/scoreboard.json')
-  const castedData = data ? rawCastCurrent(data) : ({} as ICurrent)
-  return {
-    data: castedData || {},
-    status: !!data,
-  }
-}
+export const fetchCurrent = async (): Promise<IFetchResult<ICurrent>> =>
+  await fetchData('/scoreboard.json')
 
 export const fetchHistory = async (): Promise<IFetchResult<IHistory>> =>
   await fetchData('/history/scoreboard.json')

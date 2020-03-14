@@ -28,17 +28,14 @@ const getITimeFromRaw = (rawTime: number) => {
   }
 }
 
-const parseITimeToString = (time: ITime) => {
-  const timeValues: number[] = Object.values(time)
-
-  return timeValues
+const parseITimeToString = (time: ITime) =>
+  Object.values(time)
     .map(value => {
       return Intl.NumberFormat('ru-Ru', { minimumIntegerDigits: 2 }).format(
         value
       )
     })
     .join(':')
-}
 
 const calculateRemainingTime = (beginTime: number, endTime: number) => {
   const currentTime = new Date().getTime() / 1000
@@ -68,34 +65,34 @@ const calculateRemainingTime = (beginTime: number, endTime: number) => {
 }
 
 const getRemainingTime = (timeStatus: TimeStatus, remainingTime: ITime) => {
-  let innerHtml = ''
   switch (timeStatus) {
     case TimeStatus.Before:
-      innerHtml = `Time before start: ${
-        remainingTime ? (
-          parseITimeToString(remainingTime)
-        ) : (
-          <SkeletonText width={50} />
-        )
-      }`
-      break
+      return (
+        <span className={styles.timerText}>
+          Starts in:
+          {remainingTime ? (
+            parseITimeToString(remainingTime)
+          ) : (
+            <SkeletonText width={50} />
+          )}
+        </span>
+      )
     case TimeStatus.Now:
-      innerHtml = `Time before end: ${
-        remainingTime ? (
-          parseITimeToString(remainingTime)
-        ) : (
-          <SkeletonText width={50} />
-        )
-      }`
-      break
+      return (
+        <span className={styles.timerText}>
+          Time left:
+          {remainingTime ? (
+            parseITimeToString(remainingTime)
+          ) : (
+            <SkeletonText width={50} />
+          )}
+        </span>
+      )
     case TimeStatus.End:
-      innerHtml = `Competition is over.`
-      break
+      return <span className={styles.timerText}>Competition is over</span>
     default:
       return new Error('Unknown time status.')
   }
-
-  return <span className={styles.timerText}>{innerHtml}</span>
 }
 
 const Timer = (props: IProps) => {
