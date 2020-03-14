@@ -59,8 +59,8 @@ const scoreboardMap = (scoreboard: ICommandRaw[], services: IServiceRaw[]) =>
       score: item.score,
       oldScore: item.old_score,
       round: item.round,
-      place: item.d,
-      bias: item.n,
+      place: item.n,
+      bias: item.d,
       services: servicesMap(item, services),
     }
   })
