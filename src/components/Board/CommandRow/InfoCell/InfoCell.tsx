@@ -14,7 +14,6 @@ interface IProps {
 
 const InfoCell = (props: IProps) => {
   const { commandData, commandPlace, flagPoints } = props
-  console.log(commandData?.bias)
 
   return (
     <div
@@ -48,7 +47,7 @@ const InfoCell = (props: IProps) => {
           </p>
           {commandData?.bias ? (
             <Arrow
-              direction={commandData?.bias > 0 ? 'up' : 'down'}
+              direction={commandData?.bias > 0 ? 'UP' : 'DOWN'}
               color={commandData?.bias > 0 ? '#6f6' : '#dc143c'}
               label={
                 commandData?.bias > 0
@@ -59,9 +58,7 @@ const InfoCell = (props: IProps) => {
           ) : null}
         </div>
         <div className={styles.commandStatsBlock}>
-          <span>
-            {flagPoints ? flagPoints.toFixed(2) : <SkeletonText width={30} />}
-          </span>
+          <span>{flagPoints ? flagPoints : <SkeletonText width={30} />}</span>
         </div>
       </div>
     </div>

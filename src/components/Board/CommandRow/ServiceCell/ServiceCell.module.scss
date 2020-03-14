@@ -30,7 +30,6 @@
 }
 
 .cellInfoWrapShow {
-  content: 'Firstblood!';
   opacity: 75%;
 }
 
@@ -73,7 +72,6 @@
 .topInfo {
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.25);
   width: fit-content;
   padding: 2px 5px;
 }
@@ -86,26 +84,4 @@
   display: flex;
   width: fit-content;
   padding: 2px 5px;
-  background-color: rgba(0, 0, 0, 0.25);
-}
-
-.flags {
-  font-size: 0.8rem;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-}
-
-.flagIco {
-  height: 13px;
-  image-rendering: crisp-edges;
-  width: 13px;
-}
-
-.flagBlack {
-  fill: $color-black;
-}
-
-.flagWhite {
-  fill: $color-white;
 }

@@ -4,20 +4,21 @@ import { IStatus } from 'src/classes/models/IStatus'
 import { IService } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
 import styles from './ServiceCell.module.scss'
-import { ReactComponent as Flag } from 'src/assets/images/flag.svg'
 import SkeletonText from 'src/components/shared/SkeletonText'
+import Flags from 'src/components/Board/CommandRow/ServiceCell/Flags/Flags'
 
 const setColorClass = (status?: IStatus) => {
   return status ? `serviceStatus${IStatus[status]}` : 'skeleton'
 }
 
 interface IProps {
+  totalFlags?: number
   serviceData?: IService
   firstblood?: IFirstblood
 }
 
 const ServiceCell = (props: IProps) => {
-  const { serviceData, firstblood } = props
+  const { totalFlags, serviceData, firstblood } = props
   const [fbAnimation, setFbAnimation] = React.useState<boolean>(false)
 
   React.useEffect(() => {
@@ -39,7 +40,9 @@ const ServiceCell = (props: IProps) => {
           styles.cellInfoWrap,
           fbAnimation && styles.cellInfoWrapShow
         )}
-      />
+      >
+        Firstblood!
+      </div>
       <div className={styles.topInfo}>
         <span className={styles.serviceFp}>
           {serviceData ? (
@@ -48,21 +51,7 @@ const ServiceCell = (props: IProps) => {
             <SkeletonText width={40} />
           )}
         </span>
-        <div className={styles.flags}>
-          <Flag
-            className={classNames(
-              styles.flagIco,
-              serviceData ? styles.flagBlack : styles.flagWhite
-            )}
-          />
-          <span>
-            {serviceData ? (
-              `${serviceData.flags}/-${serviceData.sflags}`
-            ) : (
-              <SkeletonText width={40} />
-            )}{' '}
-          </span>
-        </div>
+        <Flags serviceData={serviceData} totalFlags={totalFlags} />
       </div>
       <div className={styles.bottomInfo}>
         <span className={styles.serviceSla}>

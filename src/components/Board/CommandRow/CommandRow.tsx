@@ -1,6 +1,5 @@
 import React from 'react'
 import { ICommandData } from 'src/classes/models/IInfo'
-import { IService } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
 import InfoCell from 'src/components/Board/CommandRow/InfoCell/InfoCell'
 import ServiceCell from 'src/components/Board/CommandRow/ServiceCell/ServiceCell'
@@ -11,10 +10,6 @@ interface IProps {
   commandData: ICommandData
   firstblood?: IFirstblood
   servicesAmount: number
-}
-
-function getFlagPoints(services: IService[]): number {
-  return services?.map((s: any) => s.fp).reduce((p: any, c: any) => p + c)
 }
 
 const isServiceFirstBlood = (
@@ -31,9 +26,7 @@ const CommandRow = (props: IProps) => {
       <InfoCell
         commandData={commandData}
         commandPlace={commandPlace}
-        flagPoints={
-          commandData ? getFlagPoints(commandData.services) : undefined
-        }
+        flagPoints={commandData && commandData.score}
       />
       <div className={styles.commandServices}>
         {(commandData && commandData.services
@@ -43,6 +36,7 @@ const CommandRow = (props: IProps) => {
           <ServiceCell
             key={service ? service.name : i}
             serviceData={commandData ? service : undefined}
+            totalFlags={commandData && commandData.score}
             firstblood={
               firstblood && service
                 ? isServiceFirstBlood(service.name, firstblood)
