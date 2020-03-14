@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { IInfo, ICommandData } from 'src/classes/models/IInfo'
 import { IHistory } from 'src/classes/models/IHistory'
 import SkeletonText from 'src/components/shared/SkeletonText'
+import { NotificationContainer } from 'src/components/shared/NotificationContainer'
 
 interface IProps {
   info: IInfo
@@ -47,6 +48,7 @@ const Header = (props: IProps) => {
           </div>
         ))}
       </div>
+      <NotificationContainer />
     </header>
   )
 }
