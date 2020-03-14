@@ -5,10 +5,8 @@ import { ICommandData } from 'src/classes/models/IInfo'
 import SkeletonText from 'src/components/shared/SkeletonText'
 import SkeletonImg from 'src/components/shared/SkeletonImg'
 
-type ICommandInfo = Omit<ICommandData, 'services'>
-
 interface IProps {
-  commandData?: ICommandInfo
+  commandData?: ICommandData
   commandPlace?: number
   flagPoints?: number
 }

@@ -26,29 +26,6 @@ const isServiceFirstBlood = (
 const CommandRow = (props: IProps) => {
   const { servicesAmount, commandPlace, commandData, firstblood } = props
 
-  const renderServices = () => {
-    const resultServices = []
-    for (let i = 0; i < servicesAmount; i++) {
-      const service =
-        commandData && commandData.services
-          ? commandData.services[i]
-          : undefined
-      resultServices.push(
-        <ServiceCell
-          key={service ? service.name : i}
-          serviceData={commandData ? service : undefined}
-          firstblood={
-            firstblood && service
-              ? isServiceFirstBlood(service.name, firstblood)
-              : undefined
-          }
-        />
-      )
-    }
-
-    return resultServices
-  }
-
   return (
     <div className={styles.commandRow}>
       <InfoCell
@@ -58,7 +35,22 @@ const CommandRow = (props: IProps) => {
           commandData ? getFlagPoints(commandData.services) : undefined
         }
       />
-      <div className={styles.commandServices}>{renderServices()}</div>
+      <div className={styles.commandServices}>
+        {(commandData && commandData.services
+          ? commandData.services
+          : [...Array(servicesAmount)]
+        ).map((service, i) => (
+          <ServiceCell
+            key={service ? service.name : i}
+            serviceData={commandData ? service : undefined}
+            firstblood={
+              firstblood && service
+                ? isServiceFirstBlood(service.name, firstblood)
+                : undefined
+            }
+          />
+        ))}
+      </div>
     </div>
   )
 }

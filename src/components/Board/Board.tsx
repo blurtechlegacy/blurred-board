@@ -36,7 +36,9 @@ const Board = (props: IProps) => {
 
 const mapStateToProps = (state: IAppState): IProps => ({
   firstblood: state.app.firstblood,
-  commands: state.app.info.commands ? state.app.info.commands : [...Array(3)],
+  commands: state.app.current.scoreboard
+    ? state.app.current.scoreboard
+    : [...Array(3)],
   servicesAmount: state.app.info.services ? state.app.info.services.length : 4,
 })
 
