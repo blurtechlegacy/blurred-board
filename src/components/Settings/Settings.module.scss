@@ -1,8 +1,11 @@
 @import 'src/assets/scss/vars';
 
+$margin: calc((100% - #{$page-width}) / 2);
+
 .settings {
-  left: 0;
   position: absolute;
+  right: $margin;
+  top: $margin;
 }
 
 .gear {

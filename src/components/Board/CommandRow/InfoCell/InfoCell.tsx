@@ -30,19 +30,23 @@ const InfoCell = (props: IProps) => {
       </div>
       <div className={styles.labelsBlock}>
         <div className={styles.commandInfoBlock}>
-          <span>
-            {commandPlace && commandData && commandData.bias ? (
-              `${commandPlace} (${commandData?.bias})`
+          <span className={styles.commandPlace}>
+            {commandPlace && commandData ? (
+              `${commandPlace}`
             ) : (
-              <SkeletonText width={15} />
+              <SkeletonText width={16} />
             )}
-            .{commandData ? commandData.name : <SkeletonText width={100} />}
           </span>
+          <p
+            title={commandData ? commandData.name : 'loading'}
+            className={styles.commandName}
+          >
+            {commandData ? commandData.name : <SkeletonText width={100} />}
+          </p>
         </div>
         <div className={styles.commandStatsBlock}>
-          <span>{`Total SLA: ${100}%`}</span>
           <span>
-            Flag points: {flagPoints ? flagPoints : <SkeletonText width={20} />}
+            {flagPoints ? flagPoints : <SkeletonText width={30} />}
           </span>
         </div>
       </div>
