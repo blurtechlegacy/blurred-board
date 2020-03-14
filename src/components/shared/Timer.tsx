@@ -112,7 +112,7 @@ const Timer = (props: IProps) => {
       setRemainingTime(time.remainingTime)
     }, 1000)
     return () => clearInterval(timer)
-  }, [props.start, props.end])
+  }, [beginTime, endTime])
 
   return (
     <div>
