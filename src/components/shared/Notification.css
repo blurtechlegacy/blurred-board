@@ -1,3 +1,7 @@
 div.Toastify__toast {
   min-height: 40px;
 }
+
+div.Toastify__toast-container {
+  margin-top: 25px;
+}

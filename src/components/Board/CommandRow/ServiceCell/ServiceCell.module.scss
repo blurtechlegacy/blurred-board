@@ -13,7 +13,7 @@
   padding: 10px 15px;
 }
 
-.cell_infoWrap {
+.cellInfoWrap {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,7 +29,7 @@
   transition: all 0.1s ease;
 }
 
-.cell_infoWrap__show {
+.cellInfoWrapShow {
   opacity: 75%;
 }
 

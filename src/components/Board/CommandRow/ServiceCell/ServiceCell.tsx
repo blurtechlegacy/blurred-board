@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 import { IStatus } from 'src/classes/models/IStatus'
 import { IService } from 'src/classes/models/IHistory'
@@ -18,22 +18,13 @@ interface IProps {
 
 const ServiceCell = (props: IProps) => {
   const { serviceData, firstblood } = props
-  const messageWrap = useRef<HTMLDivElement>(null)
+  const [fbAnimation, setFbAnimation] = React.useState<boolean>(false)
 
-  const showInfo = (info: string) => {
-    if (messageWrap && messageWrap.current) {
-      messageWrap.current.innerHTML = info
-      messageWrap.current.classList.add(styles.cell_infoWrap__show)
-      setTimeout(() => {
-        if (messageWrap && messageWrap.current) {
-          messageWrap.current.classList.remove(styles.cell_infoWrap__show)
-        }
-      }, 1000)
+  React.useEffect(() => {
+    if (firstblood) {
+      setFbAnimation(true)
+      setTimeout(() => setFbAnimation(false), 1000)
     }
-  }
-
-  useEffect(() => {
-    firstblood && showInfo('Firstblood!')
   }, [firstblood])
 
   return (
@@ -43,7 +34,12 @@ const ServiceCell = (props: IProps) => {
         styles.cell
       )}
     >
-      <div ref={messageWrap} className={styles.cell_infoWrap} />
+      <div
+        className={classNames(
+          styles.cellInfoWrap,
+          fbAnimation && styles.cellInfoWrapShow
+        )}
+      />
       <div className={styles.topInfo}>
         <span className={styles.serviceFp}>
           {serviceData ? (
