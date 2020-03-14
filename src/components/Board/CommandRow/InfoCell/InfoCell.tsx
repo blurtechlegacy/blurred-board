@@ -4,6 +4,7 @@ import styles from './InfoCell.module.scss'
 import { ICommandData } from 'src/classes/models/IInfo'
 import SkeletonText from 'src/components/shared/SkeletonText'
 import SkeletonImg from 'src/components/shared/SkeletonImg'
+import Arrow from 'src/components/shared/Arrow'
 
 interface IProps {
   commandData?: ICommandData
@@ -13,6 +14,7 @@ interface IProps {
 
 const InfoCell = (props: IProps) => {
   const { commandData, commandPlace, flagPoints } = props
+  console.log(commandData?.bias)
 
   return (
     <div
@@ -37,12 +39,24 @@ const InfoCell = (props: IProps) => {
               <SkeletonText width={16} />
             )}
           </span>
+          .
           <p
             title={commandData ? commandData.name : 'loading'}
             className={styles.commandName}
           >
             {commandData ? commandData.name : <SkeletonText width={100} />}
           </p>
+          {commandData?.bias ? (
+            <Arrow
+              direction={commandData?.bias > 0 ? 'up' : 'down'}
+              color={commandData?.bias > 0 ? '#6f6' : '#dc143c'}
+              label={
+                commandData?.bias > 0
+                  ? `+${commandData?.bias.toString()}`
+                  : commandData?.bias.toString()
+              }
+            />
+          ) : null}
         </div>
         <div className={styles.commandStatsBlock}>
           <span>
