@@ -1,12 +1,10 @@
 @import 'src/assets/scss/vars';
 
-$image_size: 70px;
-
 .cell {
   border-right: 2px solid $color-white;
   display: flex;
   flex-direction: row;
-  min-width: $team-column-width;
+  width: $team-column-width;
   padding: 15px;
 
   span {
@@ -17,12 +15,11 @@ $image_size: 70px;
 
 .logo {
   display: flex;
-  height: $image_size;
+  height: 100%;
+  width: inherit;
   position: relative;
-  width: $image_size;
 
   img {
-    width: 100%;
     height: 100%;
   }
 }
@@ -30,7 +27,7 @@ $image_size: 70px;
 .logo::after {
   background-color: $color-white;
   content: '';
-  height: 70px;
+  height: 100%;
   position: absolute;
   right: -15px;
   top: 0;
@@ -41,6 +38,7 @@ $image_size: 70px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
   margin-left: 25px;
 }
 
@@ -50,6 +48,14 @@ $image_size: 70px;
   font-size: 1.2rem;
   font-weight: bold;
   position: relative;
+}
+
+.commandName {
+  width: 200px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .commandStatsBlock {

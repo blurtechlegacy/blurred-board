@@ -26,20 +26,10 @@ const ServiceCell = (props: IProps) => {
       )}
     >
       <div className={styles.topInfo}>
-        <span className={styles.service_status}>
-          STATUS:
-          {serviceData ? (
-            <b>{IStatus[serviceData.status]}</b>
-          ) : (
-            <SkeletonText width={65} />
-          )}
-        </span>
         <span className={styles.serviceSla}>
           SLA:
           {serviceData ? (
-            <div>
               <b>{serviceData.sla}%</b>
-            </div>
           ) : (
             <SkeletonText width={40} />
           )}
