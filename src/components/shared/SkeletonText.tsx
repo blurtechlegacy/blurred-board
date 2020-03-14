@@ -10,13 +10,15 @@ interface IProps {
 export default function SkeletonText(props: IProps) {
   const { width, animated } = props
   return (
-    <span style={{ width }} className={styles.skeletonBackground}>
-      <span
-        className={classNames(
-          animated ? styles['animated'] : undefined,
-          styles.skeletonForeground
-        )}
-      />
+    <span className={styles.skeleton}>
+      <span style={{ width }} className={styles.skeletonBackground}>
+        <span
+          className={classNames(
+            animated ? styles['animated'] : undefined,
+            styles.skeletonForeground
+          )}
+        />
+      </span>
     </span>
   )
 }

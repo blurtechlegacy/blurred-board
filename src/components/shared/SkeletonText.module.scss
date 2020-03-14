@@ -1,14 +1,21 @@
 @import 'src/assets/scss/vars';
 
+.skeleton {
+  display: inline-flex;
+  height: 1.2rem;
+  justify-content: center;
+  width: fit-content;
+  padding: 0 2px;
+}
+
 .skeletonBackground {
   background-color: $skeleton-placeholder-color;
   border-radius: $skeleton-border-radius;
-  display: inline-block;
+  box-sizing: border-box;
   height: 1rem;
-  margin-right: 4px;
-  overflow: hidden;
   position: relative;
   vertical-align: baseline;
+  overflow: hidden;
 }
 
 .skeletonForeground {

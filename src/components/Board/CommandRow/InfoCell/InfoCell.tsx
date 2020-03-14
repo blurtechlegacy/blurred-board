@@ -46,7 +46,7 @@ const InfoCell = (props: IProps) => {
         </div>
         <div className={styles.commandStatsBlock}>
           <span>
-            {flagPoints ? flagPoints : <SkeletonText width={30} />}
+            {flagPoints ? flagPoints.toFixed(2) : <SkeletonText width={30} />}
           </span>
         </div>
       </div>
