@@ -1,49 +1,23 @@
 @import 'src/assets/scss/vars';
 
-.status {
+.arrow {
+  &_label {
+    font-weight: lighter;
+  }
+}
+
+.arrowImg {
+  width: 25px;
+  height: 25px;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
 
-  &MUMBLE {
-    @extend .status;
-    border: solid $status-mumble;
+  &_up {
+    transform: rotate(45deg);
   }
 
-  &CORRUPT {
-    @extend .status;
-    border: solid $status-corrupt;
+  &_down {
+    transform: rotate(135deg);
   }
-
-  &UP {
-    @extend .status;
-    border: solid $status-up;
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
-  }
-
-  &DOWN {
-    @extend .status;
-    border: solid $status-down;
-  }
-}
-
-.UP {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
-.DOWN {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
-
-.LEFT {
-  transform: rotate(-225deg);
-  -webkit-transform: rotate(-225deg);
-}
-
-.RIGHT {
-  transform: rotate(rotate(-45deg));
-  -webkit-transform: rotate(-45deg);
 }

@@ -3,7 +3,7 @@ $color-black: #070707 !default;
 $color-green: #6f6 !default;
 
 $page-width: 99% !default;
-$team-column-width: 300px !default;
+$team-column-width: 350px !default;
 
 $skeleton-cell-color: #121212;
 $skeleton-placeholder-color: darken($color-white, 80);
@@ -14,4 +14,4 @@ $status-up: #6f6;
 $status-mumble: #8a2be2;
 $status-corrupt: #ff7f50;
 $status-down: #dc143c;
-$status-error: #0ff;
+$status-error: #4b4b4b;
