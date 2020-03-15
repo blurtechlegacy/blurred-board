@@ -44,16 +44,31 @@ const commandsMap = (state: IState, current: ICurrent) =>
       }
     })
 
-// TODO: rewrite this bullshit
-const historyMap = (state: IHistory, history: IHistory) =>
-  history.map((round: IRound, index) => {
-    console.log(round, state)
-    if (state.length > 0 && round.round === state[index].round) {
-      return { ...round, ...state[index] }
-    } else {
-      return round
-    }
-  })
+const historyMap = (state: IHistory, history: IHistory) => {
+  if (state.length > history.length) {
+    return state.map((round: IRound) => {
+      if (history.some((i: IRound) => i.round === round.round)) {
+        return {
+          ...round,
+          ...history.find((i: IRound) => i.round === round.round),
+        }
+      } else {
+        return round
+      }
+    })
+  } else {
+    return history.map((round: IRound) => {
+      if (state.some((i: IRound) => i.round === round.round)) {
+        return {
+          ...round,
+          ...state.find((i: IRound) => i.round === round.round),
+        }
+      } else {
+        return round
+      }
+    })
+  }
+}
 
 export const getBoard = () => {
   const state = getState()

@@ -30,6 +30,14 @@ export interface ICurrentRaw {
   services: IServiceRaw[]
 }
 
+const calculateTotalSLA = (services: IService[]) => {
+  let acc = 0
+  for (const service of services) {
+    if (service && service.sla) acc = acc + service.sla
+  }
+  return Math.ceil(acc / services.length)
+}
+
 const servicesMap = (item: ICommandRaw, services: IServiceRaw[]) =>
   item.services.map((service: IService, index: number) => {
     const old = item.old_services[index]
@@ -53,6 +61,7 @@ const servicesMap = (item: ICommandRaw, services: IServiceRaw[]) =>
 
 const scoreboardMap = (scoreboard: ICommandRaw[], services: IServiceRaw[]) =>
   scoreboard.map((item: ICommandRaw) => {
+    console.log(Object.values(item.services))
     return {
       id: item.team_id,
       name: item.name,
@@ -61,6 +70,7 @@ const scoreboardMap = (scoreboard: ICommandRaw[], services: IServiceRaw[]) =>
       round: item.round,
       place: item.n,
       bias: item.d,
+      totalSLA: calculateTotalSLA(item.services),
       services: servicesMap(item, services),
     }
   })

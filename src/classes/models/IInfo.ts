@@ -5,6 +5,7 @@ export interface ICommandData extends IForm {
   id: number
   name: string
   score: number
+  totalSLA?: number
   oldScore?: number
   logo?: string
   country?: string
