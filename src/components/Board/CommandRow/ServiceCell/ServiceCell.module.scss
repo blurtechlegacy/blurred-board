@@ -1,9 +1,9 @@
 @import 'src/assets/scss/vars';
 
 .cell {
+  display: flex;
   color: $color-black;
   position: relative;
-  display: flex;
   flex-direction: column;
   flex-grow: 1;
   flex-basis: 100%;

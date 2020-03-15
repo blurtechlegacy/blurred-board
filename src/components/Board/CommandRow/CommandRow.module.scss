@@ -1,4 +1,4 @@
-@import 'src/assets/scss/vars';
+@import 'src/assets/scss/_vars';
 
 .commandRow {
   background-color: rgba(255, 255, 255, 0.02);
@@ -6,7 +6,7 @@
   border-bottom: 0;
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
+  //flex-direction: row;
   height: 100px;
   padding: 5px;
   width: 100%;
@@ -17,8 +17,9 @@
 }
 
 .commandServices {
-  align-content: center;
+  justify-content: space-between;
+  width: calc(100% - #{$team-column-width});
   display: flex;
-  flex-grow: 2;
-  justify-content: center;
+  //flex-grow: 1;
+  //overflow: hidden;
 }

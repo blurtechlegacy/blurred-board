@@ -47,6 +47,18 @@ const InfoCell = (props: IProps) => {
           >
             {commandData ? commandData.name : <SkeletonText width={100} />}
           </p>
+        </div>
+        <div className={styles.commandStatsBlock}>
+          <span>{flagPoints ? flagPoints : <SkeletonText width={30} />}</span>
+          <span>
+            {commandData && commandData.totalSLA ? (
+              `${commandData.totalSLA}%`
+            ) : (
+              <SkeletonText width={30} />
+            )}
+          </span>
+        </div>
+        <div className={styles.deltas}>
           {commandData?.bias ? (
             <Arrow
               direction={commandData?.bias > 0 ? 'UP' : 'DOWN'}
@@ -58,16 +70,6 @@ const InfoCell = (props: IProps) => {
               }
             />
           ) : null}
-        </div>
-        <div className={styles.commandStatsBlock}>
-          <span>{flagPoints ? flagPoints : <SkeletonText width={30} />}</span>
-          <span>
-            {commandData && commandData.totalSLA ? (
-              `${commandData.totalSLA}%`
-            ) : (
-              <SkeletonText width={30} />
-            )}
-          </span>
         </div>
       </div>
     </div>
