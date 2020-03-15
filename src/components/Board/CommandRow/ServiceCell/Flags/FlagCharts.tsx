@@ -12,7 +12,6 @@ const FlagCharts = (props: IProps) => {
 
   const flagPart = Math.floor((flagsAmount / 100) * totalFp)
   const sflagPart = Math.floor((sflagsAmount / 100) * totalFp)
-  console.log(flagPart, sflagPart)
 
   return (
     <svg className={styles.flagCharts}>

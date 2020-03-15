@@ -33,8 +33,7 @@
     "build": "react-scripts build",
     "lint:ts:fix": "tslint --fix './src/**/*.{ts,tsx}' -t verbose",
     "format": "prettier --trailing-comma es5 --single-quote --no-semi --write \"src/**/*.{ts,tsx,scss}\"",
-    "check": "prettier --check \"src/**/*.{ts,tsx,scss}\"",
-    "commit": "git-cz"
+    "check": "prettier --check \"src/**/*.{ts,tsx,scss}\""
   },
   "browserslist": [
     ">0.2%",
@@ -59,8 +58,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+      "pre-commit": "pretty-quick --staged"
     }
   },
   "config": {
