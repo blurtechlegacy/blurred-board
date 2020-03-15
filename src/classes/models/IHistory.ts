@@ -22,6 +22,8 @@ export interface IService extends IForm {
   statusHistory?: IStatus[]
   sflagsHistory?: number[]
   fpSum?: number
+  flagsSum?: number
+  sflagsSum?: number
 }
 
 export interface IRound extends IForm {

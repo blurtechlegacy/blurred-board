@@ -1,23 +1,22 @@
 import React from 'react'
-
 import styles from './FlagCharts.module.scss'
 
 interface IProps {
-  totalFlags: number
+  totalFp: number
   flagsAmount: number
   sflagsAmount: number
 }
 
 const FlagCharts = (props: IProps) => {
-  const { totalFlags, flagsAmount, sflagsAmount } = props
+  const { totalFp, flagsAmount, sflagsAmount } = props
 
-  const flagPart = Math.floor((flagsAmount / totalFlags) * 100)
-  const sflagPart = Math.floor((sflagsAmount / totalFlags) * 100)
+  const flagPart = Math.floor((flagsAmount / 100) * totalFp)
+  const sflagPart = Math.floor((sflagsAmount / 100) * totalFp)
 
   return (
     <svg className={styles.flagCharts}>
-      <rect fill={'green'} width={flagPart} height={10} />
-      <rect fill={'red'} x={flagPart} width={sflagPart} height={10} />
+      <rect fill={'green'} width={flagPart} height={5} />
+      <rect fill={'red'} x={flagPart} width={sflagPart} height={5} />
     </svg>
   )
 }
