@@ -61,7 +61,6 @@ const servicesMap = (item: ICommandRaw, services: IServiceRaw[]) =>
 
 const scoreboardMap = (scoreboard: ICommandRaw[], services: IServiceRaw[]) =>
   scoreboard.map((item: ICommandRaw) => {
-    console.log(Object.values(item.services))
     return {
       id: item.team_id,
       name: item.name,
