@@ -17,6 +17,11 @@ export interface IService extends IForm {
   stdout?: string
   active?: number
   disableInterval?: any
+  fpHistory?: number[]
+  flagsHistory?: number[]
+  statusHistory?: IStatus[]
+  sflagsHistory?: number[]
+  fpSum?: number
 }
 
 export interface IRound extends IForm {

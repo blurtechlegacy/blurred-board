@@ -1,5 +1,7 @@
 import { ICommandData } from 'src/classes/models/IInfo'
 import { IService } from 'src/classes/models/IHistory'
+import { getState } from '../../store'
+import { IStatus } from './IStatus'
 
 export interface ICurrent {
   round: number
@@ -59,7 +61,57 @@ const servicesMap = (item: ICommandRaw, services: IServiceRaw[]) =>
     }
   })
 
-const scoreboardMap = (scoreboard: ICommandRaw[], services: IServiceRaw[]) =>
+interface IGraphics {
+  id: number
+  services: {
+    id: number
+    fpHistory: number[]
+    flagsHistory: number[]
+    statusHistory: IStatus[]
+    sflagsHistory: number[]
+    fpSum: number
+  }[]
+}
+
+const calculateGraphicsData = (): IGraphics[] => {
+  const history = getState().history
+  const teams: Array<any> = []
+  history.forEach(round =>
+    round.scoreboard.map(team => {
+      if (teams[team.id - 1]) {
+        team.services.map((service: IService, index: number) => {
+          let tmp
+          tmp = teams[team.id - 1].services[index]
+          tmp.statusHistory.push(service.status)
+          tmp.fpHistory.push(service.fp)
+          tmp.flagsHistory.push(service.flags)
+          tmp.sflagsHistory.push(service.sflags)
+          tmp.fpSum += service.fp
+        })
+      } else {
+        teams[team.id - 1] = {
+          id: team.id,
+          services: team.services.map((service, index) => {
+            return {
+              id: index,
+              statusHistory: [service.status],
+              fpHistory: [service.fp],
+              flagsHistory: [service.flags],
+              sflagsHistory: [service.sflags],
+              fpSum: service.fp,
+            }
+          }),
+        }
+      }
+    })
+  )
+  return teams
+}
+
+const scoreboardMap = (
+  scoreboard: ICommandRaw[],
+  services: IServiceRaw[]
+): ICommandData[] =>
   scoreboard.map((item: ICommandRaw) => {
     return {
       id: item.team_id,
@@ -77,6 +129,21 @@ const scoreboardMap = (scoreboard: ICommandRaw[], services: IServiceRaw[]) =>
 export const rawCastCurrent = (data: ICurrentRaw): ICurrent => {
   return {
     round: data.round,
-    scoreboard: scoreboardMap(data.scoreboard, Object.values(data.services)),
+    scoreboard: scoreboardMap(
+      data.scoreboard,
+      Object.values(data.services)
+    ).map((team: ICommandData) => {
+      return {
+        ...team,
+        services: team.services.map(service => {
+          return {
+            ...service,
+            ...calculateGraphicsData()
+              .find((item: IGraphics) => item.id === team.id)
+              ?.services.find(i => i.id === service.id),
+          }
+        }),
+      }
+    }),
   }
 }
