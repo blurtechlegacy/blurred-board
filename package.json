@@ -33,7 +33,8 @@
     "build": "react-scripts build",
     "lint:ts:fix": "tslint --fix './src/**/*.{ts,tsx}' -t verbose",
     "format": "prettier --trailing-comma es5 --single-quote --no-semi --write \"src/**/*.{ts,tsx,scss}\"",
-    "check": "prettier --check \"src/**/*.{ts,tsx,scss}\""
+    "check": "prettier --check \"src/**/*.{ts,tsx,scss}\"",
+    "commit": "git-cz"
   },
   "browserslist": [
     ">0.2%",
@@ -42,6 +43,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cz-conventional-changelog": "3.1.0",
     "husky": "^4.2.3",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
@@ -57,7 +59,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }
