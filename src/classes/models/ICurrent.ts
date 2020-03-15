@@ -70,6 +70,8 @@ interface IGraphics {
     statusHistory: IStatus[]
     sflagsHistory: number[]
     fpSum: number
+    flagsSum: number
+    sflagsSum: number
   }[]
 }
 
@@ -87,6 +89,9 @@ const calculateGraphicsData = (): IGraphics[] => {
           tmp.flagsHistory.push(service.flags)
           tmp.sflagsHistory.push(service.sflags)
           tmp.fpSum += service.fp
+          tmp.flagsSum += service.flags
+          tmp.sflagsSum += service.sflags
+          return service
         })
       } else {
         teams[team.id - 1] = {
@@ -99,10 +104,13 @@ const calculateGraphicsData = (): IGraphics[] => {
               flagsHistory: [service.flags],
               sflagsHistory: [service.sflags],
               fpSum: service.fp,
+              flagsSum: service.flags,
+              sflagsSum: service.sflags,
             }
           }),
         }
       }
+      return round
     })
   )
   return teams

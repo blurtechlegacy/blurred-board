@@ -31,9 +31,9 @@ const Flags = (props: IProps) => {
           )}{' '}
         </span>
       </div>
-      {totalFlags && serviceData && (
+      {totalFlags && serviceData && serviceData.fpSum && (
         <FlagCharts
-          totalFlags={totalFlags}
+          totalFp={serviceData?.fpSum}
           flagsAmount={serviceData?.flags}
           sflagsAmount={serviceData?.sflags}
         />
