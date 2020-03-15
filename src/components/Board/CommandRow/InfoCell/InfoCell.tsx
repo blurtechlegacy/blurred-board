@@ -61,6 +61,13 @@ const InfoCell = (props: IProps) => {
         </div>
         <div className={styles.commandStatsBlock}>
           <span>{flagPoints ? flagPoints : <SkeletonText width={30} />}</span>
+          <span>
+            {commandData && commandData.totalSLA ? (
+              `${commandData.totalSLA}%`
+            ) : (
+              <SkeletonText width={30} />
+            )}
+          </span>
         </div>
       </div>
     </div>
