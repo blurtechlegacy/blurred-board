@@ -16,7 +16,7 @@ process.env.REACT_APP_SENTRY &&
 const Root = () => {
   React.useEffect(() => {
     BoardStoreService.init().then(() => WSClient.init())
-  })
+  }, [])
 
   return (
     <ErrorBoundary>
