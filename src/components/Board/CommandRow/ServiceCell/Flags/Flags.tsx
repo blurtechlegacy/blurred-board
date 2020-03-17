@@ -16,20 +16,16 @@ const Flags = (props: IProps) => {
 
   return (
     <div>
-      <div className={styles.flags}>
-        <Flag
-          className={classNames(
-            styles.flagIco,
-            serviceData ? styles.flagBlack : styles.flagWhite
-          )}
-        />
-        <span>
-          {serviceData ? (
-            `${serviceData.flags}/-${serviceData.sflags}`
-          ) : (
-            <SkeletonText width={40} />
-          )}{' '}
-        </span>
+      <div className={styles.flagBlock}>
+        <Flag className={classNames(styles.flagIco, styles.flagWhite)} />
+        {serviceData ? (
+          <React.Fragment>
+            <span className={styles.flags}>{serviceData?.flags}</span> /{' '}
+            <span className={styles.sflags}>{serviceData?.sflags}</span>
+          </React.Fragment>
+        ) : (
+          <SkeletonText width={40} />
+        )}
       </div>
       {totalFlags && serviceData && serviceData.fpSum && (
         <FlagCharts

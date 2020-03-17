@@ -1,0 +1,33 @@
+@import 'src/assets/scss/vars';
+
+.circle {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+
+  &_UP::before {
+    background-color: $status-up;
+  }
+
+  &_MUMBLE::before {
+    background-color: $status-mumble;
+  }
+
+  &_CORRUPT::before {
+    background-color: $status-corrupt;
+  }
+
+  &_DOWN::before {
+    background-color: $status-down;
+  }
+
+  &::before {
+    content: '';
+    display: inline-block;
+    border-radius: 100%;
+    height: 0.75rem;
+    width: 0.75rem;
+    margin-right: 5px;
+  }
+}

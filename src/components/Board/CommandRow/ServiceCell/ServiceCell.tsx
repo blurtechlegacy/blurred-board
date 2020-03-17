@@ -1,15 +1,11 @@
 import React from 'react'
 import classNames from 'classnames'
-import { IStatus } from 'src/classes/models/IStatus'
 import { IService } from 'src/classes/models/IHistory'
 import { IFirstblood } from 'src/classes/models/IFirstblood'
 import styles from './ServiceCell.module.scss'
 import SkeletonText from 'src/components/shared/SkeletonText'
+import Status from 'src/components/Board/CommandRow/ServiceCell/Status/Status'
 import Flags from 'src/components/Board/CommandRow/ServiceCell/Flags/Flags'
-
-const setColorClass = (status?: IStatus) => {
-  return status ? `serviceStatus${IStatus[status]}` : 'skeleton'
-}
 
 interface IProps {
   totalFlags?: number
@@ -29,12 +25,7 @@ const ServiceCell = (props: IProps) => {
   }, [firstblood])
 
   return (
-    <div
-      className={classNames(
-        styles[setColorClass(serviceData?.status)],
-        styles.cell
-      )}
-    >
+    <div className={styles.cell}>
       <div
         className={classNames(
           styles.cellInfoWrap,
@@ -44,9 +35,14 @@ const ServiceCell = (props: IProps) => {
         Firstblood!
       </div>
       <div className={styles.topInfo}>
-        <span className={styles.serviceFp}>
+        {serviceData ? (
+          <Status status={serviceData?.status} />
+        ) : (
+          <SkeletonText width={50} />
+        )}
+        <span>
           {serviceData ? (
-            <b>{[serviceData.fp.toFixed(2)]}</b>
+            serviceData.fp.toFixed(2)
           ) : (
             <SkeletonText width={40} />
           )}

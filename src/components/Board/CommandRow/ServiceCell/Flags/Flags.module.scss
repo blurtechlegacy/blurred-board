@@ -1,10 +1,14 @@
 @import 'src/assets/scss/vars';
 
-.flags {
+.flagBlock {
   font-size: 0.8rem;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+}
+
+.sflags {
+  color: red;
 }
 
 .flagIco {

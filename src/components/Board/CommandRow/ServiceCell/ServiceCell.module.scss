@@ -1,16 +1,19 @@
 @import 'src/assets/scss/vars';
 
 .cell {
-  color: $color-black;
-  position: relative;
   display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-basis: 100%;
   box-sizing: border-box;
+  position: relative;
+  padding-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  flex-basis: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-left: 2px solid #fefefe;
+  color: $color-white;
+  flex-direction: column;
   justify-content: space-between;
-  margin-left: 4px;
-  padding: 10px 15px;
 }
 
 .cellInfoWrap {
@@ -20,6 +23,7 @@
   width: 100%;
   height: 100%;
   background-color: $color-black;
+  font-family: 'Firstblood', sans-serif;
   color: $color-white;
   z-index: 1;
   display: flex;
@@ -30,8 +34,7 @@
 }
 
 .cellInfoWrapShow {
-  font-family: 'Firstblood';
-  font-size: 50px;
+  font-size: 1.2rem;
   opacity: 75%;
 }
 
@@ -49,28 +52,6 @@
   }
 }
 
-.serviceStatus {
-  &UP {
-    background-color: $status-up;
-  }
-
-  &ERROR {
-    background-color: $status-error;
-  }
-
-  &MUMBLE {
-    background-color: $status-mumble;
-  }
-
-  &CORRUPT {
-    background-color: $status-corrupt;
-  }
-
-  &DOWN {
-    background-color: $status-down;
-  }
-}
-
 .topInfo {
   display: flex;
   flex-direction: column;
@@ -78,7 +59,8 @@
   padding: 2px 5px;
 }
 
-.serviceSla {
+.serviceFp {
+  display: inline;
 }
 
 .bottomInfo {
