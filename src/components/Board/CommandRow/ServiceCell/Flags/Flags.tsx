@@ -3,7 +3,7 @@ import styles from './Flags.module.scss'
 import { ReactComponent as Flag } from 'src/assets/images/flag.svg'
 import classNames from 'classnames'
 import SkeletonText from 'src/components/shared/SkeletonText'
-import FlagCharts from 'src/components/Board/CommandRow/ServiceCell/Flags/FlagCharts'
+/*import FlagCharts from 'src/components/Board/CommandRow/ServiceCell/Flags/FlagCharts'*/
 import { IService } from 'src/classes/models/IHistory'
 
 interface IProps {
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const Flags = (props: IProps) => {
-  const { serviceData, totalFlags } = props
+  const { serviceData } = props
 
   return (
     <div>
@@ -31,13 +31,13 @@ const Flags = (props: IProps) => {
           )}{' '}
         </span>
       </div>
-      {totalFlags && serviceData && serviceData.fpSum && (
+      {/*totalFlags && serviceData && serviceData.fpSum && (
         <FlagCharts
           totalFp={serviceData?.fpSum}
           flagsAmount={serviceData?.flags}
           sflagsAmount={serviceData?.sflags}
         />
-      )}
+      )*/}
     </div>
   )
 }

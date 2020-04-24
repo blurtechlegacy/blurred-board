@@ -4,6 +4,7 @@ import { IHistory, IRound, IService } from 'src/classes/models/IHistory'
 import { getState, setNextState } from 'src/store'
 import { IState } from 'src/store/state'
 import { ICurrent } from 'src/classes/models/ICurrent'
+import Logger from '../utils/Logger'
 
 export const init = async () => {
   const state = getState()
@@ -74,24 +75,26 @@ export const getBoard = () => {
   const state = getState()
   const PFirstblood = BoardApi.fetchFirstblood()
   const PHistory = BoardApi.fetchHistory()
-  Promise.all([PFirstblood, PHistory]).then(all => {
-    const firstblood = all[0]
-    const history = all[1]
-    const teams = commandsMap(state, state.current)
-    setNextState({
-      ...state,
-      statuses: {
-        ...state.statuses,
-        info: state.statuses.info,
-        firstblood: firstblood.status,
-        history: history.status,
-      },
-      info: {
-        ...state.info,
-        commands: teams,
-      },
-      history: historyMap(state.history, history.data),
-      firstblood: firstblood.data,
+  Promise.all([PFirstblood, PHistory])
+    .then(all => {
+      const firstblood = all[0]
+      const history = all[1]
+      const teams = commandsMap(state, state.current)
+      setNextState({
+        ...state,
+        statuses: {
+          ...state.statuses,
+          info: state.statuses.info,
+          firstblood: firstblood.status,
+          history: history.status,
+        },
+        info: {
+          ...state.info,
+          commands: teams,
+        },
+        history: historyMap(state.history, history.data),
+        firstblood: firstblood.data,
+      })
     })
-  })
+    .catch(Logger.error)
 }

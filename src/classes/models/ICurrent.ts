@@ -1,7 +1,7 @@
 import { ICommandData } from 'src/classes/models/IInfo'
 import { IService } from 'src/classes/models/IHistory'
-import { getState } from '../../store'
-import { IStatus } from './IStatus'
+/*import { getState } from '../../store'
+import { IStatus } from './IStatus'*/
 
 export interface ICurrent {
   round: number
@@ -61,7 +61,7 @@ const servicesMap = (item: ICommandRaw, services: IServiceRaw[]) =>
     }
   })
 
-interface IGraphics {
+/*interface IGraphics {
   id: number
   services: {
     id: number
@@ -73,9 +73,9 @@ interface IGraphics {
     flagsSum: number
     sflagsSum: number
   }[]
-}
+}*/
 
-const calculateGraphicsData = (): IGraphics[] => {
+/*const calculateGraphicsData = (): IGraphics[] => {
   const history = getState().history
   const teams: Array<any> = []
   history.forEach(round =>
@@ -114,7 +114,7 @@ const calculateGraphicsData = (): IGraphics[] => {
     })
   )
   return teams
-}
+}*/
 
 const scoreboardMap = (
   scoreboard: ICommandRaw[],
@@ -137,7 +137,8 @@ const scoreboardMap = (
 export const rawCastCurrent = (data: ICurrentRaw): ICurrent => {
   return {
     round: data.round,
-    scoreboard: scoreboardMap(
+    scoreboard: scoreboardMap(data.scoreboard, Object.values(data.services)),
+    /* scoreboardMap(
       data.scoreboard,
       Object.values(data.services)
     ).map((team: ICommandData) => {
@@ -152,6 +153,6 @@ export const rawCastCurrent = (data: ICurrentRaw): ICurrent => {
           }
         }),
       }
-    }),
+    }),*/
   }
 }
