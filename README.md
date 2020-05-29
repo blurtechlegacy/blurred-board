@@ -15,24 +15,6 @@ Dashboard for Information Security Competitions
 - Prettier. Formats your code according to the rules in [`.prettierc`](.prettierrc). In WebStorm keyboard shortcut `Alt+Shift+Ctrl+P`.
 - Husky. Hook before committing. If you forgot to format your code, then Husky will launch the Prettier before committing.
 
-## Authors
-
-### Maintainers
-
-- :feelsgood: **Alexandr Sidorenko** - _Team Lead front-end developer_ - [batyshkaLenin](https://github.com/batyshkaLenin)  
-  [![Twitter Follow](https://img.shields.io/twitter/follow/batyshkaLenin.svg?style=social&label=Follow)](https://twitter.com/batyshkaLenin)
-- :heart: **Mattew Yanov** - _Front-end developer_ - [Montty666](https://github.com/Montty666)
-
-### Contributors
-
-- :arrow_down_small: **Michael Kvashin** - _Front-end developer_ - [Mfungorn](https://github.com/Mfungorn)
-- :shipit: **Vitaly Shatalov** - _Front-end developer_ - [tnnNull](https://github.com/tnnNull)  
-  [![Twitter Follow](https://img.shields.io/twitter/follow/thevetka.svg?style=social&label=Follow)](https://twitter.com/thevetka)
-- :baby_chick: **Danil Tankov** - _Front-end developer_ - [evist0](https://github.com/evist0)  
-  [![Twitter Follow](https://img.shields.io/twitter/follow/danushaperdusha.svg?style=social&label=Follow)](https://twitter.com/danushaperdusha)
-
-See also the list of [contributors](https://github.com/blurtech/blurred-board/contributors) who participated in this project.
-
 ## Deploy
 
 Autodeploy on Heroku: [board.blur.tech](https://board.blur.tech/)
