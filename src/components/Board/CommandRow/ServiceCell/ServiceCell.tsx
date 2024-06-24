@@ -43,6 +43,7 @@ const ServiceCell = (props: IProps) => {
       >
         Firstblood!
       </div>
+
       <div className={styles.topInfo}>
         <span className={styles.serviceFp}>
           {serviceData ? (
@@ -53,6 +54,7 @@ const ServiceCell = (props: IProps) => {
         </span>
         <Flags serviceData={serviceData} totalFlags={totalFlags} />
       </div>
+
       <div className={styles.bottomInfo}>
         <span className={styles.serviceSla}>
           {serviceData ? (

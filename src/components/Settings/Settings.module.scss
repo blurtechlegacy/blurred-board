@@ -3,7 +3,7 @@
 $margin: calc((100% - #{$page-width}) / 2);
 
 .settings {
-  position: absolute;
+  position: fixed;
   right: $margin;
   top: $margin;
   display: flex;
