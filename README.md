@@ -1,6 +1,6 @@
 # BlurredBoard
 
-[![Maintainability](https://qlty.sh/gh/blurtech/projects/blurred-board/maintainability.svg)](https://qlty.sh/gh/blurtech/projects/blurred-board) ![Travis (.com) branch](https://img.shields.io/travis/com/blurtechlegacy/blurred-board/master) [![GitHub issues](https://img.shields.io/github/issues/blurtech/blurred-board.svg)](https://github.com/blurtech/blurred-board/issues) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/blurtech/blurred-board)
+[![Maintainability](https://qlty.sh/gh/blurtechlegacy/projects/blurred-board/maintainability.svg)](https://qlty.sh/gh/blurtechlegacy/projects/blurred-board) ![Travis (.com) branch](https://img.shields.io/travis/com/blurtechlegacy/blurred-board/master) [![GitHub issues](https://img.shields.io/github/issues/blurtechlegacy/blurred-board.svg)](https://github.com/blurtechlegacy/blurred-board/issues) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/blurtechlegacy/blurred-board)
 
 Dashboard for Information Security Competitions
 
