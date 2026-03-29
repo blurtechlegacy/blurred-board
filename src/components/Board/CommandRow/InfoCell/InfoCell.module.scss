@@ -3,15 +3,23 @@
 .cell {
   border-right: 2px solid $color-white;
   display: flex;
+  position: relative;
   flex-direction: row;
   box-sizing: border-box;
   min-width: $team-column-width;
   padding: 15px;
+  padding-left: 8px;
 
   span {
     align-items: center;
     display: flex;
   }
+}
+
+.deltas {
+  position: absolute;
+  bottom: 8px;
+  right: 20px;
 }
 
 .logo {

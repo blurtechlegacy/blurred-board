@@ -1,4 +1,4 @@
-@import 'src/assets/scss/vars';
+@import 'src/assets/scss/_vars';
 
 header {
   display: flex;
@@ -25,11 +25,13 @@ header {
 }
 
 .serviceList {
-  margin-top: auto;
   display: flex;
+  width: calc(100% - #{$team-column-width});
+  margin-top: auto;
   flex-grow: 1;
   padding-right: 4px;
-  align-items: flex-end;
+  //align-items: flex-end;
+  justify-content: space-around;
 }
 
 .serviceName {
@@ -37,11 +39,11 @@ header {
   box-sizing: border-box;
   margin-bottom: 5px;
   padding-left: 5px;
-  flex-basis: 100%;
+  //flex-basis: 100%;
   font-weight: bold;
   text-transform: uppercase;
-  justify-content: flex-start;
-  border-left: 2px solid $color-white;
+  justify-content: space-between;
+  //border-left: 2px solid $color-white;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
